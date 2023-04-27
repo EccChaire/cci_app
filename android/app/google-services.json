@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "306030902884",
+    "project_id": "edd-data-collect",
+    "storage_bucket": "edd-data-collect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306030902884:android:f8fed7a715723756556971",
+        "android_client_info": {
+          "package_name": "com.example.cci_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306030902884-163bf9636d373g96a1onivktmqtk43it.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbg7aVQH_Z1KZZ1NwmAdM0AfkoI_BvHNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306030902884-163bf9636d373g96a1onivktmqtk43it.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

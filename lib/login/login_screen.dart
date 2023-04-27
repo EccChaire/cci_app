@@ -1,35 +1,33 @@
+import 'package:cci_app/login/login_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+   LoginPage({super.key});
+  TextEditingController mail = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  LoginController loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/background.jpg"),
-            fit: BoxFit.cover,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Image.asset(
+            'assets/images/logo.png',
+            width: 150.0,
+            height: 150.0,
           ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              'assets/images/logo.png',
-              width: 150.0,
-              height: 150.0,
-            ),
-            const SizedBox(height: 48.0),
-            _buildEmailTextField(),
-            const SizedBox(height: 8.0),
-            _buildPasswordTextField(),
-            const SizedBox(height: 24.0),
-            _buildLoginButton(),
-          ],
-        ),
+          const SizedBox(height: 48.0),
+          _buildEmailTextField(),
+          const SizedBox(height: 8.0),
+          _buildPasswordTextField(),
+          const SizedBox(height: 24.0),
+          _buildLoginButton(),
+        ],
       ),
     );
   }
@@ -37,9 +35,10 @@ class LoginPage extends StatelessWidget {
   Widget _buildEmailTextField() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: const TextField(
+      child:  TextField(
+        controller: mail,
         keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           labelText: 'Email',
           hintText: 'Enter your email',
         ),
@@ -50,9 +49,10 @@ class LoginPage extends StatelessWidget {
   Widget _buildPasswordTextField() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: const TextField(
+      child:  TextField(
+        controller: password,
         obscureText: true,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           labelText: 'Password',
           hintText: 'Enter your password',
         ),
@@ -65,6 +65,7 @@ class LoginPage extends StatelessWidget {
     child: const Text('LOGIN'),
     onPressed: () {
       // Implement your login logic here
+      loginController.login(mail.text, password.text);
     },
   );
 }
