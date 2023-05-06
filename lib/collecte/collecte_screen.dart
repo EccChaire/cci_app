@@ -6,10 +6,16 @@ class CollectePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-          child: Text("Bienvenue @nom @prenom, Merci pour ton collaboration", style: TextStyle(fontWeight: FontWeight.bold)),
-          ));
+    return  Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children:  [
+            const Center(
+              child: Text("Bienvenue @nom @prenom, Merci pour ton collaboration", style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
+              _buildcollecteButton()
+          ],
+        ));
   }
   Widget _buildcollecteButton() {
     return ElevatedButton(
