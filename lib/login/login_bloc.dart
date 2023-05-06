@@ -14,7 +14,7 @@ class LoginController extends GetxController {
     Map connection = await loginRepository.login(email, password);
     if (connection['status'] == 'connection'){
       isLoading.value = false;
-      //Navigate to the next page
+      //Get.to(() => CollectePage());
     }else{
       //Navigate to the forbiden page
     }

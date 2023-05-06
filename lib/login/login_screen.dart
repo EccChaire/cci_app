@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
-   LoginPage({super.key});
+  LoginPage({super.key});
   TextEditingController mail = TextEditingController();
   TextEditingController password = TextEditingController();
 
@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
   Widget _buildEmailTextField() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child:  TextField(
+      child: TextField(
         controller: mail,
         keyboardType: TextInputType.emailAddress,
         decoration: const InputDecoration(
@@ -49,7 +49,7 @@ class LoginPage extends StatelessWidget {
   Widget _buildPasswordTextField() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child:  TextField(
+      child: TextField(
         controller: password,
         obscureText: true,
         decoration: const InputDecoration(
@@ -61,12 +61,11 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _buildLoginButton() {
-  return ElevatedButton(
-    child: const Text('LOGIN'),
-    onPressed: () {
-      // Implement your login logic here
-      loginController.login(mail.text, password.text);
-    },
-  );
-}
+    return ElevatedButton(
+      child: const Text('LOGIN'),
+      onPressed: () {
+        loginController.login(mail.text, password.text);
+      },
+    );
+  }
 }
