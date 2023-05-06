@@ -3,6 +3,7 @@
 
 import 'package:cci_app/login/login_repository.dart';
 import 'package:get/get.dart';
+import 'package:cci_app/collecte/collecte_screen.dart';
 
 class LoginController extends GetxController {
   final LoginRepository loginRepository = LoginRepository();
@@ -14,7 +15,7 @@ class LoginController extends GetxController {
     Map connection = await loginRepository.login(email, password);
     if (connection['status'] == 'connection'){
       isLoading.value = false;
-      //Get.to(() => CollectePage());
+      Get.to(() => CollectePage());
     }else{
       //Navigate to the forbiden page
     }
