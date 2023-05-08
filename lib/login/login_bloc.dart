@@ -1,6 +1,3 @@
-
-
-
 import 'package:cci_app/login/login_repository.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/collecte/collecte_screen.dart';

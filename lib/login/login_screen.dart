@@ -62,10 +62,15 @@ class LoginPage extends StatelessWidget {
 
   Widget _buildLoginButton() {
     return ElevatedButton(
-      child: const Text('LOGIN'),
+      child: const Text('LOGIN',textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
       onPressed: () {
         loginController.login(mail.text, password.text);
       },
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
+        minimumSize: MaterialStateProperty.all<Size>(Size(250, 50)), // set minimum size
+        // You can also use fixedSize property to set the exact button size
+      ),
     );
   }
 }

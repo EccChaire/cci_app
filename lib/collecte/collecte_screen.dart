@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:cci_app/data_space/dataspace_screen.dart';
 
 class CollectePage extends StatelessWidget {
 
@@ -11,18 +12,25 @@ class CollectePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children:  [
             const Center(
-              child: Text("Bienvenue @nom @prenom, Merci pour ton collaboration", style: TextStyle(fontWeight: FontWeight.bold)),
+              child: Text("Bienvenue @nom @prenom, Merci pour ton collaboration",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Color(0xFF0F8A74), fontSize: 36 )),
               ),
               _buildcollecteButton()
           ],
         ));
   }
   Widget _buildcollecteButton() {
-    return ElevatedButton(
-      child: const Text('Collecte'),
-      onPressed: () {
-    // Implement your navigation
-      },
-    );
+    return Container(
+        padding: EdgeInsets.only(top: 350), // set padding to move button to top left corner
+        child: ElevatedButton(
+          child: const Text("Collecte",textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
+          onPressed: () {
+            Get.to(() => DataSpace());
+          },
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
+            minimumSize: MaterialStateProperty.all<Size>(Size(250, 50)), // set minimum size
+            // You can also use fixedSize property to set the exact button size
+          ),
+        ));
   }
 }
