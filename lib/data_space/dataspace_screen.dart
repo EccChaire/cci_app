@@ -12,16 +12,18 @@ class DataSpace extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
+
       children: [
+        SizedBox(height: 40),
         Row(children: [
           QuizzCard(
-            cardTitle: "Quizz1",
+            cardTitle: "Enquète 1",
             onClockFuction: () {
               Get.to(() => Q1Page());
             },
           ),
           QuizzCard(
-            cardTitle: "Quizz2",
+            cardTitle: "Enquète 2",
             onClockFuction: () {
               Get.to(() => Q2Page());
             },
@@ -30,13 +32,13 @@ class DataSpace extends StatelessWidget {
         Row(
           children: [
             QuizzCard(
-              cardTitle: "Quizz3",
+              cardTitle: "Enquète 3",
               onClockFuction: () {
                 Get.to(() => Q3Page());
               },
             ),
             QuizzCard(
-              cardTitle: "Quizz4",
+              cardTitle: "Enquète 4",
               onClockFuction: () {
                 Get.to(() => Q3Page());
               },

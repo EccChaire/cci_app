@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/data_space/dataspace_screen.dart';
 
-class CollectePage extends StatelessWidget {
+class N_douarPage extends StatelessWidget {
 
 
   @override
@@ -12,12 +12,26 @@ class CollectePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children:  [
             const Center(
-              child: Text("Bienvenue Test USR, Merci pour ton collaboration",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Color(0xFF0F8A74), fontSize: 36 )),
-              ),
-              _buildcollecteButton()
+              child: Text("C'est une nouvelle douar veuillez entrer son nom",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Color(0xFF0F8A74), fontSize: 36 )),
+            ),
+            _buildnameTextField(),
+            _buildcollecteButton()
           ],
         ));
   }
+  Widget _buildnameTextField() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      child: TextField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: const InputDecoration(
+          labelText: 'Nom',
+          hintText: 'Entrer le nom',
+        ),
+      ),
+    );
+  }
+
   Widget _buildcollecteButton() {
     return Container(
         padding: EdgeInsets.only(top: 350), // set padding to move button to top left corner

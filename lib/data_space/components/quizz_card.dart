@@ -14,7 +14,7 @@ class QuizzCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.only(
-            left: 10, top: 40), // set padding to move button to top left corner
+            left: 10, top: 10), // set padding to move button to top left corner
         child: ElevatedButton(
           onPressed: onClockFuction,
           style: ButtonStyle(
