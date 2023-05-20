@@ -1,9 +1,11 @@
 import 'package:cci_app/quizz1/quizz_screen.dart';
 import 'package:cci_app/quizz3/quizz_screen.dart';
+import 'package:cci_app/services/micro_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/quizz2/quizz_screen.dart';
 
+import '../services/cam_service.dart';
 import 'components/button_widget.dart';
 import 'components/quizz_card.dart';
 
@@ -46,8 +48,8 @@ class DataSpace extends StatelessWidget {
           ],
         ),
         Row(children: [
-          ButtonWidget(buttonLable: "Camera", buttonOnClickFunction: () {}),
-          ButtonWidget(buttonLable: "Micro", buttonOnClickFunction: () {}),
+          ButtonWidget(buttonLable: "Camera", buttonOnClickFunction: () async{ await PhotoService().takePhoto();}),
+          ButtonWidget(buttonLable: "Micro", buttonOnClickFunction: () async{ await AudioService().recordAudio();}),
         ]),
         Center(
           child: ButtonWidget(
