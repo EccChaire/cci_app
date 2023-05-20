@@ -11,7 +11,7 @@ class Media {
   String? mediaDescription;
   String? uploaderId;
   String? dowarId;
-  String? questionId;
+  String? responseId;
 
 
   Media({
@@ -21,7 +21,7 @@ class Media {
     this.mediaDescription,
     this.uploaderId,
     this.dowarId,
-    this.questionId,
+    this.responseId,
   });
 
   // Convert Media object to JSON
@@ -33,7 +33,7 @@ class Media {
       'mediaDescription': mediaDescription,
       'uploaderId': uploaderId,
       'dowarId': dowarId,
-      'questionId': questionId,
+      'responseId': responseId,
     };
   }
 
@@ -46,7 +46,7 @@ class Media {
       mediaDescription: json['mediaDescription'],
       uploaderId: json['uploaderId'],
       dowarId: json['dowarId'],
-      questionId: json['questionId'],
+      responseId: json['responseId'],
     );
   }
 }

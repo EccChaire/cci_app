@@ -23,7 +23,7 @@ class UploadMediaService {
         media.mediaUrl = await uploadFile(file, 'videos');
         break;
       case 'audio':
-        media.mediaUrl = await uploadFile(file, 'videos');
+        media.mediaUrl = await uploadFile(file, 'audios');
     }
 
     media.uploaderId = await LoginRepository().getConnectedUserId();
