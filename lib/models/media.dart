@@ -1,46 +1,53 @@
 import 'package:cci_app/models/dowar.dart';
+import 'package:cci_app/models/question.dart';
 import 'package:cci_app/models/user.dart';
 
 import 'dart:convert';
 
 class Media {
+  String? mediaId;
   String? mediaType;
   String? mediaUrl;
   String? mediaDescription;
-  User? uploader;
-  Dowar? mediaDowar;
+  String? uploaderId;
+  String? dowarId;
+  String? questionId;
 
-  Media(
-      {this.mediaType,
-      this.mediaUrl,
-      this.mediaDescription,
-      this.uploader,
-      this.mediaDowar});
 
+  Media({
+    this.mediaId,
+    this.mediaType,
+    this.mediaUrl,
+    this.mediaDescription,
+    this.uploaderId,
+    this.dowarId,
+    this.questionId,
+  });
+
+  // Convert Media object to JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'mediaId' : mediaId,
+      'mediaType': mediaType,
+      'mediaUrl': mediaUrl,
+      'mediaDescription': mediaDescription,
+      'uploaderId': uploaderId,
+      'dowarId': dowarId,
+      'questionId': questionId,
+    };
+  }
+
+  // Create Media object from JSON
   factory Media.fromJson(Map<String, dynamic> json) {
     return Media(
+      mediaId: json['mediaId'],
       mediaType: json['mediaType'],
       mediaUrl: json['mediaUrl'],
       mediaDescription: json['mediaDescription'],
-      uploader:
-          json['uploader'] != null ? User.fromJson(json['uploader']) : null,
-      mediaDowar: json['mediaDowar'] != null
-          ? Dowar.fromJson(json['mediaDowar'])
-          : null,
+      uploaderId: json['uploaderId'],
+      dowarId: json['dowarId'],
+      questionId: json['questionId'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['mediaType'] = mediaType;
-    data['mediaUrl'] = mediaUrl;
-    data['mediaDescription'] = mediaDescription;
-    if (uploader != null) {
-      data['uploader'] = uploader!.toJson();
-    }
-    if (mediaDowar != null) {
-      data['mediaDowar'] = mediaDowar!.toJson();
-    }
-    return data;
-  }
 }
+

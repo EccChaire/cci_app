@@ -1,6 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 
 class LocationHelper {
+  
   Future<Position> getCurrentLocation() async {
     bool serviceEnabled;
     LocationPermission permission;

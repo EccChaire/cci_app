@@ -1,3 +1,4 @@
+import 'package:cci_app/services/Date_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/responce.dart';
@@ -29,6 +30,7 @@ class ResponseService {
 
   // Save a response to Firebase
   Future<void> saveResponse(Response response) async {
+    response.responseDate = DateTime.now();
     await DatabaseRoutes.RENSPONSE_DATABASES.doc(response.responseId.toString()).set(response.toJson());
   }
 
