@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cci_app/login/login_repository.dart';
+import 'package:cci_app/models/local_media.dart';
 import 'package:cci_app/models/media.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:uuid/uuid.dart';
@@ -8,22 +9,21 @@ import 'package:uuid/uuid.dart';
 import '../utils/database_roots.dart';
 
 class UploadMediaService {
-  Future<void> saveMedia(
-      File file, String mediaType, String mediaDescription) async {
+  Future<void> saveMedia(LocalMedia localMedia) async {
     Media media = Media();
 
-    media.mediaType = mediaType;
-    media.mediaDescription = mediaDescription;
+    media.mediaType = localMedia.type;
+    media.mediaDescription = localMedia.description;
 
-    switch (mediaType) {
+    switch (localMedia.type) {
       case 'image':
-        media.mediaUrl = await uploadFile(file, 'images');
+        media.mediaUrl = await uploadFile(localMedia.file!, 'images');
         break;
       case 'video':
-        media.mediaUrl = await uploadFile(file, 'videos');
+        media.mediaUrl = await uploadFile(localMedia.file!, 'videos');
         break;
       case 'audio':
-        media.mediaUrl = await uploadFile(file, 'audios');
+        media.mediaUrl = await uploadFile(localMedia.file!, 'audios');
     }
 
     media.uploaderId = await LoginRepository().getConnectedUserId();

@@ -13,7 +13,7 @@ class DataSpace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
+        body: ListView(
 
       children: [
         SizedBox(height: 40),

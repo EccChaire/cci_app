@@ -30,7 +30,6 @@ class ResponseService {
 
   // Save a response to Firebase
   Future<void> saveResponse(Response response) async {
-    response.responseDate = DateTime.now();
     await DatabaseRoutes.RENSPONSE_DATABASES.doc(response.responseId.toString()).set(response.toJson());
   }
 
