@@ -30,7 +30,7 @@ class UploadMediaService {
     media.dowarId = "Position";
 
     final docRef = DatabaseRoutes.QUESTION_DATABASES.doc();
-    media.mediaId = double.parse(docRef.id)
+    media.mediaId = docRef.id
         .toString(); // Set questionId to the Firestore document ID
     final Map<String, dynamic> data = media.toJson();
     await docRef.set(data);
