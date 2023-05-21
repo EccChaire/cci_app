@@ -13,7 +13,7 @@ class Q1Page extends StatelessWidget {
   
   Responsecontroller responsecontroller = Get.put(Responsecontroller(questionId: "questionId"));
   
-  final DataSpeceController dataSpeceController = Get.put(DataSpeceController());
+  final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
