@@ -39,4 +39,5 @@ class LoginRepository {
 
     return currentUser.uid;
   }
+
 }

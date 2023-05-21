@@ -1,6 +1,31 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geolocator/geolocator.dart';
 
-class LocationHelper {
+import '../models/intervale.dart';
+import '../utils/database_roots.dart';
+
+class IntervalService { 
+
+  Future<List<CoordinateInterval>> getAllIntervales() async {
+    final QuerySnapshot<Object?> querySnapshot =
+        await DatabaseRoutes.INTERVAL_DATABASES.get();
+
+    return querySnapshot.docs
+        .map((doc) => CoordinateInterval.fromJson(doc.data() as Map<String, dynamic>))
+        .toList();
+
+  }
+
+  Future<CoordinateInterval?> getCoordinateIntervalById(String id) async {
+    final intervalRef = DatabaseRoutes.INTERVAL_DATABASES.doc(id);
+    final intervalSnapshot = await intervalRef.get();
+    if (intervalSnapshot.exists) {
+      final intervalData = intervalSnapshot.data() as Map<String, dynamic>;
+      return CoordinateInterval.fromJson(intervalData);
+    } else {
+      return null;
+    }
+  }
   
   Future<Position> getCurrentLocation() async {
     bool serviceEnabled;
@@ -58,16 +83,4 @@ class LocationHelper {
   }
 }
 
-class CoordinateInterval {
-  final double startLatitude;
-  final double startLongitude;
-  final double endLatitude;
-  final double endLongitude;
 
-  CoordinateInterval({
-    required this.startLatitude,
-    required this.startLongitude,
-    required this.endLatitude,
-    required this.endLongitude,
-  });
-}

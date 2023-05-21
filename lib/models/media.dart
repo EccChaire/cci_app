@@ -1,8 +1,4 @@
-import 'package:cci_app/models/dowar.dart';
-import 'package:cci_app/models/question.dart';
-import 'package:cci_app/models/user.dart';
 
-import 'dart:convert';
 
 class Media {
   String? mediaId;
@@ -11,7 +7,6 @@ class Media {
   String? mediaDescription;
   String? uploaderId;
   String? dowarId;
-  String? responseId;
 
 
   Media({
@@ -21,7 +16,6 @@ class Media {
     this.mediaDescription,
     this.uploaderId,
     this.dowarId,
-    this.responseId,
   });
 
   // Convert Media object to JSON
@@ -33,7 +27,6 @@ class Media {
       'mediaDescription': mediaDescription,
       'uploaderId': uploaderId,
       'dowarId': dowarId,
-      'responseId': responseId,
     };
   }
 
@@ -46,7 +39,6 @@ class Media {
       mediaDescription: json['mediaDescription'],
       uploaderId: json['uploaderId'],
       dowarId: json['dowarId'],
-      responseId: json['responseId'],
     );
   }
 }
