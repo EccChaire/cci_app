@@ -64,6 +64,7 @@ class DataSpace extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: TextField(
+                        onChanged: (value) {mediaConroller.setMediaDescription(value);},
                         //controller: mail,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
@@ -75,6 +76,7 @@ class DataSpace extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: TextField(
+                        onChanged: (value) {mediaConroller.setMediaType(value);},
                         //controller: mail,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
