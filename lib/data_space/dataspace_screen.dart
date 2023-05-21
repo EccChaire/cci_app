@@ -98,7 +98,9 @@ class DataSpace extends StatelessWidget {
         Center(
           child: ButtonWidget(
             buttonLable: "Envoyer",
-            buttonOnClickFunction: () {},
+            buttonOnClickFunction: () async{
+              await dataSpeceController.saveDataToFirebase();
+            },
           ),
         )
       ],
