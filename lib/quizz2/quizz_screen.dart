@@ -3,13 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:cci_app/quizz2/slider.dart';
 import 'package:cci_app/data_space/dataspace_screen.dart';
 
+import '../data_space/controllers/data_space_controller.dart';
+import '../data_space/controllers/resonse_controller.dart';
+import 'package:cci_app/models/responce.dart' as resp;
+
 
 class Q2Page extends StatefulWidget {
+
+  
   @override
   _Q2PageState createState() => _Q2PageState();
 }
 
 class _Q2PageState extends State<Q2Page> {
+  Responsecontroller responsecontroller = Get.put(Responsecontroller(questionId: "questionId"));
+  
+  final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   Map<String, double> _selectedValues = {};
 
   @override
@@ -53,8 +62,12 @@ class _Q2PageState extends State<Q2Page> {
     return  Container(
         padding: EdgeInsets.only(left: 240, top: 20),
         child: TextButton(
-          onPressed: () {
-            // Perform some action here
+          onPressed: () async{
+
+            resp.Response resposne = await responsecontroller.createNewResponse();
+            dataSpeceController.saveResponse(resposne);
+
+        // Perform some action here
           },
           child: Text('Enregistrer', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color:Color(0xFF0F8A74))),
         ));
