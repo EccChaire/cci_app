@@ -48,7 +48,42 @@ class DataSpace extends StatelessWidget {
           ],
         ),
         Row(children: [
-          ButtonWidget(buttonLable: "Camera", buttonOnClickFunction: () async{ await PhotoService().takePhoto();}),
+          ButtonWidget(buttonLable: "Camera", buttonOnClickFunction: () {
+            showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text("Veuillez inserer Le type et le description du média"),
+                  actions: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: TextField(
+                        //controller: mail,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(
+                          labelText: 'Description',
+                          hintText: 'Description ...',
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        child: TextField(
+                        //controller: mail,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(
+                        labelText: 'type',
+                        hintText: 'video ou photo',
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                        child: Text("ok"),
+                        onPressed: () => Navigator.pop(context))
+                  ],
+
+                ));
+            PhotoService().takePhoto();
+          }),
           ButtonWidget(buttonLable: "Micro", buttonOnClickFunction: () async{ await AudioService().recordAudio();}),
         ]),
         Center(
