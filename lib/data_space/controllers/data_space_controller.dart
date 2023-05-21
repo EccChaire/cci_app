@@ -29,8 +29,8 @@ class DataSpeceController extends GetxController {
       await UploadMediaService().saveMedia(media);
     }
 
-    for(resp.Response resp in responses){
-      ResponseService().saveResponse(resp);
+    for(resp.Response respon in responses){
+      ResponseService().saveResponse(respon);
     }
 
     return 'done';
