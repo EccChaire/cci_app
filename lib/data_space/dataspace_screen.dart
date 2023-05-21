@@ -1,3 +1,5 @@
+import 'package:cci_app/data_space/controllers/data_space_controller.dart';
+import 'package:cci_app/data_space/controllers/media_controller.dart';
 import 'package:cci_app/quizz1/quizz_screen.dart';
 import 'package:cci_app/quizz3/quizz_screen.dart';
 import 'package:cci_app/services/micro_service.dart';
@@ -10,6 +12,11 @@ import 'components/button_widget.dart';
 import 'components/quizz_card.dart';
 
 class DataSpace extends StatelessWidget {
+  final MediaConroller mediaConroller = Get.put(MediaConroller());
+  // Responsecontroller responsecontroller = Get.put(Responsecontroller());
+  final DataSpeceController dataSpeceController = Get.put(DataSpeceController());
+
+  DataSpace({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,9 +2,18 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:cci_app/data_space/dataspace_screen.dart';
 
+import '../data_space/controllers/data_space_controller.dart';
+import '../data_space/controllers/resonse_controller.dart';
+import 'package:cci_app/models/responce.dart' as resp;
+
 class Q1Page extends StatelessWidget {
 
+  final String questionId = "QuestionId";
 
+  
+  Responsecontroller responsecontroller = Get.put(Responsecontroller(questionId: "questionId"));
+  
+  final DataSpeceController dataSpeceController = Get.put(DataSpeceController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +94,11 @@ class Q1Page extends StatelessWidget {
     return  Container(
         padding: EdgeInsets.only(left: 240, top: 20),
         child: TextButton(
-          onPressed: () {
+          onPressed: () async{
+
+            resp.Response resposne = await responsecontroller.createNewResponse();
+            dataSpeceController.saveResponse(resposne);
+
         // Perform some action here
           },
           child: Text('Enregistrer', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color:Color(0xFF0F8A74))),
