@@ -23,6 +23,8 @@ class _Q3PageState extends State<Q3Page> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
+          width: 450,
+          height: 1200,
           child: Column(
               children: [
                 Row(
@@ -35,7 +37,6 @@ class _Q3PageState extends State<Q3Page> {
                   children: [
                     ChooseTwoInOrderQuestion(question: "Comment t'a trouvé ce douar?"),
                     const SizedBox(height: 10),
-                    ChooseTwoInOrderQuestion(question: "Cmment t'a trouvé ce douar?"),
                   ],
                 ),
               ]),
