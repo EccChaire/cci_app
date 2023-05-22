@@ -46,6 +46,7 @@ class N_douarPage extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             newDowarBlock.saveNewInterval(currentPosition);
+            newDowarBlock.saveDowar();
             Get.to(() => DataSpace());
           },
           style: ButtonStyle(

@@ -1,33 +1,23 @@
-
-
 class Dowar {
-  double? douwarId;
+  String? douwarId;
   String? dowarName;
-  String? dowarLongInt;
-  String? dowarLatInt;
+  String? intervalId;
 
   Dowar({
     this.douwarId,
     this.dowarName,
-    this.dowarLongInt,
-    this.dowarLatInt,
+    this.intervalId
   });
 
-  factory Dowar.fromJson(Map<String, dynamic> json) {
-    return Dowar(
-      douwarId: json['douwarId'] ,
-      dowarName: json['dowarName'] ,
-      dowarLongInt: json['dowarLongInt'] ,
-      dowarLatInt: json['dowarLatInt'] ,
-    );
-  }
+  factory Dowar.fromJson(Map<String, dynamic> json) => Dowar(
+        douwarId: json['douwarId'],
+        dowarName: json['dowarName'],
+        intervalId: json['intervalId'],
+      );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['douwarId'] = douwarId;
-    data['dowarName'] = dowarName;
-    data['dowarLongInt'] = dowarLongInt;
-    data['dowarLatInt'] = dowarLatInt;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        'douwarId': douwarId,
+        'dowarName': dowarName,
+        'intervalId': intervalId,
+      };
 }
