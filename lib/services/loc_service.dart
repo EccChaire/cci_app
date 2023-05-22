@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../models/intervale.dart';
@@ -80,6 +81,18 @@ class IntervalService {
         latitude <= interval.endLatitude &&
         longitude >= interval.startLongitude &&
         longitude <= interval.endLongitude);
+  }
+
+
+  Future<bool> isDouarExist()async {
+    List<CoordinateInterval> coordinateIntervals = await getAllIntervales();
+    Position currentPosition = await getCurrentLocation();
+    for (CoordinateInterval interval in coordinateIntervals ){
+      bool isPositionInInterval = isLocationWithinInterval(currentPosition, interval);
+      if (isPositionInInterval) return isPositionInInterval;
+    }
+    return false;
+
   }
 }
 
