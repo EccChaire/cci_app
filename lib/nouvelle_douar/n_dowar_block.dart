@@ -3,7 +3,9 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
-class NewDowar extends GetxController{
+import '../services/loc_service.dart';
+
+class NewDowarBlock extends GetxController{
   String dowarName = "";
 
 
@@ -12,7 +14,7 @@ class NewDowar extends GetxController{
   }
 
   void saveNewInterval(Position currentPosition){
-    
+    IntervalService().createCoordinateInterval(currentPosition);
   }  
 
 
