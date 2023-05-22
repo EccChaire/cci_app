@@ -113,7 +113,48 @@ class DataSpace extends StatelessWidget {
 
                 ));
           }),
-          ButtonWidget(buttonLable: "Micro", buttonOnClickFunction: () async{ await AudioService().recordAudio();}),
+          ButtonWidget(buttonLable: "Micro", buttonOnClickFunction: () {
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text("Veuillez inserer la description du média"),
+                    actions: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        child: Column(
+                          children: [
+                            TextField(
+                              onChanged: (value) {mediaConroller.setMediaDescription(value);},
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: const InputDecoration(
+                                labelText: 'Description',
+                                hintText: 'Description ...',
+                                ),
+                              ),
+                            SizedBox(height: 40),
+                            Row(
+                            children: [
+                              ElevatedButton(
+                                child: const Text("Audio",textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
+                                onPressed: ()  => audioService().RecordAudio(),
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
+                                  minimumSize: MaterialStateProperty.all<Size>(Size(125, 50)), // set minimum size
+                                  // You can also use fixedSize property to set the exact button size
+                                ),
+                              ),
+                            ],
+                            )
+                          ],
+                        )
+                      ),
+                      TextButton(
+                          child: Text("OK", style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF0F8A74) , fontSize: 11)),
+                          onPressed: () => Navigator.pop(context))
+                    ],
+
+                  ));
+          }),
         ]),
         Center(
           child: ButtonWidget(

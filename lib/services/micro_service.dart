@@ -1,31 +1,13 @@
-import 'dart:async';
-import 'dart:io';
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
+class audioService {
+  Future RecordAudio() async {
 
-class AudioService {
-  static const MethodChannel _channel = MethodChannel('audio_service');
-
-  Future<String?> recordAudio() async {
-    String? filePath;
-    try {
-      final directory = await getTemporaryDirectory();
-      filePath = '${directory.path}/recording.aac';
-      await _channel.invokeMethod('recordAudio', {'filePath': filePath});
-    } catch (e) {
-      print('Error recording audio: $e');
+    final status = await Permission.microphone.request();
+    if (status != PermissionStatus.granted){
+      throw RecordingPermissionException('Microphone permission denied.');
     }
-    return filePath;
-  }
-
-  Future<void> saveAudio(String filePath) async {
-    try {
-      final File file = File(filePath);
-      // Implement your logic to save the audio file
-      print('Audio saved: $filePath');
-    } catch (e) {
-      print('Error saving audio: $e');
-    }
+    await FlutterSoundRecorder().openRecorder();
   }
 }
