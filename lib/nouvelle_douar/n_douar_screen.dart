@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/data_space/dataspace_screen.dart';
 
+import 'n_dowar_block.dart';
+
 class N_douarPage extends StatelessWidget {
 
+  final Position currentPosition;
+
+  final NewDowarBlock newDowarBlock = Get.put(NewDowarBlock());
+
+  N_douarPage({super.key, required this.currentPosition});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +30,9 @@ class N_douarPage extends StatelessWidget {
   Widget _buildnameTextField() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: TextField(
+      child: const TextField(
         keyboardType: TextInputType.emailAddress,
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           labelText: 'Nom',
           hintText: 'Entrer le nom',
         ),
@@ -34,17 +42,18 @@ class N_douarPage extends StatelessWidget {
 
   Widget _buildcollecteButton() {
     return Container(
-        padding: EdgeInsets.only(top: 350), // set padding to move button to top left corner
+        padding: const EdgeInsets.only(top: 350), // set padding to move button to top left corner
         child: ElevatedButton(
-          child: const Text("Collecte",textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
           onPressed: () {
+            newDowarBlock.saveNewInterval(currentPosition);
             Get.to(() => DataSpace());
           },
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
-            minimumSize: MaterialStateProperty.all<Size>(Size(250, 50)), // set minimum size
+            backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0F8A74)), // set background color
+            minimumSize: MaterialStateProperty.all<Size>(const Size(250, 50)), // set minimum size
             // You can also use fixedSize property to set the exact button size
           ),
+          child: const Text("Collecte",textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
         ));
   }
 }

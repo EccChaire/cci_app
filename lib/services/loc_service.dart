@@ -57,7 +57,7 @@ class IntervalService {
     );
   }
 
-  CoordinateInterval getCoordinateInterval(Position position) {
+  CoordinateInterval createCoordinateInterval(Position position) {
     double startLatitude = position.latitude - 0.01;
     double startLongitude = position.longitude -0.01;
 
