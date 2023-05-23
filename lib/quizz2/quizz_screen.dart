@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:cci_app/quizz2/slider.dart';
@@ -40,7 +41,7 @@ class _Q2PageState extends State<Q2Page> {
                 children: [
                   for (var index= 0; index<questions.length; index = index+1 ) ...[
                     MetricInterface(question: questions[index], responses: responses),
-                    const SizedBox(height: 10),
+                     SizedBox(height: 10.h),
 
                   ]
                 ],

@@ -12,6 +12,7 @@ import 'package:cci_app/quizz2/quizz_screen.dart';
 import '../services/cam_service.dart';
 import 'components/button_widget.dart';
 import 'components/quizz_card.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DataSpace extends StatelessWidget {
   DataSpeceController dataSpaceConroller = Get.find<DataSpeceController>();
@@ -33,7 +34,7 @@ class DataSpace extends StatelessWidget {
         body: ListView(
 
       children: [
-        SizedBox(height: 40),
+        SizedBox(height: 40.h),
         Row(children: [
           QuizzCard(
             cardTitle: "Enquête 1",
@@ -90,7 +91,7 @@ class DataSpace extends StatelessWidget {
                               hintText: 'Description ...',
                             ),
                           ),
-                          SizedBox(height: 40),
+                          SizedBox(height: 40.h),
                           Row(
                             children: [
                               ElevatedButton(
@@ -108,7 +109,7 @@ class DataSpace extends StatelessWidget {
                                   // You can also use fixedSize property to set the exact button size
                                 ),
                               ),
-                              SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               ElevatedButton(
                                 child: const Text("Vidéo",textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
                                 onPressed: () async{
@@ -157,7 +158,7 @@ class DataSpace extends StatelessWidget {
                                 hintText: 'Description ...',
                                 ),
                               ),
-                            SizedBox(height: 40),
+                            SizedBox(height: 40.h),
                             Row(
                             children: [
                               ElevatedButton(

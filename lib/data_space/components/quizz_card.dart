@@ -1,5 +1,6 @@
 
 
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter/material.dart';
 
@@ -26,8 +27,8 @@ class QuizzCard extends StatelessWidget {
             // You can also use fixedSize property to set the exact button size
           ),
           child: Container(
-            height: 240,
-            width: 160,
+            height: 240.h,
+            width: 160.w,
             child: RichText(
               text: TextSpan(
                 children: [
@@ -35,8 +36,8 @@ class QuizzCard extends StatelessWidget {
                     children: [
                       WidgetSpan(
                       child: SizedBox(
-                        width: 160,
-                        height: 20,
+                        width: 160.w,
+                        height: 20.h,
                     ),
                   ),
                       TextSpan(
@@ -52,8 +53,8 @@ class QuizzCard extends StatelessWidget {
                     children: [
                       WidgetSpan(
                         child: SizedBox(
-                          width: 160,
-                          height: 40,
+                          width: 160.w,
+                          height: 40.h,
                         ),
                       ),
                       TextSpan(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cci_app/quizz3/VoirPlusWidget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 
@@ -30,8 +31,8 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(left: 30,right:30, top: 20),
-    width: 400,
-    height: 350,
+    width: 400.w,
+    height: 350.h,
     decoration: BoxDecoration(
     color: Colors.grey,
     shape: BoxShape.rectangle,
@@ -40,11 +41,11 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
     child :Column(
       children: [
         Text(widget.question, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-        SizedBox(height: 10),
+        SizedBox(height: 10.h),
         for (var index= 0; index<options.length; index = index+1 ) ...[
           Container(
-              width: 400,
-              height: 50,
+              width: 400.w,
+              height: 50.h,
               decoration: BoxDecoration(
                 color: Colors.grey,
                 shape: BoxShape.rectangle,
@@ -53,8 +54,8 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
               child: Row(
                 children: [
                   Container(
-                      width: 100,
-                      height: 50,
+                      width: 100.w,
+                      height: 50.h,
                       child: ListTile(
                         title: Text(options[index], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
                         selected: selectedOptions.contains(options[index]),
@@ -73,8 +74,8 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
                         },
                       )),
                   Container(
-                      width: 200,
-                      height: 50,
+                      width: 200.w,
+                      height: 50.h,
                       child: Row(
                           children:[
                             Text(
@@ -106,7 +107,7 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
                 ],
               ))
         ],
-        SizedBox(height: 10),
+        SizedBox(height: 10.h),
         Text('Selected options: ${selectedOptions[0]}, ${selectedOptions[1]}', style: TextStyle(fontWeight: FontWeight.bold , fontSize: 11)),
       ],
     ));

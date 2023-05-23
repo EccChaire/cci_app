@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
-import 'package:get/get.dart';
-
 import '../data_space/controllers/data_space_controller.dart';
 
 
@@ -31,8 +30,8 @@ class _writeResponse extends State<writeResponse> {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(left: 30,right:30, top: 20),
-        width: 400,
-        height: 130,
+        width: 400.w,
+        height: 130.h,
         decoration: BoxDecoration(
           color: Colors.grey,
           shape: BoxShape.rectangle,
@@ -42,7 +41,7 @@ class _writeResponse extends State<writeResponse> {
             children:  [
               Text( widget.question, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
 
-              const SizedBox(height: 20.0),
+              SizedBox(height: 20.h),
               _buildReponseField(),
 
 

@@ -1,5 +1,6 @@
 import 'package:cci_app/login/login_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
@@ -18,14 +19,14 @@ class LoginPage extends StatelessWidget {
         children: <Widget>[
           Image.asset(
             'assets/images/logo.png',
-            width: 150.0,
-            height: 150.0,
+            width: 150.w,
+            height: 150.h,
           ),
-          const SizedBox(height: 48.0),
+           SizedBox(height: 48.h),
           _buildEmailTextField(),
-          const SizedBox(height: 8.0),
+           SizedBox(height: 8.h),
           _buildPasswordTextField(),
-          const SizedBox(height: 24.0),
+           SizedBox(height: 24.h),
           _buildLoginButton(),
         ],
       ),

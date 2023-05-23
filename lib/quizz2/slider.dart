@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/models/responce.dart' as resp;
 import 'package:cci_app/data_space/controllers/data_space_controller.dart';
@@ -28,8 +29,8 @@ class _MetricInterfaceState extends State<MetricInterface> {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(left: 30,right:30, top: 20),
-        width: 400,
-        height: 130,
+        width: 400.w,
+        height: 130.h,
         decoration: BoxDecoration(
         color: Colors.grey,
         shape: BoxShape.rectangle,
@@ -50,7 +51,7 @@ class _MetricInterfaceState extends State<MetricInterface> {
                   children:[
                     SliderTheme(
                         data: SliderThemeData(
-                          trackHeight: 5,
+                          trackHeight: 5.h,
                           thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10),
                           overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
                         ),
