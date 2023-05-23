@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:cci_app/models/responce.dart' as resp;
+import 'package:cci_app/data_space/controllers/data_space_controller.dart';
+import 'package:cci_app/data_space/controllers/resonse_controller.dart';
 
 class MetricInterface extends StatefulWidget {
+  List<String> responses;
   final String question;
 
-  MetricInterface({required this.question});
+  MetricInterface({
+    required this.responses,
+    required this.question
+  });
+
+
 
   @override
   _MetricInterfaceState createState() => _MetricInterfaceState();
 }
 
 class _MetricInterfaceState extends State<MetricInterface> {
+  Responsecontroller responsecontroller = Get.put(Responsecontroller());
+  final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   double _currentValue = 3.0;
 
   @override
@@ -50,16 +62,23 @@ class _MetricInterfaceState extends State<MetricInterface> {
                           activeColor: Colors.green,
                           inactiveColor: Colors.white,
 
-                          onChanged: (double value) {
+                          onChanged: (double value) async{
                             setState(() {
                              _currentValue = value;
+
                         });
+                            widget.responses.add(_currentValue.toString());
                       },
-              ))]
+
+
+              ),
+                    )]
           )]
         )],
-    )
+    ),
     );
+
   }
+
 }
 

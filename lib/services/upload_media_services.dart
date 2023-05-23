@@ -49,4 +49,8 @@ class UploadMediaService {
 
     return downloadUrl;
   }
+  Future<void> save_media(Media media) async {
+    await DatabaseRoutes.MEDIA_DATABASES.doc(media.mediaId.toString()).set(media.toJson());
+
+  }
 }

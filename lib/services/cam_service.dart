@@ -12,13 +12,7 @@ class PhotoService {
   Future<File?> takePhoto() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
     if (pickedFile != null) {
-      MediaConroller mediaConroller = Get.find<MediaConroller>();
-      DataSpeceController dataSpaceConroller = Get.find<DataSpeceController>();
-      mediaConroller.setMediaFile(File(pickedFile.path));
-      dataSpaceConroller.saveMedia(mediaConroller.createLocalMedia());
       return File(pickedFile.path);
-    } else {
-      return null;
     }
   }
   Future<File?> recordVideo() async {

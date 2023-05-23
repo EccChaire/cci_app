@@ -9,34 +9,11 @@ import 'package:get/get.dart';
 import '../../models/media.dart';
 
 class MediaConroller extends GetxController {
-
-  var mediaType = "".obs;
-  var mediaDescription = "".obs;
-
-  File? mediaFile ;
-
-
-  
-
-
-  void setMediaType(newMediaType){
-    mediaType.value = newMediaType;
-  }
-
-  void setMediaDescription(newMediaDescription){
-    mediaDescription.value = newMediaDescription;
-  }
-
-  void setMediaFile(newMediaFile){
-    mediaFile = newMediaFile;
-  }
-
-
-  LocalMedia createLocalMedia(){
+  LocalMedia createLocalMedia(String Description, String Type, File? media){
     LocalMedia localMedia = LocalMedia();
-    localMedia.description = mediaDescription.value;
-    localMedia.type = mediaType.value;
-    localMedia.file = mediaFile;
+    localMedia.description = Description;
+    localMedia.type = Type;
+    localMedia.file = media;
 
     return  localMedia;
 

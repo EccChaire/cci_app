@@ -9,12 +9,15 @@ import '../data_space/controllers/resonse_controller.dart';
 
 
 class Q3Page extends StatefulWidget {
+
   @override
   _Q3PageState createState() => _Q3PageState();
 }
 
 class _Q3PageState extends State<Q3Page> {
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
+  List<String> questions = ["Comment t'a trouvé ce douar?", "Comment t'a trouvé ce douar?"];
+  List<List<String>> responses = [[]];
   
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   Map<String, double> _selectedValues = {};
@@ -22,10 +25,7 @@ class _Q3PageState extends State<Q3Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          width: 450,
-          height: 1200,
-          child: Column(
+        body:  ListView(
               children: [
                 Row(
                     children: [
@@ -35,12 +35,15 @@ class _Q3PageState extends State<Q3Page> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ChooseTwoInOrderQuestion(question: "Comment t'a trouvé ce douar?"),
-                    const SizedBox(height: 10),
+                    for (var index= 0; index<questions.length; index = index+1 ) ...[
+                      ChooseTwoInOrderQuestion(question: questions[index], responses: responses),
+                      const SizedBox(height: 10),
+
+                    ]
                   ],
                 ),
               ]),
-        ));
+        );
   }
 
 
@@ -61,11 +64,11 @@ class _Q3PageState extends State<Q3Page> {
     return  Container(
         padding: EdgeInsets.only(left: 240, top: 20),
         child: TextButton(
-          onPressed: () async{
-
-            resp.Response resposne = await responsecontroller.createNewResponse('f','f','f');
-            dataSpeceController.saveResponse(resposne);
-
+          onPressed: () async {
+            for (var index= 0; index<questions.length; index = index+1 ){
+              resp.Response resposne = await responsecontroller.createNewResponse(questions[index], responses[index].toString(), 'dowarid');
+              dataSpeceController.saveResponse(resposne);
+              }
         // Perform some action here
           },
           child: Text('Enregistrer', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color:Color(0xFF0F8A74))),

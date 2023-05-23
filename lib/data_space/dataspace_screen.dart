@@ -1,7 +1,9 @@
 import 'package:cci_app/data_space/controllers/data_space_controller.dart';
 import 'package:cci_app/data_space/controllers/media_controller.dart';
+import 'package:cci_app/services/upload_media_services.dart';
 import 'package:cci_app/quizz1/quizz_screen.dart';
 import 'package:cci_app/quizz3/quizz_screen.dart';
+import 'package:cci_app/models/local_media.dart';
 import 'package:cci_app/services/micro_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,13 +14,21 @@ import 'components/button_widget.dart';
 import 'components/quizz_card.dart';
 
 class DataSpace extends StatelessWidget {
+  DataSpeceController dataSpaceConroller = Get.find<DataSpeceController>();
+
   final MediaConroller mediaConroller = Get.put(MediaConroller());
   // Responsecontroller responsecontroller = Get.put(Responsecontroller());
   final DataSpeceController dataSpeceController = Get.put(DataSpeceController());
 
+
+
   DataSpace({super.key});
+
   @override
   Widget build(BuildContext context) {
+    String Description = '';
+    LocalMedia md;
+
     return Scaffold(
         body: ListView(
 
@@ -70,7 +80,9 @@ class DataSpace extends StatelessWidget {
                       child: Column(
                         children: [
                           TextField(
-                            onChanged: (value) {mediaConroller.setMediaDescription(value);},
+                            onSubmitted: (text) async{
+                                Description = text;
+                            },
                             //controller: mail,
                             keyboardType: TextInputType.emailAddress,
                             decoration: const InputDecoration(
@@ -83,7 +95,12 @@ class DataSpace extends StatelessWidget {
                             children: [
                               ElevatedButton(
                                 child: const Text("image",textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
-                                onPressed: ()  => PhotoService().takePhoto(),
+                                onPressed: () async{
+
+                                  md = mediaConroller.createLocalMedia(Description , "image", await PhotoService().takePhoto());
+                                  dataSpaceConroller.saveMedia(md);
+                                  UploadMediaService().uploadFile(md.file!, "images");
+                                },
 
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
@@ -94,7 +111,12 @@ class DataSpace extends StatelessWidget {
                               SizedBox(width: 10),
                               ElevatedButton(
                                 child: const Text("Vidéo",textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
-                                onPressed: ()  => PhotoService().recordVideo(),
+                                onPressed: () async{
+
+                                      md = mediaConroller.createLocalMedia(Description , "video", await PhotoService().recordVideo());
+                                      dataSpaceConroller.saveMedia(md);
+                                      UploadMediaService().uploadFile(md.file!, "videos");
+                                },
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
                                   minimumSize: MaterialStateProperty.all<Size>(Size(125, 50)), // set minimum size
@@ -108,7 +130,9 @@ class DataSpace extends StatelessWidget {
                     ),
                     TextButton(
                         child: Text("OK", style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF0F8A74) , fontSize: 11)),
-                        onPressed: () => Navigator.pop(context))
+                        onPressed: () {
+                          Navigator.pop(context);
+                        })
                   ],
 
                 ));
@@ -124,7 +148,9 @@ class DataSpace extends StatelessWidget {
                         child: Column(
                           children: [
                             TextField(
-                              onChanged: (value) {mediaConroller.setMediaDescription(value);},
+                              onSubmitted: (text) async{
+                                Description = text;
+                              },
                               keyboardType: TextInputType.emailAddress,
                               decoration: const InputDecoration(
                                 labelText: 'Description',
@@ -136,7 +162,13 @@ class DataSpace extends StatelessWidget {
                             children: [
                               ElevatedButton(
                                 child: const Text("Audio",textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
-                                onPressed: ()  => audioService().RecordAudio(),
+                                onPressed: () async{
+
+                                  md = mediaConroller.createLocalMedia(Description , "audio", await audioService().RecordAudio(),);
+                                  dataSpaceConroller.saveMedia(md);
+                                  UploadMediaService().uploadFile(md.file!, "audios");
+                                },
+
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
                                   minimumSize: MaterialStateProperty.all<Size>(Size(125, 50)), // set minimum size
@@ -161,6 +193,7 @@ class DataSpace extends StatelessWidget {
             buttonLable: "Envoyer",
             buttonOnClickFunction: () async{
               await dataSpeceController.saveDataToFirebase();
+              await dataSpeceController.deleteCash();
             },
           ),
         )

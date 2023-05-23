@@ -13,6 +13,7 @@ class DataSpeceController extends GetxController {
   
   var responses = <resp.Response>[].obs;
   var localMedia = <LocalMedia>[].obs;
+  var media = <Media>[].obs;
 
   void saveMedia(LocalMedia media) {
     localMedia.add(media);
@@ -25,8 +26,8 @@ class DataSpeceController extends GetxController {
   
 
   Future<String> saveDataToFirebase() async{
-    for(LocalMedia media in localMedia){
-      await UploadMediaService().saveMedia(media);
+    for(Media md in media){
+      await UploadMediaService().save_media(md);
     }
 
     for(resp.Response respon in responses){
@@ -35,6 +36,11 @@ class DataSpeceController extends GetxController {
 
     return 'done';
 
+  }
+  Future<String> deleteCash() async{
+    responses.clear();
+    localMedia.clear();
+    return 'done';
   }
 
 }

@@ -10,7 +10,8 @@ import 'package:cci_app/quizz1/block.dart';
 class Q1Page extends StatelessWidget {
 
   final String questionId = "QuestionId";
-  List<String> questions = ["question1", "question2"];
+  List<String> questions = ["Comment t'a trouvé ce douar?", "Comment t'a trouvé ce douar?"];
+  List<String> responses = [];
 
   
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
@@ -29,7 +30,7 @@ class Q1Page extends StatelessWidget {
                 Column(
                   children: [
                     for (var index= 0; index<questions.length; index = index+1 ) ...[
-                      writeResponse(question: questions[index]),
+                      writeResponse(question: questions[index], responses: responses),
                       const SizedBox(height: 10),
                     ]
                   ],
@@ -59,11 +60,10 @@ class Q1Page extends StatelessWidget {
         padding: EdgeInsets.only(left: 240, top: 20),
         child: TextButton(
           onPressed: () async{
-
-
-            resp.Response resposne = await responsecontroller.createNewResponse('f','f','f');
-
-
+              for (var index= 0; index<questions.length; index = index+1 ){
+                  resp.Response resposne = await responsecontroller.createNewResponse(questions[index], responses[index], 'dowarid');
+                  dataSpeceController.saveResponse(resposne);
+            }
         // Perform some action here
           },
           child: Text('Enregistrer', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color:Color(0xFF0F8A74))),

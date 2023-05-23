@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:cci_app/data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
 import 'package:get/get.dart';
@@ -8,10 +9,14 @@ import '../data_space/controllers/data_space_controller.dart';
 
 class writeResponse extends StatefulWidget {
   final String question;
+  List<String> responses;
 
 
 
-  writeResponse({required this.question});
+  writeResponse({
+    required this.question,
+    required this.responses
+  });
 
   @override
   _writeResponse createState() => _writeResponse();
@@ -40,16 +45,20 @@ class _writeResponse extends State<writeResponse> {
               const SizedBox(height: 20.0),
               _buildReponseField(),
 
+
             ])
     );
   }
+  String inputValue = '';
   Widget _buildReponseField() {
-    return TextField(
+    return TextField (
         controller:  content,
-      onSubmitted: (text) async{
-        resp.Response resposne = await responsecontroller.createNewResponse(widget.question, content.text, 'doarid');
+      onSubmitted: (text)  async{
+      setState(() {
+        inputValue = text;
+      });
+      widget.responses.add(content.toString());
         //reponses.add(resposne);
-        dataSpeceController.saveResponse(resposne);
         // Do something with the user input
       },
 

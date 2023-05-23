@@ -5,8 +5,12 @@ import 'package:cci_app/quizz3/VoirPlusWidget.dart';
 
 class ChooseTwoInOrderQuestion extends StatefulWidget {
   final String question;
+  List<List<String>> responses;
 
-  ChooseTwoInOrderQuestion({required this.question});
+  ChooseTwoInOrderQuestion({
+    required this.question,
+    required this.responses,
+  });
 
   @override
   _ChooseTwoInOrderQuestionState createState() => _ChooseTwoInOrderQuestionState();
@@ -22,7 +26,7 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
     "La communauté se trouve dans un environnement géographiquement isolé des centres activité et de decision. Cet isolement est perçu comme une barrière au développement. Ces communautés isolées. connaissent mal ou pas du tout les ressources locales exploitables pour s'autonomiser et la population ne maitrise plus les compétences de base permettant d'en tirer profit. Les infrastructures de base: sont tres réduites et ne peuvent pas servir d'appui à de futurs projets de développement.",];
   List<String> selectedOptions = ['', ''];
 
-  @override
+
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(left: 30,right:30, top: 20),
@@ -65,6 +69,7 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
                               selectedOptions[1] = options[index];
                             }
                           });
+                          widget.responses.add(selectedOptions);
                         },
                       )),
                   Container(
