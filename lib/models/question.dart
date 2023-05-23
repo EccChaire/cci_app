@@ -3,9 +3,9 @@
 class Question {
   double? questionId;
   String? questionType;
-  String? questionDescription;
+  String? questionCorp;
 
-  Question({this.questionId, this.questionType, this.questionDescription});
+  Question({this.questionId, this.questionType, this.questionCorp});
 
 
   // The two functions bellow are colled serializers for the model Question
@@ -14,7 +14,7 @@ class Question {
     return Question(
       questionId: json['questionId'] ,
       questionType: json['questionType'] ,
-      questionDescription: json['questionDescription'] ,
+      questionCorp: json['questionCorp'] ,
     );
   }
 
@@ -22,7 +22,7 @@ class Question {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['questionId'] = questionId;
     data['questionType'] = questionType;
-    data['questionDescription'] = questionDescription;
+    data['questionCorp'] = questionCorp;
     return data;
   }
 }

@@ -13,7 +13,7 @@ class WaitingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen,
+      backgroundColor: Color(0xFF0F8A74),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

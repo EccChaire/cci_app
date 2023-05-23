@@ -5,7 +5,7 @@
 class Response {
   String? responseId;
   DateTime? responseDate;
-  String? responseDescription;
+  String? responseCorp;
   String? questionId;
   String? userId;
   String? dowarId;
@@ -13,7 +13,7 @@ class Response {
   Response({
     this.responseId,
     this.responseDate,
-    this.responseDescription,
+    this.responseCorp,
     this.questionId,
     this.userId,
     this.dowarId,
@@ -23,7 +23,7 @@ class Response {
     return Response(
       responseId: json['responseId'] ,
       responseDate: DateTime.parse(json['responseDate'] as String? ?? ''),
-      responseDescription: json['responseDescription'] as String?,
+      responseCorp: json['responseCorp'] as String?,
       questionId: json['questionId'] ,
       userId: json['userId'] ,
       dowarId: json['dowarId'] ,
@@ -34,7 +34,7 @@ class Response {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['responseId'] = responseId;
     data['responseDate'] = responseDate?.toIso8601String();
-    data['responseDescription'] = responseDescription;
+    data['responseCorp'] = responseCorp;
     data['questionId'] = questionId;
     data['user'] = userId;
     data['dowar'] = dowarId;

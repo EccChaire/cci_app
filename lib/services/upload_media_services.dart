@@ -26,11 +26,11 @@ class UploadMediaService {
         media.mediaUrl = await uploadFile(localMedia.file!, 'audios');
     }
 
-    media.uploaderId = await LoginRepository().getConnectedUserId();
+    media.userId = await LoginRepository().getConnectedUserId();
     media.dowarId = "Position";
 
     final docRef = DatabaseRoutes.QUESTION_DATABASES.doc();
-    media.mediaId = docRef.id
+    media.mediaId = Uuid().v4()
         .toString(); // Set questionId to the Firestore document ID
     final Map<String, dynamic> data = media.toJson();
     await docRef.set(data);

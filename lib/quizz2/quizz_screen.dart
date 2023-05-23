@@ -16,7 +16,7 @@ class Q2Page extends StatefulWidget {
 }
 
 class _Q2PageState extends State<Q2Page> {
-  Responsecontroller responsecontroller = Get.put(Responsecontroller(questionId: "questionId"));
+  Responsecontroller responsecontroller = Get.put(Responsecontroller());
   
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   Map<String, double> _selectedValues = {};
@@ -64,7 +64,7 @@ class _Q2PageState extends State<Q2Page> {
         child: TextButton(
           onPressed: () async{
 
-            resp.Response resposne = await responsecontroller.createNewResponse();
+            resp.Response resposne = await responsecontroller.createNewResponse('f','f','f');
             dataSpeceController.saveResponse(resposne);
 
         // Perform some action here

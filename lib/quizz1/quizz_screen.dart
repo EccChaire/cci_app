@@ -5,78 +5,42 @@ import 'package:cci_app/data_space/dataspace_screen.dart';
 import '../data_space/controllers/data_space_controller.dart';
 import '../data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
+import 'package:cci_app/quizz1/block.dart';
 
 class Q1Page extends StatelessWidget {
 
   final String questionId = "QuestionId";
+  List<String> questions = ["question1", "question2"];
 
   
-  Responsecontroller responsecontroller = Get.put(Responsecontroller(questionId: "questionId"));
+  Responsecontroller responsecontroller = Get.put(Responsecontroller());
   
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          body: Column(
+          body: ListView(
               children: [
                 Row(
                   children: [
                     _buildbackButton(),
                     _buildsaveButton(),
                   ]),
-                Container(
-                    padding: EdgeInsets.only(left: 30,right:30, top: 20),
-                    width: 400,
-                    height: 130,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Column(
-                      children:  [
-                        const Center(
-                          child: Text("comment t'a trouvé ce douar?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                        ),
-                        const SizedBox(height: 20.0),
-                        _buildReponseField(),
-                      ])
-                ),
-                const SizedBox(height: 10),
-                Container(
-                    padding: EdgeInsets.only(left: 30,right:30,top: 10),
-                    width: 400,
-                    height: 130,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Column(
-                        children:  [
-                          const Center(
-                            child: Text("comment t'a trouvé ce douar?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                          ),
-                          const SizedBox(height: 20.0),
-                          _buildReponseField(),
-                        ])
+                Column(
+                  children: [
+                    for (var index= 0; index<questions.length; index = index+1 ) ...[
+                      writeResponse(question: questions[index]),
+                      const SizedBox(height: 10),
+                    ]
+                  ],
                 )
+
+
               ]),
     );
   }
 
-  Widget _buildReponseField() {
-    return TextField(
-      onChanged: (text) {
-        // Do something with the user input
-      },
-      decoration: const InputDecoration(
-        filled: true,
-        fillColor: Colors.white, // replace with desired color
-        hintText: 'Votre réponse ...',
-      ),
-    );
-  }
+
 
   Widget _buildbackButton() {
     return  Container(
@@ -96,8 +60,9 @@ class Q1Page extends StatelessWidget {
         child: TextButton(
           onPressed: () async{
 
-            resp.Response resposne = await responsecontroller.createNewResponse();
-            dataSpeceController.saveResponse(resposne);
+
+            resp.Response resposne = await responsecontroller.createNewResponse('f','f','f');
+
 
         // Perform some action here
           },

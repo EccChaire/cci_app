@@ -5,7 +5,7 @@ class Media {
   String? mediaType;
   String? mediaUrl;
   String? mediaDescription;
-  String? uploaderId;
+  String? userId;
   String? dowarId;
 
 
@@ -14,7 +14,7 @@ class Media {
     this.mediaType,
     this.mediaUrl,
     this.mediaDescription,
-    this.uploaderId,
+    this.userId,
     this.dowarId,
   });
 
@@ -25,7 +25,7 @@ class Media {
       'mediaType': mediaType,
       'mediaUrl': mediaUrl,
       'mediaDescription': mediaDescription,
-      'uploaderId': uploaderId,
+      'uploaderId': userId,
       'dowarId': dowarId,
     };
   }
@@ -37,7 +37,7 @@ class Media {
       mediaType: json['mediaType'],
       mediaUrl: json['mediaUrl'],
       mediaDescription: json['mediaDescription'],
-      uploaderId: json['uploaderId'],
+      userId: json['userId'],
       dowarId: json['dowarId'],
     );
   }

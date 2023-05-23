@@ -2,28 +2,37 @@
 
 class User {
   double? userId;
-  String? username;
+  String? usermail;
   String? userPw;
+  String? firstname;
+  String? lastname;
 
   User({
     this.userId,
-    this.username,
+    this.usermail,
     this.userPw,
+    this.firstname,
+    this.lastname,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       userId: json['userId'] ,
-      username: json['username'] ,
+      usermail: json['usermail'] ,
       userPw: json['userPw'] ,
+      firstname: json['firstname'],
+      lastname: json['lastname'],
+
     );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['userId'] = userId;
-    data['username'] = username;
+    data['usermail'] = usermail;
     data['userPw'] = userPw;
+    data['firstname'] = firstname;
+    data['lastname'] = lastname;
     return data;
   }
 }

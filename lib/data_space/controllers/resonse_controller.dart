@@ -8,29 +8,22 @@ import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
 
 class Responsecontroller extends GetxController {
-  var questionId = "";
-  var responseDesc = "".obs;
 
 
-  setResponseDesc(String response){
-    responseDesc.value = response;
-  }
 
-  Future<resp.Response> createNewResponse() async{
+  Future<resp.Response> createNewResponse(String questionId, String responseCorp, String dowarId) async{
     resp.Response response = resp.Response();
     response.responseId = const Uuid().v4();
     response.questionId = questionId;
-    response.responseDescription = responseDesc.value;
+    response.responseCorp = responseCorp;
     response.userId =await LoginRepository().getConnectedUserId();
     response.responseDate = DateTime.now();
-    response.dowarId = "Dowar Id";
+    response.dowarId = dowarId;
 
     return response;
 
 
   }
-
-  Responsecontroller({required this.questionId});
 
   
 }
