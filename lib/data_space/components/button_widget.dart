@@ -2,6 +2,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget(
@@ -15,8 +16,8 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(
-            left: 10, top: 10), // set padding to move button to top left corner
+        padding:  EdgeInsets.only(
+            left: 10.w, top: 10.h), // set padding to move button to top left corner
         child: ElevatedButton(
           onPressed: buttonOnClickFunction,
           style: ButtonStyle(

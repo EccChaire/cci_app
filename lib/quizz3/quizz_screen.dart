@@ -51,7 +51,7 @@ class _Q3PageState extends State<Q3Page> {
 
   Widget _buildbackButton() {
     return  Container(
-        padding: EdgeInsets.only( left : 10, top: 20),
+        padding: EdgeInsets.only( left : 10.w, top: 20.h),
         child: TextButton(
           onPressed: () {
             Get.to(() => DataSpace());
@@ -63,7 +63,7 @@ class _Q3PageState extends State<Q3Page> {
   }
   Widget _buildsaveButton() {
     return  Container(
-        padding: EdgeInsets.only(left: 240, top: 20),
+        padding: EdgeInsets.only(left: 240.w, top: 20.h),
         child: TextButton(
           onPressed: () async {
             for (var index= 0; index<questions.length; index = index+1 ){

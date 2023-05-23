@@ -28,7 +28,7 @@ class _MetricInterfaceState extends State<MetricInterface> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(left: 30,right:30, top: 20),
+        padding: EdgeInsets.only(left: 30.w,right:30, top: 20.h),
         width: 400.w,
         height: 130.h,
         decoration: BoxDecoration(

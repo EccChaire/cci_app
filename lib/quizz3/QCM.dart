@@ -30,7 +30,7 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
 
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(left: 30,right:30, top: 20),
+        padding: EdgeInsets.only(left: 30.w,right:30.w, top: 20.h),
     width: 400.w,
     height: 350.h,
     decoration: BoxDecoration(

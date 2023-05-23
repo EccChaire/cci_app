@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/data_space/dataspace_screen.dart';
@@ -42,7 +43,7 @@ class N_douarPage extends StatelessWidget {
 
   Widget _buildcollecteButton() {
     return Container(
-        padding: const EdgeInsets.only(top: 350), // set padding to move button to top left corner
+        padding:  EdgeInsets.only(top: 350.h), // set padding to move button to top left corner
         child: ElevatedButton(
           onPressed: () {
             newDowarBlock.saveDowar();
