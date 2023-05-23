@@ -1,10 +1,13 @@
 import 'dart:io';
 
 import 'package:cci_app/models/media.dart';
+import 'package:cci_app/services/loc_service.dart';
 import 'package:cci_app/services/response_service.dart';
 import 'package:get/get.dart';
 
 import '../../models/local_media.dart';
+import '../../models/intervale.dart';
+
 import 'package:cci_app/models/responce.dart' as resp;
 
 import '../../services/upload_media_services.dart';
@@ -14,6 +17,7 @@ class DataSpeceController extends GetxController {
   var responses = <resp.Response>[].obs;
   var localMedia = <LocalMedia>[].obs;
   var media = <Media>[].obs;
+  var intervals = <CoordinateInterval>[].obs;
 
   void saveMedia(LocalMedia media) {
     localMedia.add(media);
@@ -21,6 +25,9 @@ class DataSpeceController extends GetxController {
 
   void saveResponse(resp.Response response) {
     responses.add(response);
+  }
+  void saveInterval(CoordinateInterval interval){
+    intervals.add(interval);
   }
 
   
@@ -33,6 +40,8 @@ class DataSpeceController extends GetxController {
     for(resp.Response respon in responses){
       ResponseService().saveResponse(respon);
     }
+
+
 
     return 'done';
 

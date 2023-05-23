@@ -45,7 +45,6 @@ class N_douarPage extends StatelessWidget {
         padding: const EdgeInsets.only(top: 350), // set padding to move button to top left corner
         child: ElevatedButton(
           onPressed: () {
-            newDowarBlock.saveNewInterval(currentPosition);
             newDowarBlock.saveDowar();
             Get.to(() => DataSpace());
           },

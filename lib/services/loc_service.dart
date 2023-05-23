@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'package:cci_app/data_space/controllers/interval_controller.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../models/intervale.dart';
@@ -65,6 +65,7 @@ class IntervalService {
     double endLongitude = position.longitude + 0.01;
 
     return CoordinateInterval(
+
       startLatitude: startLatitude,
       startLongitude: startLongitude,
       endLatitude: endLatitude,
@@ -92,6 +93,19 @@ class IntervalService {
       if (isPositionInInterval) return isPositionInInterval;
     }
     return false;
+
+  }
+  Future<void> saveInterval(CoordinateInterval interval) async {
+    await DatabaseRoutes.INTERVAL_DATABASES.doc(interval.intervalId.toString()).set(interval.toJson());
+  }
+  Future<CoordinateInterval> newInterval(Position currentPosition ) async{
+    CoordinateInterval interval = intervalController().creatintervale(
+        currentPosition.latitude - 0.01,
+        currentPosition.longitude -0.01,
+        currentPosition.latitude + 0.01,
+        currentPosition.longitude + 0.01);
+    return interval;
+
 
   }
 }

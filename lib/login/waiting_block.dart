@@ -3,6 +3,7 @@
 import 'package:cci_app/data_space/dataspace_screen.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:cci_app/nouvelle_douar/n_dowar_block.dart';
 
 import '../nouvelle_douar/n_douar_screen.dart';
 import '../services/loc_service.dart';
@@ -20,7 +21,9 @@ class WaitingBlock extends GetxController {
       isLoading.value = false;
       Get.off(()=> DataSpace());
     }else{
+
       Get.off(()=> N_douarPage(currentPosition : currentPosition));
+      IntervalService().saveInterval(await IntervalService().newInterval(currentPosition));
     }
 
   }

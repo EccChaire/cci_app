@@ -2,10 +2,10 @@
 
 import 'package:cci_app/models/dowar.dart';
 import 'package:cci_app/services/dowar_services.dart';
+import 'package:cci_app/models/intervale.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-
-import '../models/intervale.dart';
+import 'package:cci_app/data_space/controllers/interval_controller.dart';
 import '../services/loc_service.dart';
 import 'package:uuid/uuid.dart';
 
@@ -18,10 +18,6 @@ class NewDowarBlock extends GetxController{
   void setDowarName(String value){
     dowarName = value;
   }
-
-  void saveNewInterval(Position currentPosition){
-    coordinateInterval = IntervalService().createCoordinateInterval(currentPosition);
-  }  
 
 
   saveDowar(){
