@@ -1,9 +1,7 @@
 import 'package:cci_app/config.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:cci_app/data_space/dataspace_screen.dart';
-
 import '../data_space/controllers/data_space_controller.dart';
 import '../data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
@@ -33,7 +31,7 @@ class Q1Page extends StatelessWidget {
                   children: [
                     for (var index= 0; index<questions.length; index = index+1 ) ...[
                       writeResponse(question: questions[index], responses: responses),
-                       SizedBox(height: 10.h),
+                       SizedBox(height: getProportionateScreenHeight(10)),
                     ]
                   ],
                 )
