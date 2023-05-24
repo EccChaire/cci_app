@@ -17,15 +17,15 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding:  EdgeInsets.only(
-            left: getProportionateScreenWidth(10), top: getProportionateScreenHeight(10)), // set padding to move button to top left corner
+        // padding:  EdgeInsets.only(
+            // left: getProportionateScreenWidth(10), top: getProportionateScreenHeight(10)), // set padding to move button to top left corner
         child: ElevatedButton(
           onPressed: buttonOnClickFunction,
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
                 const Color(0xFF0F8A74)), // set background color
             minimumSize: MaterialStateProperty.all<Size>(
-                 Size(getProportionateScreenWidth(190), getProportionateScreenHeight(50))), // set minimum size
+                 Size(getProportionateScreenWidth(195), getProportionateScreenHeight(50))), // set minimum size
             // You can also use fixedSize property to set the exact button size
           ),
           child: Text(buttonLable),

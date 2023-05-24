@@ -35,8 +35,11 @@ class DataSpace extends StatelessWidget {
         body: ListView(
 
       children: [
-       // SizedBox(height: getProportionateScreenHeight(40)),
-        Row(children: [
+        SizedBox(height: getProportionateScreenHeight(40)),
+        Row(
+
+          children: [
+SizedBox(width: getProportionateScreenWidth(10)),
           QuizzCard(
             cardTitle: "Enquête 1",
             cardDescription: "C’est notre premier enquête qui contient toutes que tu dois répondre manuellement.",
@@ -44,6 +47,7 @@ class DataSpace extends StatelessWidget {
               Get.to(() => Q1Page());
             },
           ),
+         SizedBox(width: getProportionateScreenWidth(15)),
           QuizzCard(
             cardTitle: "Enquête 2",
             cardDescription: "C’est la deuxième enquête qui contient toutes les domaine qui peut être gradié de un à cinq.",
@@ -51,9 +55,12 @@ class DataSpace extends StatelessWidget {
               Get.to(() => Q2Page());
             },
           ),
+          SizedBox(width: getProportionateScreenWidth(10)),
         ]),
+        SizedBox(height: getProportionateScreenHeight(20)),
         Row(
           children: [
+              SizedBox(width: getProportionateScreenWidth(10)),
             QuizzCard(
               cardTitle: "Enquête 3",
               cardDescription: "C’est notre troisième enquête qui contient toutes question à multiple choix.",
@@ -61,6 +68,7 @@ class DataSpace extends StatelessWidget {
                 Get.to(() => Q3Page());
               },
             ),
+              SizedBox(width: getProportionateScreenWidth(15)),
             QuizzCard(
               cardTitle: "Enquête 4",
               cardDescription: "Cette enquête est réservé pour ma deuxième donc il vas contient toutes les questions relié à la cartographie.",
@@ -68,9 +76,13 @@ class DataSpace extends StatelessWidget {
                 Get.to(() => Q3Page());
               },
             ),
+
           ],
         ),
-        Row(children: [
+         SizedBox(height: getProportionateScreenHeight(15)),
+        Row(
+          children: [
+             SizedBox(width: getProportionateScreenWidth(10)),
           ButtonWidget(buttonLable: "Camera", buttonOnClickFunction: () {
             showDialog(
                 context: context,
@@ -139,6 +151,7 @@ class DataSpace extends StatelessWidget {
 
                 ));
           }),
+           SizedBox(width: getProportionateScreenWidth(15)),
           ButtonWidget(buttonLable: "Micro", buttonOnClickFunction: () {
               showDialog(
                   context: context,
@@ -182,6 +195,7 @@ class DataSpace extends StatelessWidget {
                           ],
                         )
                       ),
+
                       TextButton(
                           child: Text("OK", style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF0F8A74) , fontSize: 11)),
                           onPressed: () => Navigator.pop(context))
@@ -190,6 +204,7 @@ class DataSpace extends StatelessWidget {
                   ));
           }),
         ]),
+        SizedBox(height: getProportionateScreenHeight(10)),
         Center(
           child: ButtonWidget(
             buttonLable: "Envoyer",

@@ -17,15 +17,15 @@ class QuizzCard extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return Container(
-        padding:  EdgeInsets.only(
-            left: getProportionateScreenHeight(5), top: getProportionateScreenHeight(10)), // set padding to move button to top left corner
+        // padding:  EdgeInsets.only(
+        //     left: getProportionateScreenHeight(5), top: getProportionateScreenHeight(10),right:getProportionateScreenHeight(5) ), // set padding to move button to top left corner
         child: ElevatedButton(
           onPressed: onClockFuction,
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
                 const Color(0xFF0F8A74)), // set background color
             minimumSize: MaterialStateProperty.all<Size>(
-                 Size(getProportionateScreenWidth(190), getProportionateScreenHeight(200))), // set minimum size
+                 Size(getProportionateScreenWidth(190), getProportionateScreenHeight(350))), // set minimum size
             // You can also use fixedSize property to set the exact button size
           ),
           child: Container(
