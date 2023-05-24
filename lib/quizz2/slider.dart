@@ -29,6 +29,7 @@ class _MetricInterfaceState extends State<MetricInterface> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: getProportionateScreenWidth(12),),
         padding: EdgeInsets.only(left: getProportionateScreenWidth(30),right:getProportionateScreenWidth(30), top:getProportionateScreenHeight(getProportionateScreenWidth(30))),
         width: getProportionateScreenWidth(400),
         height: getProportionateScreenHeight(160),
