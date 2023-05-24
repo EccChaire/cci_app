@@ -1,6 +1,6 @@
 
 
-import 'package:cci_app/data_space/dataspace_screen.dart';
+import 'package:cci_app/collecte/collecte_screen.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +18,7 @@ class WaitingBlock extends GetxController {
     bool positionExist = await _intervalService.isDouarExist();
     if (positionExist){
       isLoading.value = false;
-      Get.off(()=> DataSpace());
+      Get.off(()=> CollectePage());
     }else{
 
       Get.off(()=> N_douarPage(currentPosition : currentPosition));
