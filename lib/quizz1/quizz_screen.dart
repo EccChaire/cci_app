@@ -57,7 +57,7 @@ class Q1Page extends StatelessWidget {
   }
   Widget _buildsaveButton() {
     return  Container(
-        padding: EdgeInsets.only(left: getProportionateScreenWidth(240), top: getProportionateScreenHeight(20)),
+        padding: EdgeInsets.only(left: getProportionateScreenWidth(210), top: getProportionateScreenHeight(20)),
         child: TextButton(
           onPressed: () async{
               for (var index= 0; index<questions.length; index = index+1 ){

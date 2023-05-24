@@ -68,7 +68,7 @@ class _Q2PageState extends State<Q2Page> {
   }
   Widget _buildsaveButton() {
     return  Container(
-        padding: EdgeInsets.only(left: getProportionateScreenWidth(240), top: getProportionateScreenHeight(20)),
+        padding: EdgeInsets.only(left: getProportionateScreenWidth(200), top: getProportionateScreenHeight(20)),
         child: TextButton(
           onPressed: () async{
             for (var index= 0; index<questions.length; index = index+1 ){

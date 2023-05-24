@@ -32,7 +32,7 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
 
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding:  EdgeInsets.all(getProportionateScreenHeight(8.0)),
       child: Container(
           padding: EdgeInsets.only( top: getProportionateScreenWidth(20)),
       width: Get.size.width,
@@ -60,7 +60,7 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
                 child: Row(
                   children: [
                     SizedBox(
-                        width: getProportionateScreenWidth(130),
+                        width: getProportionateScreenWidth(100),
                         height: getProportionateScreenHeight(50),
                         child: ListTile(
                           title: Text(options[index], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
@@ -82,11 +82,11 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
                     Row(
                         children:[
                           SizedBox(
-                              width: getProportionateScreenWidth(200),
+                              width: getProportionateScreenWidth(150),
                             child: Text(
-                              ( Descriptions[index].length <= 40)
+                              ( Descriptions[index].length <= 25)
                                   ? Descriptions[index]
-                                  : Descriptions[index].substring(0, 40) + '...',
+                                  : Descriptions[index].substring(0, 25) + '...',
                                 style: TextStyle(fontSize: 10)
                             ),
                           ),

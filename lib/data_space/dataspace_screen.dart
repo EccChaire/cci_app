@@ -35,7 +35,7 @@ class DataSpace extends StatelessWidget {
         body: ListView(
 
       children: [
-        SizedBox(height: 40.h),
+       // SizedBox(height: getProportionateScreenHeight(40)),
         Row(children: [
           QuizzCard(
             cardTitle: "Enquête 1",
