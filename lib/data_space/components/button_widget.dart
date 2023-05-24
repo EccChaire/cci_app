@@ -1,6 +1,7 @@
 
 
 
+import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,14 +18,14 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding:  EdgeInsets.only(
-            left: 10.w, top: 10.h), // set padding to move button to top left corner
+            left: getProportionateScreenWidth(10), top: getProportionateScreenHeight(10)), // set padding to move button to top left corner
         child: ElevatedButton(
           onPressed: buttonOnClickFunction,
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
                 const Color(0xFF0F8A74)), // set background color
             minimumSize: MaterialStateProperty.all<Size>(
-                const Size(190, 50)), // set minimum size
+                 Size(getProportionateScreenWidth(190), getProportionateScreenHeight(50))), // set minimum size
             // You can also use fixedSize property to set the exact button size
           ),
           child: Text(buttonLable),

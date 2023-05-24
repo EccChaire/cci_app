@@ -1,3 +1,4 @@
+import 'package:cci_app/config.dart';
 import 'package:cci_app/login/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,14 +20,14 @@ class LoginPage extends StatelessWidget {
         children: <Widget>[
           Image.asset(
             'assets/images/logo.png',
-            width: 150.w,
-            height: 150.h,
+            width: getProportionateScreenWidth(150),
+            height: getProportionateScreenHeight(150),
           ),
-           SizedBox(height: 48.h),
+           SizedBox(height: getProportionateScreenHeight(48)),
           _buildEmailTextField(),
-           SizedBox(height: 8.h),
+           SizedBox(height: getProportionateScreenHeight(8)),
           _buildPasswordTextField(),
-           SizedBox(height: 24.h),
+           SizedBox(height: getProportionateScreenHeight(24)),
           _buildLoginButton(),
         ],
       ),
@@ -35,7 +36,7 @@ class LoginPage extends StatelessWidget {
 
   Widget _buildEmailTextField() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenHeight(24)),
       child: TextField(
         controller: mail,
         keyboardType: TextInputType.emailAddress,
@@ -49,7 +50,7 @@ class LoginPage extends StatelessWidget {
 
   Widget _buildPasswordTextField() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenHeight(24)),
       child: TextField(
         controller: password,
         obscureText: true,
@@ -63,13 +64,13 @@ class LoginPage extends StatelessWidget {
 
   Widget _buildLoginButton() {
     return ElevatedButton(
-      child: const Text('LOGIN',textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
+      child:  Text('LOGIN',textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
       onPressed: () {
         loginController.login(mail.text, password.text);
       },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
-        minimumSize: MaterialStateProperty.all<Size>(Size(250, 50)), // set minimum size
+        minimumSize: MaterialStateProperty.all<Size>(Size(getProportionateScreenWidth(250), getProportionateScreenHeight(50))), // set minimum size
         // You can also use fixedSize property to set the exact button size
       ),
     );

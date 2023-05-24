@@ -1,3 +1,4 @@
+import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -28,9 +29,9 @@ class _MetricInterfaceState extends State<MetricInterface> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(left: 30.w,right:30, top: 20.h),
-        width: 400.w,
-        height: 130.h,
+        padding: EdgeInsets.only(left: getProportionateScreenWidth(30),right:getProportionateScreenWidth(30), top:getProportionateScreenHeight(getProportionateScreenWidth(30))),
+        width: getProportionateScreenWidth(400),
+        height: getProportionateScreenHeight(130),
         decoration: BoxDecoration(
         color: Colors.grey,
         shape: BoxShape.rectangle,

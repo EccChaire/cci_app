@@ -1,3 +1,4 @@
+import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -29,9 +30,9 @@ class _writeResponse extends State<writeResponse> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(left: 30.w,right:30.w, top: 20.h),
-        width: 400.w,
-        height: 130.h,
+        padding: EdgeInsets.only(left: getProportionateScreenWidth(30),right:getProportionateScreenWidth(30), top: getProportionateScreenHeight(20)),
+        width: getProportionateScreenWidth(400),
+        height: getProportionateScreenHeight(130),
         decoration: BoxDecoration(
           color: Colors.grey,
           shape: BoxShape.rectangle,
@@ -41,7 +42,7 @@ class _writeResponse extends State<writeResponse> {
             children:  [
               Text( widget.question, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
 
-              SizedBox(height: 20.h),
+              SizedBox(height: getProportionateScreenHeight(20)),
               _buildReponseField(),
 
 

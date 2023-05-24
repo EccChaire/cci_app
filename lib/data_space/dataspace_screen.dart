@@ -1,3 +1,4 @@
+import 'package:cci_app/config.dart';
 import 'package:cci_app/data_space/controllers/data_space_controller.dart';
 import 'package:cci_app/data_space/controllers/media_controller.dart';
 import 'package:cci_app/services/upload_media_services.dart';
@@ -77,7 +78,7 @@ class DataSpace extends StatelessWidget {
                   title: Text("Veuillez inserer la description du média"),
                   actions: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(24.0)),
                       child: Column(
                         children: [
                           TextField(
@@ -91,7 +92,7 @@ class DataSpace extends StatelessWidget {
                               hintText: 'Description ...',
                             ),
                           ),
-                          SizedBox(height: 40.h),
+                          SizedBox(height: getProportionateScreenHeight(40)),
                           Row(
                             children: [
                               ElevatedButton(
@@ -105,11 +106,11 @@ class DataSpace extends StatelessWidget {
 
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
-                                  minimumSize: MaterialStateProperty.all<Size>(Size(125, 50)), // set minimum size
+                                  minimumSize: MaterialStateProperty.all<Size>(Size(getProportionateScreenWidth(125), getProportionateScreenHeight(50))), // set minimum size
                                   // You can also use fixedSize property to set the exact button size
                                 ),
                               ),
-                              SizedBox(width: 10.w),
+                              SizedBox(width:getProportionateScreenWidth(10)),
                               ElevatedButton(
                                 child: const Text("Vidéo",textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
                                 onPressed: () async{
@@ -120,7 +121,7 @@ class DataSpace extends StatelessWidget {
                                 },
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
-                                  minimumSize: MaterialStateProperty.all<Size>(Size(125, 50)), // set minimum size
+                                  minimumSize: MaterialStateProperty.all<Size>(Size(getProportionateScreenWidth(125), getProportionateScreenHeight(50))), // set minimum size
                                   // You can also use fixedSize property to set the exact button size
                                 ),
                               ),
@@ -145,7 +146,7 @@ class DataSpace extends StatelessWidget {
                     title: Text("Veuillez inserer la description du média"),
                     actions: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        padding:  EdgeInsets.symmetric(horizontal:getProportionateScreenHeight(15.0) ),
                         child: Column(
                           children: [
                             TextField(
@@ -158,7 +159,7 @@ class DataSpace extends StatelessWidget {
                                 hintText: 'Description ...',
                                 ),
                               ),
-                            SizedBox(height: 40.h),
+                            SizedBox(height: getProportionateScreenHeight(40)),
                             Row(
                             children: [
                               ElevatedButton(
@@ -172,7 +173,7 @@ class DataSpace extends StatelessWidget {
 
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
-                                  minimumSize: MaterialStateProperty.all<Size>(Size(125, 50)), // set minimum size
+                                  minimumSize: MaterialStateProperty.all<Size>(Size(getProportionateScreenWidth(125), getProportionateScreenHeight(50))), // set minimum size
                                   // You can also use fixedSize property to set the exact button size
                                 ),
                               ),

@@ -1,3 +1,4 @@
+import 'package:cci_app/config.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class _Q3PageState extends State<Q3Page> {
                   children: [
                     for (var index= 0; index<questions.length; index = index+1 ) ...[
                       ChooseTwoInOrderQuestion(question: questions[index], responses: responses),
-                       SizedBox(height: 10.h),
+                       SizedBox(height: getProportionateScreenHeight(10)),
 
                     ]
                   ],
@@ -51,7 +52,7 @@ class _Q3PageState extends State<Q3Page> {
 
   Widget _buildbackButton() {
     return  Container(
-        padding: EdgeInsets.only( left : 10.w, top: 20.h),
+        padding: EdgeInsets.only( left : getProportionateScreenWidth(10), top: getProportionateScreenHeight(20)),
         child: TextButton(
           onPressed: () {
             Get.to(() => DataSpace());
@@ -63,7 +64,7 @@ class _Q3PageState extends State<Q3Page> {
   }
   Widget _buildsaveButton() {
     return  Container(
-        padding: EdgeInsets.only(left: 240.w, top: 20.h),
+        padding: EdgeInsets.only(left: getProportionateScreenWidth(240), top: getProportionateScreenHeight(20)),
         child: TextButton(
           onPressed: () async {
             for (var index= 0; index<questions.length; index = index+1 ){

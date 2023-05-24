@@ -1,3 +1,4 @@
+import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,7 @@ class CollectePage extends StatelessWidget {
   }
   Widget _buildcollecteButton() {
     return Container(
-        padding: EdgeInsets.only(top: 350.h), // set padding to move button to top left corner
+        padding: EdgeInsets.only(top: getProportionateScreenHeight(350)), // set padding to move button to top left corner
         child: ElevatedButton(
           child: const Text("Collecte",textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
           onPressed: () {

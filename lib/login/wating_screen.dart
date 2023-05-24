@@ -1,5 +1,6 @@
 
 
+import 'package:cci_app/config.dart';
 import 'package:cci_app/login/waiting_block.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +21,7 @@ class WaitingScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children:  [
             const CircularProgressIndicator(),
-            SizedBox(height: 16.h),
+            SizedBox(height: getProportionateScreenHeight(16)),
             const Text(
               "Veuillez patienter, nous nous occupons de cette étape",
               style: TextStyle(

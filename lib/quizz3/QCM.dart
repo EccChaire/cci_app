@@ -1,6 +1,8 @@
+import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:cci_app/quizz3/VoirPlusWidget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 
 
@@ -29,87 +31,91 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
 
 
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.only(left: 30.w,right:30.w, top: 20.h),
-    width: 400.w,
-    height: 350.h,
-    decoration: BoxDecoration(
-    color: Colors.grey,
-    shape: BoxShape.rectangle,
-    borderRadius: BorderRadius.circular(5),
-    ),
-    child :Column(
-      children: [
-        Text(widget.question, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-        SizedBox(height: 10.h),
-        for (var index= 0; index<options.length; index = index+1 ) ...[
-          Container(
-              width: 400.w,
-              height: 50.h,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(3),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                      width: 100.w,
-                      height: 50.h,
-                      child: ListTile(
-                        title: Text(options[index], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
-                        selected: selectedOptions.contains(options[index]),
-                        onTap: () {
-                          setState(() {
-                            if (selectedOptions[0] == '') {
-                              selectedOptions[0] = options[index];
-                            } else if (selectedOptions[1] == '') {
-                              selectedOptions[1] = options[index];
-                            } else {
-                              selectedOptions[0] = selectedOptions[1];
-                              selectedOptions[1] = options[index];
-                            }
-                          });
-                          widget.responses.add(selectedOptions);
-                        },
-                      )),
-                  Container(
-                      width: 200.w,
-                      height: 50.h,
-                      child: Row(
-                          children:[
-                            Text(
-                              ( Descriptions[index].length <= 25)
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+          padding: EdgeInsets.only( top: getProportionateScreenWidth(20)),
+      width: Get.size.width,
+      height: getProportionateScreenHeight(350),
+      decoration: BoxDecoration(
+      color: Colors.grey,
+      shape: BoxShape.rectangle,
+      borderRadius: BorderRadius.circular(5),
+      ),
+      child :Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+       // crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(widget.question, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          SizedBox(height: getProportionateScreenHeight(10)),
+          for (var index= 0; index<options.length; index = index+1 ) ...[
+            Container(
+               // width: getProportionateScreenWidth(450),
+                height: getProportionateScreenHeight(50),
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(3),
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                        width: getProportionateScreenWidth(130),
+                        height: getProportionateScreenHeight(50),
+                        child: ListTile(
+                          title: Text(options[index], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11)),
+                          selected: selectedOptions.contains(options[index]),
+                          onTap: () {
+                            setState(() {
+                              if (selectedOptions[0] == '') {
+                                selectedOptions[0] = options[index];
+                              } else if (selectedOptions[1] == '') {
+                                selectedOptions[1] = options[index];
+                              } else {
+                                selectedOptions[0] = selectedOptions[1];
+                                selectedOptions[1] = options[index];
+                              }
+                            });
+                            widget.responses.add(selectedOptions);
+                          },
+                        )),
+                    Row(
+                        children:[
+                          SizedBox(
+                              width: getProportionateScreenWidth(200),
+                            child: Text(
+                              ( Descriptions[index].length <= 40)
                                   ? Descriptions[index]
-                                  : Descriptions[index].substring(0, 25) + '...',
+                                  : Descriptions[index].substring(0, 40) + '...',
                                 style: TextStyle(fontSize: 10)
                             ),
-                            if ( Descriptions[index].length > 25)
-                              TextButton(
-                                child: Text('Voir plus',style: TextStyle(color:Color(0xFF0F8A74),fontSize: 10)),
-                                onPressed: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                        title: Text(options[index],style:TextStyle(color:Color(0xFF0F8A74))),
-                                        content: Text(Descriptions[index]),
-                                        actions: [
-                                          TextButton(
-                                              child: Text("OK", style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF0F8A74) , fontSize: 11)),
-                                              onPressed: () => Navigator.pop(context))
-                                        ],
-                                      ));
-                                },
+                          ),
+                          if ( Descriptions[index].length > 25)
+                            TextButton(
+                              child: Text('Voir plus',style: TextStyle(color:Color(0xFF0F8A74),fontSize: 10)),
+                              onPressed: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text(options[index],style:TextStyle(color:Color(0xFF0F8A74))),
+                                      content: Text(Descriptions[index]),
+                                      actions: [
+                                        TextButton(
+                                            child: Text("OK", style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF0F8A74) , fontSize: 11)),
+                                            onPressed: () => Navigator.pop(context))
+                                      ],
+                                    ));
+                              },
 
-                              )
-                          ])
-                  ),
-                ],
-              ))
+                            )
+                        ]),
+                  ],
+                ))
+          ],
+          SizedBox(height: getProportionateScreenHeight(10)),
+          Text('Selected options: ${selectedOptions[0]}, ${selectedOptions[1]}', style: TextStyle(fontWeight: FontWeight.bold , fontSize: 11)),
         ],
-        SizedBox(height: 10.h),
-        Text('Selected options: ${selectedOptions[0]}, ${selectedOptions[1]}', style: TextStyle(fontWeight: FontWeight.bold , fontSize: 11)),
-      ],
-    ));
+      )),
+    );
   }
 }

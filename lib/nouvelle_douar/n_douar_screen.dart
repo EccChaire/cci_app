@@ -1,3 +1,4 @@
+import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
@@ -30,7 +31,7 @@ class N_douarPage extends StatelessWidget {
   }
   Widget _buildnameTextField() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(24)),
       child: const TextField(
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
@@ -43,7 +44,7 @@ class N_douarPage extends StatelessWidget {
 
   Widget _buildcollecteButton() {
     return Container(
-        padding:  EdgeInsets.only(top: 350.h), // set padding to move button to top left corner
+        padding:  EdgeInsets.only(top: getProportionateScreenHeight(350)), // set padding to move button to top left corner
         child: ElevatedButton(
           onPressed: () {
             newDowarBlock.saveDowar();
@@ -51,7 +52,7 @@ class N_douarPage extends StatelessWidget {
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0F8A74)), // set background color
-            minimumSize: MaterialStateProperty.all<Size>(const Size(250, 50)), // set minimum size
+            minimumSize: MaterialStateProperty.all<Size>( Size(getProportionateScreenWidth(250), getProportionateScreenHeight(50))), // set minimum size
             // You can also use fixedSize property to set the exact button size
           ),
           child: const Text("Collecte",textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
