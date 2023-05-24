@@ -5,7 +5,8 @@ import 'package:geolocator/geolocator.dart';
 import '../models/intervale.dart';
 import '../utils/database_roots.dart';
 
-class IntervalService { 
+class IntervalService {
+
 
   Future<List<CoordinateInterval>> getAllIntervales() async {
     final QuerySnapshot<Object?> querySnapshot =

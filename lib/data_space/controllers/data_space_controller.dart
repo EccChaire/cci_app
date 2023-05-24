@@ -1,7 +1,6 @@
-import 'dart:io';
+
 
 import 'package:cci_app/models/media.dart';
-import 'package:cci_app/services/loc_service.dart';
 import 'package:cci_app/services/response_service.dart';
 import 'package:get/get.dart';
 

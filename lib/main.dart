@@ -1,11 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:cci_app/data_space/controllers/data_space_controller.dart';
 import 'package:get/get.dart';
 
 import 'login/login_screen.dart';
 
+
 void main() async {
+  Get.put(DataSpeceController());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
