@@ -73,7 +73,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
               cardTitle: "Enquête 4",
               cardDescription: "Cette enquête est réservé pour ma deuxième donc il vas contient toutes les questions relié à la cartographie.",
               onClockFuction: () {
-                Get.to(() => Q3Page());
+                //Get.to(() => Q3Page());
               },
             ),
 

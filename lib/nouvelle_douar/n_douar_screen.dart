@@ -1,9 +1,8 @@
 import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:cci_app/collecte/collecte_screen.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:cci_app/data_space/dataspace_screen.dart';
 
 import 'n_dowar_block.dart';
 
@@ -48,7 +47,7 @@ class N_douarPage extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
 
-            Get.to(() => DataSpace());
+            Get.to(() => CollectePage());
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0F8A74)), // set background color
