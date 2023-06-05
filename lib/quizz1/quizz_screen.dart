@@ -6,11 +6,12 @@ import '../data_space/controllers/data_space_controller.dart';
 import '../data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
 import 'package:cci_app/quizz1/block.dart';
+import 'package:cci_app/models/question.dart';
 
 class Q1Page extends StatelessWidget {
 
   final String questionId = "QuestionId";
-  List<String> questions = ["Comment t'a trouvé ce douar?", "Comment t'a trouvé ce douar?"];
+  List<Question> questions = [Question(questionId :1, questionType: "A",questionCorp:"Comment t'as trouvé le douar"),Question(questionId :2, questionType: "A",questionCorp:"Comment t'as trouvé le douar")];
   List<String> responses = [];
 
   
@@ -24,7 +25,7 @@ class Q1Page extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    _buildbackButton(),
+                    _buildbackButton(context),
                     _buildsaveButton(),
                   ]),
                 Column(
@@ -43,11 +44,12 @@ class Q1Page extends StatelessWidget {
 
 
 
-  Widget _buildbackButton() {
+  Widget _buildbackButton(BuildContext context) {
     return  Container(
         padding: EdgeInsets.only( left : getProportionateScreenWidth(10), top: getProportionateScreenHeight(20)),
         child: TextButton(
           onPressed: () {
+
             Get.to(() => DataSpace());
         // Perform some action here
           },
@@ -61,7 +63,7 @@ class Q1Page extends StatelessWidget {
         child: TextButton(
           onPressed: () async{
               for (var index= 0; index<questions.length; index = index+1 ){
-                  resp.Response resposne = await responsecontroller.createNewResponse(questions[index], responses[index], 'dowarid');
+                  resp.Response resposne = await responsecontroller.createNewResponse(questions[index].questionId.toString(), responses[index], 'dowarid');
                   dataSpeceController.saveResponse(resposne);
             }
         // Perform some action here

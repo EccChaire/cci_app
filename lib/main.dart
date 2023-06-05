@@ -3,15 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cci_app/data_space/controllers/data_space_controller.dart';
 import 'package:get/get.dart';
-
+import 'package:provider/provider.dart';
+import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
 import 'login/login_screen.dart';
+import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
+import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
 
 
 void main() async {
   Get.put(DataSpeceController());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<TextProvider>(create: (_) => TextProvider()),
+        ChangeNotifierProvider<ValueProvider>(create: (_) => ValueProvider()),
+        ChangeNotifierProvider<ChoicesProvider>(create: (_) => ChoicesProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

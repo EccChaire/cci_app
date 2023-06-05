@@ -8,6 +8,7 @@ import 'package:cci_app/data_space/dataspace_screen.dart';
 import '../data_space/controllers/data_space_controller.dart';
 import '../data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
+import 'package:cci_app/models/question.dart';
 
 
 class Q2Page extends StatefulWidget {
@@ -23,7 +24,7 @@ class _Q2PageState extends State<Q2Page> {
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
 
 
-  List<String> questions = ["Comment t'a trouvé ce douar?", "Comment t'a trouvé ce douar?","cv"];
+  List<Question> questions = [Question(questionId :3, questionType: "A",questionCorp:"Comment t'as trouvé le douar"),Question(questionId :4, questionType: "A",questionCorp:"Comment t'as trouvé le douar")];
   List<String> responses = [];
   
 
@@ -72,7 +73,7 @@ class _Q2PageState extends State<Q2Page> {
         child: TextButton(
           onPressed: () async{
             for (var index= 0; index<questions.length; index = index+1 ){
-              resp.Response resposne = await responsecontroller.createNewResponse(questions[index], responses[index], 'dowarid');
+              resp.Response resposne = await responsecontroller.createNewResponse(questions[index].questionId.toString(), responses[index], 'dowarid');
               dataSpeceController.saveResponse(resposne);
             }
         // Perform some action here

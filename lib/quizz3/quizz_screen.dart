@@ -1,5 +1,5 @@
 import 'package:cci_app/config.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:cci_app/models/question.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:cci_app/quizz3/QCM.dart';
@@ -18,7 +18,7 @@ class Q3Page extends StatefulWidget {
 
 class _Q3PageState extends State<Q3Page> {
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
-  List<String> questions = ["Comment t'a trouvé ce douar?", "Comment t'a trouvé ce douar?"];
+  List<Question> questions = [Question(questionId :5, questionType: "A",questionCorp:"Comment t'as trouvé le douar"),Question(questionId :6, questionType: "A",questionCorp:"Comment t'as trouvé le douar")];
   List<List<String>> responses = [[]];
   
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
@@ -68,7 +68,7 @@ class _Q3PageState extends State<Q3Page> {
         child: TextButton(
           onPressed: () async {
             for (var index= 0; index<questions.length; index = index+1 ){
-              resp.Response resposne = await responsecontroller.createNewResponse(questions[index], responses[index].toString(), 'dowarid');
+              resp.Response resposne = await responsecontroller.createNewResponse(questions[index].questionId.toString(), responses[index].toString(), 'dowarid');
               dataSpeceController.saveResponse(resposne);
               }
         // Perform some action here

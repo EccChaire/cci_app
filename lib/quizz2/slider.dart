@@ -2,13 +2,16 @@ import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:cci_app/models/responce.dart' as resp;
 import 'package:cci_app/data_space/controllers/data_space_controller.dart';
 import 'package:cci_app/data_space/controllers/resonse_controller.dart';
+import 'package:provider/provider.dart';
+import 'package:cci_app/models/question.dart';
+import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
+import 'package:cci_app/data_space/controllers/double_Edditing_Controller.dart';
 
 class MetricInterface extends StatefulWidget {
   List<String> responses;
-  final String question;
+  final Question question;
 
   MetricInterface({
     required this.responses,
@@ -24,10 +27,22 @@ class MetricInterface extends StatefulWidget {
 class _MetricInterfaceState extends State<MetricInterface> {
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
-  double _currentValue = 3.0;
 
   @override
   Widget build(BuildContext context) {
+    final valueProvider = Provider.of<ValueProvider>(context);
+    final valueControllers = <String, DoubleEditingController>{};
+    //final content = TextEditingController(text: textProvider.enteredText);
+    valueProvider.enteredValueMap.forEach((fieldId, value) {
+      valueControllers[fieldId] = DoubleEditingController(initialValue: value);
+    });
+    String fieldId = widget.question.questionId.toString();
+    if (valueControllers[fieldId] == null) {
+      valueProvider.updateValue(fieldId, 3.0);
+    };
+    double _currentValue = valueControllers[fieldId]?.value ?? 0.0;
+
+
     return Container(
        margin:EdgeInsets.only(left:getProportionateScreenWidth(12)),
         padding: EdgeInsets.only(left: getProportionateScreenWidth(30),right:getProportionateScreenWidth(30), top:getProportionateScreenHeight(getProportionateScreenWidth(30))),
@@ -45,7 +60,7 @@ class _MetricInterfaceState extends State<MetricInterface> {
               children : [
                 Column(
                   children : [
-                    Text(widget.question, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                    Text(widget.question.questionCorp.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                     Text('Note: $_currentValue', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                   ]
                 ),
@@ -58,7 +73,7 @@ class _MetricInterfaceState extends State<MetricInterface> {
                           overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
                         ),
                         child: Slider(
-                          value: _currentValue,
+                          value: valueControllers[fieldId]?.value ?? 0.0,
                           min: 0,
                           max: 5,
                           divisions: 5,
@@ -68,6 +83,9 @@ class _MetricInterfaceState extends State<MetricInterface> {
                           onChanged: (double value) async{
                             setState(() {
                              _currentValue = value;
+                             valueProvider.updateValue(fieldId, _currentValue);
+
+
 
                         });
                             widget.responses.add(_currentValue.toString());

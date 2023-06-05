@@ -5,10 +5,13 @@ import 'package:get/get.dart';
 import 'package:cci_app/data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
 import '../data_space/controllers/data_space_controller.dart';
+import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:cci_app/models/question.dart';
 
 
 class writeResponse extends StatefulWidget {
-  final String question;
+  final Question question;
   List<String> responses;
 
 
@@ -26,7 +29,6 @@ class _writeResponse extends State<writeResponse> {
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   final List<resp.Response> reponses =  [];
-  TextEditingController content = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,27 +42,38 @@ class _writeResponse extends State<writeResponse> {
         ),
         child: Column(
             children:  [
-              Text( widget.question, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              Text( widget.question.questionCorp.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
 
               SizedBox(height: getProportionateScreenHeight(20)),
-              _buildReponseField(),
+              _buildReponseField(context),
 
 
             ])
     );
   }
   String inputValue = '';
-  Widget _buildReponseField() {
-    return TextField (
-        controller:  content,
+  Widget _buildReponseField(BuildContext context) {
+    final textProvider = Provider.of<TextProvider>(context);
+    final textControllers = <String, TextEditingController>{};
+    //final content = TextEditingController(text: textProvider.enteredText);
+    textProvider.enteredTextMap.forEach((fieldId, text) {
+      textControllers[fieldId] = TextEditingController(text: text);
+    });
+    String fieldId = widget.question.questionId.toString();
+    return Consumer<TextProvider>(
+        builder: (context, textProvider, _) {
+      return TextField (
+        textDirection: TextDirection.ltr,
+        textAlign: TextAlign.start,
+        controller: textControllers[fieldId],
       onSubmitted: (text)  async{
-      setState(() {
+        setState(() {
         inputValue = text;
-      });
-      widget.responses.add(content.toString());
-        //reponses.add(resposne);
-        // Do something with the user input
+        textProvider.updateText(fieldId, inputValue);});
       },
+        onEditingComplete: () {
+          widget.responses.add(inputValue.toString());
+        },
 
       decoration: const InputDecoration(
         filled: true,
@@ -68,6 +81,7 @@ class _writeResponse extends State<writeResponse> {
         hintText: 'Votre réponse ...',
       ),
     );
+        });
   }
   //Future<List<resp.Response>> _listReponses() {
     //return rep;

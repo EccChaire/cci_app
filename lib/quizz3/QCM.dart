@@ -1,13 +1,15 @@
 import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
-import 'package:cci_app/quizz3/VoirPlusWidget.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:cci_app/models/question.dart';
+import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
+import 'package:cci_app/data_space/controllers/choices_Edditing_Controller.dart';
+import 'package:provider/provider.dart';
 
 
 
 class ChooseTwoInOrderQuestion extends StatefulWidget {
-  final String question;
+  final Question question;
   List<List<String>> responses;
 
   ChooseTwoInOrderQuestion({
@@ -27,10 +29,23 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
     "Les voies d'accès existent et permettent quotidiennement l'accès facile de la communauté à l'ensemble des Services publics et privés dont ses membres pourraient avoir besoin (éducation, santé, emplois distants, marchés d'approvisionnement...). Les moyens de transport sont disponibles en nombre suffisant et la fréquence des rotations répond aux besoins courants ou urgents. Peu infrastructures nouvelles sont mises en place (tous les besoins sont couverts) mais celles qui existent sont maintenues, financées, de bonne qualité et restent en bon état de fonctionnement. Un marché local s'est développé qui donne accès à tout un chacun aux biens et aux services produits à l'intérieur de 1a communauté.",
     "l'exploitation non maitrisée des ressources locales s'est traduite par a raréfaction de ces ressources et des confits de propriété ou d'usage ont parfois même éclaté. Les infrastructures qui avaient Été mises en place sont obsolètes, insuffisantes pour couvrir les (nouveaux) besoins. Elles ont parfois même été abandonnées faute de maintenance, de travail collectif pour les entretenir, de formation pour les exploiter, ou de financement. Dans certains cas, usage de ces infrastructures donne lieu a des conflits et la communauté préfère s'en désengager.",
     "La communauté se trouve dans un environnement géographiquement isolé des centres activité et de decision. Cet isolement est perçu comme une barrière au développement. Ces communautés isolées. connaissent mal ou pas du tout les ressources locales exploitables pour s'autonomiser et la population ne maitrise plus les compétences de base permettant d'en tirer profit. Les infrastructures de base: sont tres réduites et ne peuvent pas servir d'appui à de futurs projets de développement.",];
-  List<String> selectedOptions = ['', ''];
+
 
 
   Widget build(BuildContext context) {
+
+    final choicesProvider = Provider.of<ChoicesProvider>(context);
+    final choicesControllers = <String, ChoicesEditingController>{};
+    //final content = TextEditingController(text: textProvider.enteredText);
+    choicesProvider.enteredChoicesMap.forEach((fieldId, choices) {
+      choicesControllers[fieldId] = ChoicesEditingController(initialChoices: choices);
+    });
+    String fieldId = widget.question.questionId.toString();
+    if (choicesControllers[fieldId] == null) {
+      choicesProvider.updateChoices(fieldId, ['','']);
+    };
+    List<String> selectedOptions = choicesControllers[fieldId]?.choices ?? ['', ''];
+
     return Padding(
       padding:  EdgeInsets.all(getProportionateScreenHeight(8.0)),
       child: Container(
@@ -46,7 +61,7 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
         mainAxisAlignment: MainAxisAlignment.start,
        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.question, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          Text(widget.question.questionCorp.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
           SizedBox(height: getProportionateScreenHeight(10)),
           for (var index= 0; index<options.length; index = index+1 ) ...[
             Container(
@@ -76,6 +91,7 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
                                 selectedOptions[1] = options[index];
                               }
                             });
+                            choicesProvider.updateChoices(fieldId, selectedOptions);
                             widget.responses.add(selectedOptions);
                           },
                         )),
