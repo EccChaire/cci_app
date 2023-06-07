@@ -16,8 +16,9 @@ class WaitingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0F8A74),
-      body: Center(
-        child: Column(
+      body: ListView(
+        children: [
+          Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:  [
             const CircularProgressIndicator(),
@@ -32,6 +33,7 @@ class WaitingScreen extends StatelessWidget {
             ),
           ],
         ),
+        ]
       ),
     );
   }
