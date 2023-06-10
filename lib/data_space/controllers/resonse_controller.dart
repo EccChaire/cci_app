@@ -24,6 +24,9 @@ class Responsecontroller extends GetxController {
 
 
   }
+  void UpdateResponse(resp.Response response, String updatecorp) async{
+    response.responseCorp = updatecorp;
+  }
 
   
 }

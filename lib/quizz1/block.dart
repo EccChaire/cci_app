@@ -12,13 +12,11 @@ import 'package:cci_app/models/question.dart';
 
 class writeResponse extends StatefulWidget {
   final Question question;
-  List<String> responses;
 
 
 
   writeResponse({
     required this.question,
-    required this.responses
   });
 
   @override
@@ -51,7 +49,6 @@ class _writeResponse extends State<writeResponse> {
             ])
     );
   }
-  String inputValue = '';
   Widget _buildReponseField(BuildContext context) {
     final textProvider = Provider.of<TextProvider>(context);
     final textControllers = <String, TextEditingController>{};
@@ -66,14 +63,16 @@ class _writeResponse extends State<writeResponse> {
         textDirection: TextDirection.ltr,
         textAlign: TextAlign.start,
         controller: textControllers[fieldId],
+      onChanged: (cont) async{
+        resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), cont, 'test');
+        dataSpeceController.saveResponse(rp);
+      },
       onSubmitted: (text)  async{
         setState(() {
-        inputValue = text;
-        textProvider.updateText(fieldId, inputValue);});
+        textProvider.updateText(fieldId, text);
+        });
       },
-        onEditingComplete: () {
-          widget.responses.add(inputValue.toString());
-        },
+
 
       decoration: const InputDecoration(
         filled: true,

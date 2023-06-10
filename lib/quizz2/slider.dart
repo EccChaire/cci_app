@@ -8,13 +8,12 @@ import 'package:provider/provider.dart';
 import 'package:cci_app/models/question.dart';
 import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
 import 'package:cci_app/data_space/controllers/double_Edditing_Controller.dart';
+import 'package:cci_app/models/responce.dart' as resp;
 
 class MetricInterface extends StatefulWidget {
-  List<String> responses;
   final Question question;
 
   MetricInterface({
-    required this.responses,
     required this.question
   });
 
@@ -81,14 +80,12 @@ class _MetricInterfaceState extends State<MetricInterface> {
                           inactiveColor: Colors.white,
 
                           onChanged: (double value) async{
+                            resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), value.toString(), 'test');
+                            dataSpeceController.saveResponse(rp);
                             setState(() {
                              _currentValue = value;
                              valueProvider.updateValue(fieldId, _currentValue);
-
-
-
                         });
-                            widget.responses.add(_currentValue.toString());
                       },
 
 
