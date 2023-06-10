@@ -15,12 +15,13 @@ import 'components/quizz_card.dart';
 import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
+import 'package:cci_app/data_space/components/sound-bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DataSpace extends StatelessWidget {
   DataSpeceController dataSpaceConroller = Get.find<DataSpeceController>();
-
+  final SoundBloc _soundBloc = Get.put(SoundBloc());
   final MediaConroller mediaConroller = Get.put(MediaConroller());
   // Responsecontroller responsecontroller = Get.put(Responsecontroller());
   final DataSpeceController dataSpeceController = Get.put(DataSpeceController());
@@ -183,19 +184,20 @@ SizedBox(width: getProportionateScreenWidth(10)),
                             Row(
                             children: [
                               ElevatedButton(
-                                child: const Text("Audio",textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
-                                onPressed: () async{
-
-                                  md = mediaConroller.createLocalMedia(Description , "audio", await audioService().RecordAudio(),);
-                                  dataSpaceConroller.saveMedia(md);
-                                  UploadMediaService().uploadFile(md.file!, "audios");
-                                },
-
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
-                                  minimumSize: MaterialStateProperty.all<Size>(Size(getProportionateScreenWidth(125), getProportionateScreenHeight(50))), // set minimum size
-                                  // You can also use fixedSize property to set the exact button size
+                                child: Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle
+                                  ),
+                                  child:  Icon(
+                                      _soundBloc.isRecording.value? Icons.play_arrow: Icons.stop,
+                                      color: _soundBloc.isRecording.value? Colors.red: Colors.green
+                                  ),
                                 ),
+                                onPressed: (){
+                                  _soundBloc.isRecording.value?  _soundBloc.stopRecording():  _soundBloc.startRecording();
+                                },
                               ),
                             ],
                             )
