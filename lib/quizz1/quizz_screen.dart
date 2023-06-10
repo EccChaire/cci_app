@@ -12,7 +12,6 @@ class Q1Page extends StatelessWidget {
 
   final String questionId = "QuestionId";
   List<Question> questions = [Question(questionId :1, questionType: "A",questionCorp:"Comment t'as trouvé le douar"),Question(questionId :2, questionType: "A",questionCorp:"Comment t'as trouvé le douar")];
-  List<String> responses = [];
 
   
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
@@ -26,12 +25,11 @@ class Q1Page extends StatelessWidget {
                 Row(
                   children: [
                     _buildbackButton(context),
-                    _buildsaveButton(),
                   ]),
                 Column(
                   children: [
                     for (var index= 0; index<questions.length; index = index+1 ) ...[
-                      writeResponse(question: questions[index], responses: responses),
+                      writeResponse(question: questions[index]),
                        SizedBox(height: getProportionateScreenHeight(10)),
                     ]
                   ],
@@ -56,19 +54,5 @@ class Q1Page extends StatelessWidget {
           child: Text('Retour', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color:Color(0xFF0F8A74))),
     )
     );
-  }
-  Widget _buildsaveButton() {
-    return  Container(
-        padding: EdgeInsets.only(left: getProportionateScreenWidth(210), top: getProportionateScreenHeight(20)),
-        child: TextButton(
-          onPressed: () async{
-              for (var index= 0; index<questions.length; index = index+1 ){
-                  resp.Response resposne = await responsecontroller.createNewResponse(questions[index].questionId.toString(), responses[index], 'dowarid');
-                  dataSpeceController.saveResponse(resposne);
-            }
-        // Perform some action here
-          },
-          child: Text('Enregistrer', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color:Color(0xFF0F8A74))),
-        ));
   }
 }

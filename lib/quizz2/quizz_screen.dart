@@ -25,7 +25,6 @@ class _Q2PageState extends State<Q2Page> {
 
 
   List<Question> questions = [Question(questionId :3, questionType: "A",questionCorp:"Comment t'as trouvé le douar"),Question(questionId :4, questionType: "A",questionCorp:"Comment t'as trouvé le douar")];
-  List<String> responses = [];
   
 
   @override
@@ -36,13 +35,12 @@ class _Q2PageState extends State<Q2Page> {
               Row(
                 children: [
                   _buildbackButton(),
-                  _buildsaveButton(),
               ]),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   for (var index= 0; index<questions.length; index = index+1 ) ...[
-                    MetricInterface(question: questions[index], responses: responses),
+                    MetricInterface(question: questions[index]),
                      SizedBox(height: getProportionateScreenHeight(10)),
 
                   ]
@@ -59,26 +57,12 @@ class _Q2PageState extends State<Q2Page> {
     return  Container(
         padding: EdgeInsets.only( left : getProportionateScreenWidth(10), top: getProportionateScreenWidth(20)),
         child: TextButton(
-          onPressed: () {
+          onPressed: () async{
             Get.to(() => DataSpace());
             // Perform some action here
           },
           child: Text('Retour', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color:Color(0xFF0F8A74))),
         )
     );
-  }
-  Widget _buildsaveButton() {
-    return  Container(
-        padding: EdgeInsets.only(left: getProportionateScreenWidth(200), top: getProportionateScreenHeight(20)),
-        child: TextButton(
-          onPressed: () async{
-            for (var index= 0; index<questions.length; index = index+1 ){
-              resp.Response resposne = await responsecontroller.createNewResponse(questions[index].questionId.toString(), responses[index], 'dowarid');
-              dataSpeceController.saveResponse(resposne);
-            }
-        // Perform some action here
-          },
-          child: Text('Enregistrer', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color:Color(0xFF0F8A74))),
-        ));
   }
 }

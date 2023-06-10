@@ -23,7 +23,15 @@ class DataSpeceController extends GetxController {
   }
 
   void saveResponse(resp.Response response) {
-    responses.add(response);
+    int existingIndex = responses.indexWhere((r) => r.questionId == response.questionId);
+
+    if (existingIndex != -1) {
+      // Update existing response
+      responses[existingIndex] = response;
+    } else {
+      // Add new response
+      responses.add(response);
+    }
   }
   void saveInterval(CoordinateInterval interval){
     intervals.add(interval);

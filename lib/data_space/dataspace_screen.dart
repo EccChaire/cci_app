@@ -9,10 +9,13 @@ import 'package:cci_app/services/micro_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/quizz2/quizz_screen.dart';
-
 import '../services/cam_service.dart';
 import 'components/button_widget.dart';
 import 'components/quizz_card.dart';
+import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
+import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
+import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DataSpace extends StatelessWidget {
@@ -21,6 +24,10 @@ class DataSpace extends StatelessWidget {
   final MediaConroller mediaConroller = Get.put(MediaConroller());
   // Responsecontroller responsecontroller = Get.put(Responsecontroller());
   final DataSpeceController dataSpeceController = Get.put(DataSpeceController());
+  TextProvider textProvider = TextProvider();
+  ValueProvider valueProvider = ValueProvider();
+  ChoicesProvider choicesProvider = ChoicesProvider();
+
 
 
 
@@ -211,6 +218,10 @@ SizedBox(width: getProportionateScreenWidth(10)),
             buttonOnClickFunction: () async{
               await dataSpeceController.saveDataToFirebase();
               await dataSpeceController.deleteCash();
+              textProvider.clearAllInstances();
+              valueProvider.clearAllInstances();
+              choicesProvider.clearAllInstances();
+
             },
           ),
         )
