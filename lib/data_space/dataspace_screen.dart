@@ -22,7 +22,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DataSpace extends StatelessWidget {
   DataSpeceController dataSpaceConroller = Get.find<DataSpeceController>();
-  final SoundBloc _soundBloc = Get.put(SoundBloc());
   final uploadImage uploadjpg = Get.put(uploadImage());
   final uploadVideo uploadmp4 = Get.put(uploadVideo());
   final uploadAudio uploadmp3 = Get.put(uploadAudio());
@@ -193,22 +192,21 @@ SizedBox(width: getProportionateScreenWidth(10)),
                             Row(
                             children: [
                               ElevatedButton(
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle
-                                  ),
-                                  child:  Icon(
-                                      _soundBloc.isRecording.value? Icons.play_arrow: Icons.stop,
-                                      color: _soundBloc.isRecording.value? Colors.red: Colors.green
+                                child: Obx(
+                                  () => Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle
+                                    ),
+                                    child:  Icon(
+                                        uploadmp3.isRecording.value? Icons.play_arrow: Icons.stop,
+                                        color: uploadmp3.isRecording.value? Colors.red: Colors.green
+                                    ),
                                   ),
                                 ),
                                 onPressed: () async{
-                                  _soundBloc.isRecording.value?  _soundBloc.stopRecording():  _soundBloc.startRecording();
-                                  uploadmp3.uploadaudio(context, _soundBloc.pathToAudio!);
-                                  md = await mediaConroller.createMedia(Description,"audio", uploadmp3.mediaurl);
-                                  dataSpaceConroller.saveMedia(md);
+                                  uploadmp3.isRecording.value?  uploadmp3.stopRecording():  uploadmp3.startRecording();
 
                                 },
                               ),
@@ -220,7 +218,10 @@ SizedBox(width: getProportionateScreenWidth(10)),
 
                       TextButton(
                           child: Text("OK", style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF0F8A74) , fontSize: 11)),
-                          onPressed: (){
+                          onPressed: () async{
+                            uploadmp3.uploadaudio(context);
+                            md = await mediaConroller.createMedia(Description,"audio", uploadmp3.mediaurl);
+                            dataSpaceConroller.saveMedia(md);
                               Navigator.pop(context);
                         })
                     ],

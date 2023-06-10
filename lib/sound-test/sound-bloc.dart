@@ -24,11 +24,11 @@ class SoundBloc extends GetxController {
   void stopRecording() async {
     if (isInitialized) {
       await _flutterSoundRecorder!.stopRecorder();
-      isRecording.value = true;
+      isRecording.value = false;
     } else {
       await init();
       await _flutterSoundRecorder!.stopRecorder();
-      isRecording.value = true;
+      isRecording.value = false;
     }
   }
 
