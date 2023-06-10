@@ -1,4 +1,3 @@
-import 'package:cci_app/sound-test/sound-screen-test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +9,6 @@ import 'login/login_screen.dart';
 import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
 
-import 'media-test/media-upload-test.dart';
 
 
 void main() async {

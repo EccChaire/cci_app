@@ -1,24 +1,19 @@
 import 'package:cci_app/config.dart';
 import 'package:cci_app/data_space/controllers/data_space_controller.dart';
 import 'package:cci_app/data_space/controllers/media_controller.dart';
-import 'package:cci_app/services/upload_media_services.dart';
 import 'package:cci_app/quizz1/quizz_screen.dart';
 import 'package:cci_app/quizz3/quizz_screen.dart';
-import 'package:cci_app/models/local_media.dart';
 import 'package:cci_app/services/upload_media.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/quizz2/quizz_screen.dart';
-import '../services/cam_service.dart';
 import 'components/button_widget.dart';
 import 'components/quizz_card.dart';
 import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
-import 'package:cci_app/data_space/components/sound-bloc.dart';
 import 'package:cci_app/models/media.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DataSpace extends StatelessWidget {
   DataSpeceController dataSpaceConroller = Get.find<DataSpeceController>();

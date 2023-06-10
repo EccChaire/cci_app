@@ -1,7 +1,5 @@
-import 'dart:io';
 import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
-import 'package:cci_app/models/local_media.dart';
 import '../../models/media.dart';
 import 'package:cci_app/login/login_repository.dart';
 

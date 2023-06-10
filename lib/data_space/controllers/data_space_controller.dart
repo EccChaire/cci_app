@@ -4,7 +4,6 @@ import 'package:cci_app/models/media.dart';
 import 'package:cci_app/services/response_service.dart';
 import 'package:get/get.dart';
 
-import '../../models/local_media.dart';
 import '../../models/intervale.dart';
 
 import 'package:cci_app/models/responce.dart' as resp;
@@ -14,7 +13,6 @@ import '../../services/upload_media_services.dart';
 class DataSpeceController extends GetxController {
   
   var responses = <resp.Response>[].obs;
-  var localMedia = <LocalMedia>[].obs;
   var medias = <Media>[].obs;
   var intervals = <CoordinateInterval>[].obs;
 
@@ -55,7 +53,7 @@ class DataSpeceController extends GetxController {
   }
   Future<String> deleteCash() async{
     responses.clear();
-    localMedia.clear();
+    medias.clear();
     return 'done';
   }
 
