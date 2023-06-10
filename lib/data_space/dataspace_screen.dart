@@ -184,15 +184,17 @@ SizedBox(width: getProportionateScreenWidth(10)),
                             Row(
                             children: [
                               ElevatedButton(
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle
-                                  ),
-                                  child:  Icon(
-                                      _soundBloc.isRecording.value? Icons.play_arrow: Icons.stop,
-                                      color: _soundBloc.isRecording.value? Colors.red: Colors.green
+                                child: Obx(
+                                  () => Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle
+                                    ),
+                                    child:  Icon(
+                                        _soundBloc.isRecording.value? Icons.play_arrow: Icons.stop,
+                                        color: _soundBloc.isRecording.value? Colors.red: Colors.green
+                                    ),
                                   ),
                                 ),
                                 onPressed: (){
