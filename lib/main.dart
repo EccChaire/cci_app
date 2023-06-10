@@ -10,6 +10,8 @@ import 'login/login_screen.dart';
 import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
 
+import 'media-test/media-upload-test.dart';
+
 
 void main() async {
   Get.put(DataSpeceController());
@@ -52,7 +54,8 @@ class MyApp extends StatelessWidget {
             // is not restarted.
             primarySwatch: Colors.blue,
           ),
-          home: LoginPage(),
+
+          home: CameraScreen(),
         );
       },
     );
