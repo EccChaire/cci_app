@@ -1,3 +1,4 @@
+import 'package:cci_app/sound-test/sound-screen-test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
             // is not restarted.
             primarySwatch: Colors.blue,
           ),
-          home: LoginPage(),
+          home: TestScreenWidget(),
         );
       },
     );
