@@ -1,21 +1,20 @@
-
-
-
 import 'dart:io';
-
-import 'package:cci_app/models/local_media.dart';
+import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
-
+import 'package:cci_app/models/local_media.dart';
 import '../../models/media.dart';
+import 'package:cci_app/login/login_repository.dart';
 
 class MediaConroller extends GetxController {
-  LocalMedia createLocalMedia(String Description, String Type, File? media){
-    LocalMedia localMedia = LocalMedia();
-    localMedia.description = Description;
-    localMedia.type = Type;
-    localMedia.file = media;
-
-    return  localMedia;
+  Future<Media> createMedia(String Description, String Type, String url) async{
+    Media media = Media();
+    media.mediaId = const Uuid().v4();
+    media.mediaType = Type;
+    media.mediaUrl = url;
+    media.mediaDescription = Description;
+    media.userId = await LoginRepository().getConnectedUserId();
+    media.dowarId = 'test';
+    return  media;
 
   }
 

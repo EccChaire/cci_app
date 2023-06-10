@@ -5,7 +5,7 @@ import 'package:cci_app/services/upload_media_services.dart';
 import 'package:cci_app/quizz1/quizz_screen.dart';
 import 'package:cci_app/quizz3/quizz_screen.dart';
 import 'package:cci_app/models/local_media.dart';
-import 'package:cci_app/services/micro_service.dart';
+import 'package:cci_app/services/upload_media.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/quizz2/quizz_screen.dart';
@@ -16,18 +16,22 @@ import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
 import 'package:cci_app/data_space/components/sound-bloc.dart';
+import 'package:cci_app/models/media.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DataSpace extends StatelessWidget {
   DataSpeceController dataSpaceConroller = Get.find<DataSpeceController>();
   final SoundBloc _soundBloc = Get.put(SoundBloc());
+  final uploadImage uploadjpg = Get.put(uploadImage());
+  final uploadVideo uploadmp4 = Get.put(uploadVideo());
+  final uploadAudio uploadmp3 = Get.put(uploadAudio());
   final MediaConroller mediaConroller = Get.put(MediaConroller());
-  // Responsecontroller responsecontroller = Get.put(Responsecontroller());
   final DataSpeceController dataSpeceController = Get.put(DataSpeceController());
   TextProvider textProvider = TextProvider();
   ValueProvider valueProvider = ValueProvider();
   ChoicesProvider choicesProvider = ChoicesProvider();
+  String path = '';
 
 
 
@@ -37,7 +41,7 @@ class DataSpace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String Description = '';
-    LocalMedia md;
+    Media md;
 
     return Scaffold(
         body: ListView(
@@ -118,10 +122,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
                               ElevatedButton(
                                 child: const Text("image",textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
                                 onPressed: () async{
-
-                                  md = mediaConroller.createLocalMedia(Description , "image", await PhotoService().takePhoto());
-                                  dataSpaceConroller.saveMedia(md);
-                                  UploadMediaService().uploadFile(md.file!, "images");
+                                  uploadjpg.openCamera();
                                 },
 
                                 style: ButtonStyle(
@@ -134,10 +135,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
                               ElevatedButton(
                                 child: const Text("Vidéo",textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
                                 onPressed: () async{
-
-                                      md = mediaConroller.createLocalMedia(Description , "video", await PhotoService().recordVideo());
-                                      dataSpaceConroller.saveMedia(md);
-                                      UploadMediaService().uploadFile(md.file!, "videos");
+                                  uploadmp4.recordvideo();
                                 },
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0F8A74)), // set background color
@@ -152,8 +150,19 @@ SizedBox(width: getProportionateScreenWidth(10)),
                     ),
                     TextButton(
                         child: Text("OK", style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF0F8A74) , fontSize: 11)),
-                        onPressed: () {
-                          Navigator.pop(context);
+                        onPressed: () async {
+                          try {
+                            uploadjpg.uploadimage(context);
+                            md = await mediaConroller.createMedia(Description,"image", uploadjpg.mediaurl);
+                            dataSpaceConroller.saveMedia(md);
+                            Navigator.pop(context);
+                          } catch (e) {
+                            uploadmp4.uploadvideo(context);
+                            md = await mediaConroller.createMedia(Description,"video", uploadmp4.mediaurl);
+                            dataSpaceConroller.saveMedia(md);
+                            Navigator.pop(context);
+                          }
+
                         })
                   ],
 
@@ -195,8 +204,12 @@ SizedBox(width: getProportionateScreenWidth(10)),
                                       color: _soundBloc.isRecording.value? Colors.red: Colors.green
                                   ),
                                 ),
-                                onPressed: (){
+                                onPressed: () async{
                                   _soundBloc.isRecording.value?  _soundBloc.stopRecording():  _soundBloc.startRecording();
+                                  uploadmp3.uploadaudio(context, _soundBloc.pathToAudio!);
+                                  md = await mediaConroller.createMedia(Description,"audio", uploadmp3.mediaurl);
+                                  dataSpaceConroller.saveMedia(md);
+
                                 },
                               ),
                             ],
@@ -207,7 +220,9 @@ SizedBox(width: getProportionateScreenWidth(10)),
 
                       TextButton(
                           child: Text("OK", style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF0F8A74) , fontSize: 11)),
-                          onPressed: () => Navigator.pop(context))
+                          onPressed: (){
+                              Navigator.pop(context);
+                        })
                     ],
 
                   ));

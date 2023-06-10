@@ -15,11 +15,11 @@ class DataSpeceController extends GetxController {
   
   var responses = <resp.Response>[].obs;
   var localMedia = <LocalMedia>[].obs;
-  var media = <Media>[].obs;
+  var medias = <Media>[].obs;
   var intervals = <CoordinateInterval>[].obs;
 
-  void saveMedia(LocalMedia media) {
-    localMedia.add(media);
+  void saveMedia(Media media) {
+    medias.add(media);
   }
 
   void saveResponse(resp.Response response) {
@@ -40,7 +40,7 @@ class DataSpeceController extends GetxController {
   
 
   Future<String> saveDataToFirebase() async{
-    for(Media md in media){
+    for(Media md in medias){
       await UploadMediaService().save_media(md);
     }
 
