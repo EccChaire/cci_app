@@ -7,7 +7,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 class uploadImage {
   bool isImageTaken = false;
   String imagePath = '';
@@ -22,27 +21,23 @@ class uploadImage {
       isImageTaken = true;
     }
   }
+
   Future<void> uploadimage(BuildContext context) async {
     final File file = File(imagePath);
     final FirebaseStorage storage = FirebaseStorage.instance;
-    final Reference reference = storage.ref().child(
-        'images/${DateTime.now()}.jpg');
+    final Reference reference =
+        storage.ref().child('images/${DateTime.now()}.jpg');
 
     try {
       mediaurl = await reference.putFile(file).toString();
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Image uploaded to Firebase Storage!'))
-      );
+          SnackBar(content: Text('Image uploaded to Firebase Storage!')));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to upload image. Please try again.'))
-      );
+          SnackBar(content: Text('Failed to upload image. Please try again.')));
     }
   }
-
 }
-
-
 
 class uploadVideo {
   bool isvideoTaken = false;
@@ -62,30 +57,26 @@ class uploadVideo {
   Future<void> uploadvideo(BuildContext context) async {
     final File file = File(videoPath);
     final FirebaseStorage storage = FirebaseStorage.instance;
-    final Reference reference = storage.ref().child(
-        'videos/${DateTime.now()}.mp4');
+    final Reference reference =
+        storage.ref().child('videos/${DateTime.now()}.mp4');
 
     try {
       mediaurl = await reference.putFile(file).toString();
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Image uploaded to Firebase Storage!'))
-      );
+          SnackBar(content: Text('Image uploaded to Firebase Storage!')));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to upload image. Please try again.'))
-      );
+          SnackBar(content: Text('Failed to upload image. Please try again.')));
     }
   }
-
 }
 
-
-
-class uploadAudio extends GetxController{
+class uploadAudio extends GetxController {
   String mediaurl = '';
 
   bool isInitialized = false;
-  String pathToAudio = '';
+  String? pathToAudio = 'audio${DateTime.now()}.wav';
+  final Codec _codec = Codec.aacMP4;
   FlutterSoundRecorder? _flutterSoundRecorder;
   var isRecording = false.obs;
 
@@ -106,10 +97,12 @@ class uploadAudio extends GetxController{
     if (isInitialized) {
       await _flutterSoundRecorder!.stopRecorder();
       isRecording.value = false;
+      File file = File(pathToAudio!);
     } else {
       await init();
       await _flutterSoundRecorder!.stopRecorder();
       isRecording.value = false;
+      File file = File(pathToAudio!);
     }
   }
 
@@ -120,6 +113,7 @@ class uploadAudio extends GetxController{
       throw RecordingPermissionException('Permission was denid');
     }
     await _flutterSoundRecorder!.openRecorder();
+    // pathToAudio = await _flutterSoundRecorder!.get();
     isInitialized = true;
   }
 
@@ -132,23 +126,18 @@ class uploadAudio extends GetxController{
   }
 
   Future<void> uploadaudio(BuildContext context) async {
-    final File file = File(pathToAudio);
+    final File file = File(pathToAudio!);
     final FirebaseStorage storage = FirebaseStorage.instance;
-    final Reference reference = storage.ref().child(
-        'audios/${DateTime.now()}.mp3');
+    final Reference reference =
+        storage.ref().child('audios/${DateTime.now()}.mp3');
 
     try {
       mediaurl = await reference.putFile(file).toString();
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Image uploaded to Firebase Storage!'))
-      );
+          SnackBar(content: Text('Image uploaded to Firebase Storage!')));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to upload image. Please try again.'))
-      );
+          SnackBar(content: Text('Failed to upload image. Please try again.')));
     }
   }
-
 }
-
-
