@@ -7,21 +7,15 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
 class NewDowarBlock extends GetxController{
-  String dowarName = "";
   CoordinateInterval? coordinateInterval;
 
 
 
-  void setDowarName(String value){
-    dowarName = value;
-  }
-
-
-  saveDowar(){
+  saveDowar(String intervalID, String dowarName){
     Dowar dowar = Dowar();
     dowar.douwarId = const Uuid().v4();
     dowar.dowarName = dowarName;
-    dowar.intervalId = coordinateInterval!.intervalId;
+    dowar.intervalId = intervalID;
     DowarService().saveDowar(dowar);
   }
 

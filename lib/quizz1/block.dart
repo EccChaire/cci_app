@@ -8,6 +8,8 @@ import '../data_space/controllers/data_space_controller.dart';
 import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:cci_app/models/question.dart';
+import 'package:cci_app/services/dowar_services.dart';
+import 'package:cci_app/services/loc_service.dart';
 
 
 class writeResponse extends StatefulWidget {
@@ -24,6 +26,8 @@ class writeResponse extends StatefulWidget {
 }
 
 class _writeResponse extends State<writeResponse> {
+  final IntervalService IS = Get.put(IntervalService());
+  final DowarService DS = Get.put(DowarService());
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   final List<resp.Response> reponses =  [];
@@ -64,7 +68,7 @@ class _writeResponse extends State<writeResponse> {
         textAlign: TextAlign.start,
         controller: textControllers[fieldId],
       onChanged: (cont) async{
-        resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), cont, 'test');
+        resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), cont, (await DS.retrieveDowarID( await IS.isDouarExist()))!);
         dataSpeceController.saveResponse(rp);
       },
       onSubmitted: (text)  async{

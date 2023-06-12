@@ -9,6 +9,8 @@ import 'package:provider/provider.dart';
 import 'package:cci_app/data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
 import 'package:cci_app/data_space/controllers/data_space_controller.dart';
+import 'package:cci_app/services/loc_service.dart';
+import 'package:cci_app/services/dowar_services.dart';
 
 
 
@@ -24,6 +26,8 @@ class ChooseTwoInOrderQuestion extends StatefulWidget {
 }
 
 class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
+  final IntervalService IS = Get.put(IntervalService());
+  final DowarService DS = Get.put(DowarService());
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
   List<String> options = [    'Pré-Émergence',    'Émergence',    'Equilibre',    'Déclin', 'Effondrement', ];
@@ -36,6 +40,14 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
 
 
 
+  Future<resp.Response> _createNewResponse() async {
+    String? dowarID = await DS.retrieveDowarID(await IS.isDouarExist());
+    return responsecontroller.createNewResponse(
+      widget.question.questionId.toString(),
+      '',
+      dowarID!,
+    );
+  }
   Widget build(BuildContext context) {
 
     final choicesProvider = Provider.of<ChoicesProvider>(context);
@@ -49,8 +61,8 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
     };
     List<String> selectedOptions = choicesControllers[fieldId]?.choices ?? ['', ''];
 
-    return FutureBuilder<resp.Response>(
-      future: responsecontroller.createNewResponse(widget.question.questionId.toString(), '', 'test'),
+    return FutureBuilder<resp.Response> (
+      future: _createNewResponse(),
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.waiting && !snapshot.hasError) {
           // If the future completed successfully

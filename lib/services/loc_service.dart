@@ -86,14 +86,18 @@ class IntervalService {
   }
 
 
-  Future<bool> isDouarExist()async {
+  Future<String> isDouarExist()async {
     List<CoordinateInterval> coordinateIntervals = await getAllIntervales();
     Position currentPosition = await getCurrentLocation();
     for (CoordinateInterval interval in coordinateIntervals ){
       bool isPositionInInterval = isLocationWithinInterval(currentPosition, interval);
-      if (isPositionInInterval) return isPositionInInterval;
+      if (isPositionInInterval) {
+
+        return interval.intervalId!;
+      }
+
     }
-    return false;
+    return '';
 
   }
   Future<void> saveInterval(CoordinateInterval interval) async {

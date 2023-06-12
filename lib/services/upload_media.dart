@@ -85,31 +85,41 @@ class uploadAudio extends GetxController{
   String mediaurl = '';
 
   bool isInitialized = false;
-  String pathToAudio = '';
+  String? pathToAudio ;
   FlutterSoundRecorder? _flutterSoundRecorder;
   var isRecording = false.obs;
 
   void startRecording() async {
+    String fileName = 'my_audio.wav';
     if (isInitialized) {
       print('.... recording');
       isRecording.value = true;
-      await _flutterSoundRecorder!.startRecorder(toFile: pathToAudio);
+      await _flutterSoundRecorder!.startRecorder(
+        toFile: fileName,
+        codec: Codec.pcm16WAV, // Specify the desired audio codec
+      );
     } else {
       await init();
       print('.... recording');
       isRecording.value = true;
-      await _flutterSoundRecorder!.startRecorder(toFile: pathToAudio);
+      //await _flutterSoundRecorder!.startRecorder(toFile: pathToAudio);
+      await _flutterSoundRecorder!.startRecorder(
+        toFile: fileName,
+        codec: Codec.pcm16WAV, // Specify the desired audio codec
+      );
     }
   }
 
   void stopRecording() async {
     if (isInitialized) {
-      await _flutterSoundRecorder!.stopRecorder();
+      await _flutterSoundRecorder!.stopRecorder().then((value) => {pathToAudio = value});
       isRecording.value = false;
+      Get.snackbar("path", pathToAudio!);
     } else {
       await init();
-      await _flutterSoundRecorder!.stopRecorder();
+      await _flutterSoundRecorder!.stopRecorder().then((value) => {pathToAudio = value});
       isRecording.value = false;
+      Get.snackbar("path", pathToAudio!);
     }
   }
 
@@ -132,7 +142,7 @@ class uploadAudio extends GetxController{
   }
 
   Future<void> uploadaudio(BuildContext context) async {
-    final File file = File(pathToAudio);
+    final File file = File(pathToAudio!);
     final FirebaseStorage storage = FirebaseStorage.instance;
     final Reference reference = storage.ref().child(
         'audios/${DateTime.now()}.mp3');

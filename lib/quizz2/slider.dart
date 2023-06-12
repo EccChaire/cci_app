@@ -9,6 +9,8 @@ import 'package:cci_app/models/question.dart';
 import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
 import 'package:cci_app/data_space/controllers/double_Edditing_Controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
+import 'package:cci_app/services/loc_service.dart';
+import 'package:cci_app/services/dowar_services.dart';
 
 class MetricInterface extends StatefulWidget {
   final Question question;
@@ -24,6 +26,8 @@ class MetricInterface extends StatefulWidget {
 }
 
 class _MetricInterfaceState extends State<MetricInterface> {
+  final IntervalService IS = Get.put(IntervalService());
+  final DowarService DS = Get.put(DowarService());
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
 
@@ -39,7 +43,7 @@ class _MetricInterfaceState extends State<MetricInterface> {
     if (valueControllers[fieldId] == null) {
       valueProvider.updateValue(fieldId, 3.0);
     };
-    double _currentValue = valueControllers[fieldId]?.value ?? 0.0;
+    double _currentValue = valueControllers[fieldId]?.value ?? 3.0;
 
 
     return Container(
@@ -72,7 +76,7 @@ class _MetricInterfaceState extends State<MetricInterface> {
                           overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
                         ),
                         child: Slider(
-                          value: valueControllers[fieldId]?.value ?? 0.0,
+                          value: valueControllers[fieldId]?.value ?? 3.0,
                           min: 0,
                           max: 5,
                           divisions: 5,
@@ -80,11 +84,11 @@ class _MetricInterfaceState extends State<MetricInterface> {
                           inactiveColor: Colors.white,
 
                           onChanged: (double value) async{
-                            resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), value.toString(), 'test');
+                            resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), value.toString(), (await DS.retrieveDowarID( await IS.isDouarExist()))!);
                             dataSpeceController.saveResponse(rp);
                             setState(() {
                              _currentValue = value;
-                             valueProvider.updateValue(fieldId, _currentValue);
+                             valueProvider.updateValue(fieldId, value);
                         });
                       },
 
