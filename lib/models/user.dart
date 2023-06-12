@@ -1,7 +1,7 @@
 
 
 class User {
-  double? userId;
+  String? userId;
   String? usermail;
   String? userPw;
   String? firstname;
