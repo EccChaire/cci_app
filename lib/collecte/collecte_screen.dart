@@ -2,10 +2,16 @@ import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/data_space/dataspace_screen.dart';
+import 'package:cci_app/services/loc_service.dart';
+import 'package:cci_app/services/dowar_services.dart';
 
 import 'collect-block.dart';
 
 class CollectePage extends StatelessWidget {
+
+  final IntervalService IS = Get.put(IntervalService());
+  final DowarService DS = Get.put(DowarService());
+  String? DowarID;
   CollectBlock collectBlock = Get.put(CollectBlock());
 
   @override
@@ -38,7 +44,8 @@ class CollectePage extends StatelessWidget {
             top: getProportionateScreenHeight(
                 350)), // set padding to move button to top left corner
         child: ElevatedButton(
-          onPressed: () {
+          onPressed: () async {
+            DowarID = (await DS.retrieveDowarID(await IS.isDouarExist()))!;
             Get.to(() => DataSpace());
           },
           style: ButtonStyle(

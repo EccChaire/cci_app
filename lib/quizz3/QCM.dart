@@ -11,6 +11,7 @@ import 'package:cci_app/models/responce.dart' as resp;
 import 'package:cci_app/data_space/controllers/data_space_controller.dart';
 import 'package:cci_app/services/loc_service.dart';
 import 'package:cci_app/services/dowar_services.dart';
+import 'package:cci_app/collecte/collecte_screen.dart';
 
 
 
@@ -27,6 +28,7 @@ class ChooseTwoInOrderQuestion extends StatefulWidget {
 
 class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
   final IntervalService IS = Get.put(IntervalService());
+  final CollectePage CP = Get.put(CollectePage());
   final DowarService DS = Get.put(DowarService());
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
@@ -40,8 +42,9 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
 
 
 
+
   Future<resp.Response> _createNewResponse() async {
-    String? dowarID = await DS.retrieveDowarID(await IS.isDouarExist());
+    String? dowarID = (await DS.retrieveDowarID(await IS.isDouarExist()))!;
     return responsecontroller.createNewResponse(
       widget.question.questionId.toString(),
       '',
@@ -49,7 +52,6 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
     );
   }
   Widget build(BuildContext context) {
-
     final choicesProvider = Provider.of<ChoicesProvider>(context);
     final choicesControllers = <String, ChoicesEditingController>{};
     choicesProvider.enteredChoicesMap.forEach((fieldId, choices) {

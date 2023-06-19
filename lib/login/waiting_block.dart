@@ -24,6 +24,7 @@ class WaitingBlock extends GetxController {
       Get.off(()=> N_douarPage(currentPosition : currentPosition));
     }
 
+
   }
 
 

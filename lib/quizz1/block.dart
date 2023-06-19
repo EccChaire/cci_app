@@ -1,6 +1,5 @@
 import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
@@ -10,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:cci_app/models/question.dart';
 import 'package:cci_app/services/dowar_services.dart';
 import 'package:cci_app/services/loc_service.dart';
+import 'package:cci_app/collecte/collecte_screen.dart';
 
 
 class writeResponse extends StatefulWidget {
@@ -27,6 +27,7 @@ class writeResponse extends StatefulWidget {
 
 class _writeResponse extends State<writeResponse> {
   final IntervalService IS = Get.put(IntervalService());
+  final CollectePage CP = Get.put(CollectePage());
   final DowarService DS = Get.put(DowarService());
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
@@ -68,7 +69,7 @@ class _writeResponse extends State<writeResponse> {
         textAlign: TextAlign.start,
         controller: textControllers[fieldId],
       onChanged: (cont) async{
-        resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), cont, (await DS.retrieveDowarID( await IS.isDouarExist()))!);
+        resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), cont, (await DS.retrieveDowarID(await IS.isDouarExist()))!);
         dataSpeceController.saveResponse(rp);
       },
       onSubmitted: (text)  async{

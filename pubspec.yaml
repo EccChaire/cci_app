@@ -45,6 +45,8 @@ dependencies:
   flutter_screenutil: ^5.7.0
   intl: ^0.18.1
   flutter_sound: ^9.2.13
+  webview_flutter: ^4.2.2
+
 
 dev_dependencies:
   flutter_test:

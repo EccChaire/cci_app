@@ -1,3 +1,4 @@
+import 'package:cci_app/collecte/collecte_screen.dart';
 import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,6 +28,7 @@ class MetricInterface extends StatefulWidget {
 
 class _MetricInterfaceState extends State<MetricInterface> {
   final IntervalService IS = Get.put(IntervalService());
+  final CollectePage CP = Get.put(CollectePage());
   final DowarService DS = Get.put(DowarService());
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
@@ -84,7 +86,7 @@ class _MetricInterfaceState extends State<MetricInterface> {
                           inactiveColor: Colors.white,
 
                           onChanged: (double value) async{
-                            resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), value.toString(), (await DS.retrieveDowarID( await IS.isDouarExist()))!);
+                            resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), value.toString(), (await DS.retrieveDowarID(await IS.isDouarExist()))!);
                             dataSpeceController.saveResponse(rp);
                             setState(() {
                              _currentValue = value;

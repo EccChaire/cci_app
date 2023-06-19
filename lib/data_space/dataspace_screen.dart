@@ -13,6 +13,7 @@ import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
 import 'package:cci_app/models/media.dart';
+import 'package:cci_app/quizz4/carte_screen.dart';
 
 
 class DataSpace extends StatelessWidget {
@@ -76,10 +77,10 @@ SizedBox(width: getProportionateScreenWidth(10)),
             ),
               SizedBox(width: getProportionateScreenWidth(15)),
             QuizzCard(
-              cardTitle: "Enquête 4",
+              cardTitle: "Cartographie",
               cardDescription: "Cette enquête est réservé pour ma deuxième donc il vas contient toutes les questions relié à la cartographie.",
               onClockFuction: () {
-                //Get.to(() => Q3Page());
+                Get.to(() => WebViewExample());
               },
             ),
 
