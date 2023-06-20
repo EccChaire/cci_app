@@ -13,7 +13,9 @@ import 'package:cci_app/models/question.dart';
 
 class Q2Page extends StatefulWidget {
   final String ? Dowarid;
-  Q2Page({super.key, required this.Dowarid});
+  final List<Question> questions ;
+  Q2Page({super.key, required this.Dowarid, required this.questions});
+
 
 
 
@@ -26,8 +28,7 @@ class _Q2PageState extends State<Q2Page> {
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
 
 
-  List<Question> questions = [Question(questionId :3, questionType: "A",questionCorp:"Comment t'as trouvé le douar"),Question(questionId :4, questionType: "A",questionCorp:"Comment t'as trouvé le douar")];
-  
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +42,8 @@ class _Q2PageState extends State<Q2Page> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  for (var index= 0; index<questions.length; index = index+1 ) ...[
-                    MetricInterface(question: questions[index], Dowarid: widget.Dowarid),
+                  for (var index= 0; index<widget.questions.length; index = index+1 ) ...[
+                    MetricInterface(question: widget.questions[index], Dowarid: widget.Dowarid),
                      SizedBox(height: getProportionateScreenHeight(10)),
 
                   ]

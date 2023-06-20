@@ -31,20 +31,24 @@ class QuestionService {
   Future<void> saveQuestion(Question question) async {
     final docRef = DatabaseRoutes.QUESTION_DATABASES.doc();
     question.questionId =
-        double.parse(docRef.id); // Set questionId to the Firestore document ID
+        docRef.id; // Set questionId to the Firestore document ID
     final Map<String, dynamic> data = question.toJson();
     await docRef.set(data);
   }
 
   Future<List<Response>> getQuestionResponses(double questionId) async {
     final querySnapshot = await DatabaseRoutes.RENSPONSE_DATABASES
-        .where('question_id', isEqualTo: questionId)
+        .where('questionId', isEqualTo: questionId)
         .get();
 
     return querySnapshot.docs
         .map((doc) => Response.fromJson(doc.data() as Map<String, dynamic>))
         .toList();
   }
-
-  
+  Future<List<Question>> getQuestionsByType(String qT) async {
+    QuerySnapshot<Object?> querySnapshots = await DatabaseRoutes.QUESTION_DATABASES.where('questionType', isEqualTo: qT).get();
+    return querySnapshots.docs
+        .map((doc) => Question.fromJson(doc.data()! as Map<String, dynamic>))
+        .toList();
+  }
 }

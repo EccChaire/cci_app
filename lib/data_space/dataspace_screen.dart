@@ -16,10 +16,16 @@ import 'package:cci_app/models/media.dart';
 import 'package:cci_app/quizz4/carte_screen.dart';
 import 'package:cci_app/services/loc_service.dart';
 import 'package:cci_app/services/dowar_services.dart';
+import 'package:cci_app/models/question.dart';
+import 'package:cci_app/services/question_service.dart';
 
 
 class DataSpace extends StatelessWidget {
   String ? DowarID ;
+  List<Question> questions = [] ;
+
+
+  final QuestionService QS = Get.put(QuestionService());
   final IntervalService IS = Get.put(IntervalService());
   final DowarService DS = Get.put(DowarService());
   DataSpeceController dataSpaceConroller = Get.find<DataSpeceController>();
@@ -57,7 +63,8 @@ SizedBox(width: getProportionateScreenWidth(10)),
             cardDescription: "C’est notre premier enquête qui contient toutes que tu dois répondre manuellement.",
             onClockFuction: () async {
               DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
-              Get.to(() => Q1Page(Dowarid : DowarID));
+              questions = await QS.getQuestionsByType("A");
+              Get.to(() => Q1Page(Dowarid : DowarID, questions: questions));
             },
           ),
          SizedBox(width: getProportionateScreenWidth(15)),
@@ -66,7 +73,8 @@ SizedBox(width: getProportionateScreenWidth(10)),
             cardDescription: "C’est la deuxième enquête qui contient toutes les domaine qui peut être gradié de un à cinq.",
             onClockFuction: () async {
               DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
-              Get.to(() => Q2Page(Dowarid : DowarID));
+              questions = await QS.getQuestionsByType("B");
+              Get.to(() => Q2Page(Dowarid : DowarID, questions: questions));
             },
           ),
           SizedBox(width: getProportionateScreenWidth(10)),
@@ -80,7 +88,8 @@ SizedBox(width: getProportionateScreenWidth(10)),
               cardDescription: "C’est notre troisième enquête qui contient toutes question à multiple choix.",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
-                Get.to(() => Q3Page(Dowarid : DowarID));
+                questions = await QS.getQuestionsByType("C");
+                Get.to(() => Q3Page(Dowarid : DowarID, questions: questions));
               },
             ),
               SizedBox(width: getProportionateScreenWidth(15)),

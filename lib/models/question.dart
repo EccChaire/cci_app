@@ -1,7 +1,7 @@
 
 
 class Question {
-  double? questionId;
+  String? questionId;
   String? questionType;
   String? questionCorp;
 

@@ -12,7 +12,9 @@ import '../data_space/controllers/resonse_controller.dart';
 
 class Q3Page extends StatefulWidget {
   final String ? Dowarid;
-  Q3Page({super.key, required this.Dowarid});
+  final List<Question> questions ;
+  Q3Page({super.key, required this.Dowarid, required this.questions});
+
 
   @override
   _Q3PageState createState() => _Q3PageState();
@@ -20,8 +22,7 @@ class Q3Page extends StatefulWidget {
 
 class _Q3PageState extends State<Q3Page> {
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
-  List<Question> questions = [Question(questionId :5, questionType: "A",questionCorp:"Comment t'as trouvé le douar"),Question(questionId :6, questionType: "A",questionCorp:"Comment t'as trouvé le douar")];
-  
+
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   Map<String, double> _selectedValues = {};
 
@@ -37,8 +38,8 @@ class _Q3PageState extends State<Q3Page> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    for (var index= 0; index<questions.length; index = index+1 ) ...[
-                      ChooseTwoInOrderQuestion(question: questions[index], Dowarid: widget.Dowarid),
+                    for (var index= 0; index<widget.questions.length; index = index+1 ) ...[
+                      ChooseTwoInOrderQuestion(question: widget.questions[index], Dowarid: widget.Dowarid),
                        SizedBox(height: getProportionateScreenHeight(10)),
 
                     ]
