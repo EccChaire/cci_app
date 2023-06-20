@@ -14,9 +14,14 @@ import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
 import 'package:cci_app/models/media.dart';
 import 'package:cci_app/quizz4/carte_screen.dart';
+import 'package:cci_app/services/loc_service.dart';
+import 'package:cci_app/services/dowar_services.dart';
 
 
 class DataSpace extends StatelessWidget {
+  String ? DowarID ;
+  final IntervalService IS = Get.put(IntervalService());
+  final DowarService DS = Get.put(DowarService());
   DataSpeceController dataSpaceConroller = Get.find<DataSpeceController>();
   final uploadImage uploadjpg = Get.put(uploadImage());
   final uploadVideo uploadmp4 = Get.put(uploadVideo());
@@ -50,16 +55,18 @@ SizedBox(width: getProportionateScreenWidth(10)),
           QuizzCard(
             cardTitle: "Enquête 1",
             cardDescription: "C’est notre premier enquête qui contient toutes que tu dois répondre manuellement.",
-            onClockFuction: () {
-              Get.to(() => Q1Page());
+            onClockFuction: () async {
+              DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
+              Get.to(() => Q1Page(Dowarid : DowarID));
             },
           ),
          SizedBox(width: getProportionateScreenWidth(15)),
           QuizzCard(
             cardTitle: "Enquête 2",
             cardDescription: "C’est la deuxième enquête qui contient toutes les domaine qui peut être gradié de un à cinq.",
-            onClockFuction: () {
-              Get.to(() => Q2Page());
+            onClockFuction: () async {
+              DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
+              Get.to(() => Q2Page(Dowarid : DowarID));
             },
           ),
           SizedBox(width: getProportionateScreenWidth(10)),
@@ -71,8 +78,9 @@ SizedBox(width: getProportionateScreenWidth(10)),
             QuizzCard(
               cardTitle: "Enquête 3",
               cardDescription: "C’est notre troisième enquête qui contient toutes question à multiple choix.",
-              onClockFuction: () {
-                Get.to(() => Q3Page());
+              onClockFuction: () async {
+                DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
+                Get.to(() => Q3Page(Dowarid : DowarID));
               },
             ),
               SizedBox(width: getProportionateScreenWidth(15)),

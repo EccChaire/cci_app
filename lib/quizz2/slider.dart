@@ -15,9 +15,12 @@ import 'package:cci_app/services/dowar_services.dart';
 
 class MetricInterface extends StatefulWidget {
   final Question question;
+  final String ? Dowarid;
+
 
   MetricInterface({
-    required this.question
+    required this.question,
+    required this.Dowarid
   });
 
 
@@ -86,7 +89,7 @@ class _MetricInterfaceState extends State<MetricInterface> {
                           inactiveColor: Colors.white,
 
                           onChanged: (double value) async{
-                            resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), value.toString(), (await DS.retrieveDowarID(await IS.isDouarExist()))!);
+                            resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), value.toString(), widget.Dowarid!);
                             dataSpeceController.saveResponse(rp);
                             setState(() {
                              _currentValue = value;

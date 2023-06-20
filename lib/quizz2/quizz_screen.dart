@@ -12,6 +12,8 @@ import 'package:cci_app/models/question.dart';
 
 
 class Q2Page extends StatefulWidget {
+  final String ? Dowarid;
+  Q2Page({super.key, required this.Dowarid});
 
 
 
@@ -40,7 +42,7 @@ class _Q2PageState extends State<Q2Page> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   for (var index= 0; index<questions.length; index = index+1 ) ...[
-                    MetricInterface(question: questions[index]),
+                    MetricInterface(question: questions[index], Dowarid: widget.Dowarid),
                      SizedBox(height: getProportionateScreenHeight(10)),
 
                   ]

@@ -14,11 +14,13 @@ import 'package:cci_app/collecte/collecte_screen.dart';
 
 class writeResponse extends StatefulWidget {
   final Question question;
+  final String ? Dowarid;
 
 
 
   writeResponse({
     required this.question,
+    required this.Dowarid
   });
 
   @override
@@ -69,7 +71,7 @@ class _writeResponse extends State<writeResponse> {
         textAlign: TextAlign.start,
         controller: textControllers[fieldId],
       onChanged: (cont) async{
-        resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), cont, (await DS.retrieveDowarID(await IS.isDouarExist()))!);
+        resp.Response rp = await responsecontroller.createNewResponse(widget.question.questionId.toString(), cont, widget.Dowarid!);
         dataSpeceController.saveResponse(rp);
       },
       onSubmitted: (text)  async{

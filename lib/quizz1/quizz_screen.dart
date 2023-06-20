@@ -9,6 +9,8 @@ import 'package:cci_app/quizz1/block.dart';
 import 'package:cci_app/models/question.dart';
 
 class Q1Page extends StatelessWidget {
+  final String ? Dowarid;
+  Q1Page({super.key, required this.Dowarid});
 
   final String questionId = "QuestionId";
   List<Question> questions = [Question(questionId :1, questionType: "A",questionCorp:"Comment t'as trouvé le douar"),Question(questionId :2, questionType: "A",questionCorp:"Comment t'as trouvé le douar")];
@@ -29,7 +31,7 @@ class Q1Page extends StatelessWidget {
                 Column(
                   children: [
                     for (var index= 0; index<questions.length; index = index+1 ) ...[
-                      writeResponse(question: questions[index]),
+                      writeResponse(question: questions[index], Dowarid: Dowarid),
                        SizedBox(height: getProportionateScreenHeight(10)),
                     ]
                   ],

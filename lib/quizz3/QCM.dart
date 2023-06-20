@@ -17,9 +17,12 @@ import 'package:cci_app/collecte/collecte_screen.dart';
 
 class ChooseTwoInOrderQuestion extends StatefulWidget {
   final Question question;
+  final String? Dowarid;
+
 
   ChooseTwoInOrderQuestion({
     required this.question,
+    required this.Dowarid
   });
 
   @override
@@ -44,11 +47,10 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
 
 
   Future<resp.Response> _createNewResponse() async {
-    String? dowarID = (await DS.retrieveDowarID(await IS.isDouarExist()))!;
     return responsecontroller.createNewResponse(
       widget.question.questionId.toString(),
       '',
-      dowarID!,
+      widget.Dowarid!,
     );
   }
   Widget build(BuildContext context) {

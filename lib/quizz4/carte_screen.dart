@@ -164,7 +164,6 @@ Page resource error:
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
       appBar: AppBar(
         backgroundColor: Color(0xFF0F8A74),
         title: const Text('Cartographie'),

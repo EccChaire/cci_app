@@ -11,6 +11,8 @@ import '../data_space/controllers/resonse_controller.dart';
 
 
 class Q3Page extends StatefulWidget {
+  final String ? Dowarid;
+  Q3Page({super.key, required this.Dowarid});
 
   @override
   _Q3PageState createState() => _Q3PageState();
@@ -36,7 +38,7 @@ class _Q3PageState extends State<Q3Page> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     for (var index= 0; index<questions.length; index = index+1 ) ...[
-                      ChooseTwoInOrderQuestion(question: questions[index]),
+                      ChooseTwoInOrderQuestion(question: questions[index], Dowarid: widget.Dowarid),
                        SizedBox(height: getProportionateScreenHeight(10)),
 
                     ]
