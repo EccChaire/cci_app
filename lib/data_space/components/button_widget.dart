@@ -25,7 +25,7 @@ class ButtonWidget extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(
                 const Color(0xFF0F8A74)), // set background color
             minimumSize: MaterialStateProperty.all<Size>(
-                 Size(getProportionateScreenWidth(195), getProportionateScreenHeight(50))), // set minimum size
+                 Size(getProportionateScreenWidth(193), getProportionateScreenHeight(50))), // set minimum size
             // You can also use fixedSize property to set the exact button size
           ),
           child: Text(buttonLable),

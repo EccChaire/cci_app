@@ -25,7 +25,7 @@ class QuizzCard extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(
                 const Color(0xFF0F8A74)), // set background color
             minimumSize: MaterialStateProperty.all<Size>(
-                 Size(getProportionateScreenWidth(190), getProportionateScreenHeight(350))), // set minimum size
+                 Size(getProportionateScreenWidth(190), getProportionateScreenHeight(250))), // set minimum size
             // You can also use fixedSize property to set the exact button size
           ),
           child: Container(

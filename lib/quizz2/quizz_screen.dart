@@ -33,15 +33,17 @@ class _Q2PageState extends State<Q2Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF0F8A74),
+        title: const Text('Données spécifiques'),
+        // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
+      ),
       body: ListView(
             children: [
-              Row(
-                children: [
-                  _buildbackButton(),
-              ]),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: getProportionateScreenHeight(10)),
                   for (var index= 0; index<widget.questions.length; index = index+1 ) ...[
                     MetricInterface(question: widget.questions[index], Dowarid: widget.Dowarid),
                      SizedBox(height: getProportionateScreenHeight(10)),
@@ -56,16 +58,4 @@ class _Q2PageState extends State<Q2Page> {
 
 
 
-  Widget _buildbackButton() {
-    return  Container(
-        padding: EdgeInsets.only( left : getProportionateScreenWidth(10), top: getProportionateScreenWidth(20)),
-        child: TextButton(
-          onPressed: () async{
-            Get.to(() => DataSpace());
-            // Perform some action here
-          },
-          child: Text('Retour', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color:Color(0xFF0F8A74))),
-        )
-    );
-  }
 }

@@ -50,6 +50,11 @@ class DataSpace extends StatelessWidget {
     Media md;
 
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xFF0F8A74),
+          title: const Text('Espace des données'),
+          // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
+        ),
         body: ListView(
 
       children: [
@@ -59,8 +64,8 @@ class DataSpace extends StatelessWidget {
           children: [
 SizedBox(width: getProportionateScreenWidth(10)),
           QuizzCard(
-            cardTitle: "Enquête 1",
-            cardDescription: "C’est notre premier enquête qui contient toutes que tu dois répondre manuellement.",
+            cardTitle: "Données générales",
+            cardDescription: "Vous devez inserer ici toutes les données générales du cette dowar",
             onClockFuction: () async {
               DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
               questions = await QS.getQuestionsByType("A");
@@ -69,8 +74,8 @@ SizedBox(width: getProportionateScreenWidth(10)),
           ),
          SizedBox(width: getProportionateScreenWidth(15)),
           QuizzCard(
-            cardTitle: "Enquête 2",
-            cardDescription: "C’est la deuxième enquête qui contient toutes les domaine qui peut être gradié de un à cinq.",
+            cardTitle: "Données spécifiques",
+            cardDescription: "noter de 1 à 5 les acteurs suivants",
             onClockFuction: () async {
               DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
               questions = await QS.getQuestionsByType("B");
@@ -84,18 +89,18 @@ SizedBox(width: getProportionateScreenWidth(10)),
           children: [
               SizedBox(width: getProportionateScreenWidth(10)),
             QuizzCard(
-              cardTitle: "Enquête 3",
-              cardDescription: "C’est notre troisième enquête qui contient toutes question à multiple choix.",
+              cardTitle: "Mesure de l’émergence",
+              cardDescription: "Vous trouvez ici les 9 dimensions de mesure de l’émergence",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
-                questions = await QS.getQuestionsByType("C");
-                Get.to(() => Q3Page(Dowarid : DowarID, questions: questions));
+                //questions = await QS.getQuestionsByType("C");
+                Get.to(() => Q3Page(Dowarid : DowarID));
               },
             ),
               SizedBox(width: getProportionateScreenWidth(15)),
             QuizzCard(
               cardTitle: "Cartographie",
-              cardDescription: "Cette enquête est réservé pour ma deuxième donc il vas contient toutes les questions relié à la cartographie.",
+              cardDescription: "Vous trouvez ici la cartographie KUMU",
               onClockFuction: () {
                 Get.to(() => WebViewExample());
               },

@@ -18,17 +18,19 @@ class LoginRepository {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
-        return {'status': 'forbiden', 'msg': 'No user found for that email.'};
+        return {'status': 'forbidden', 'msg': 'No user found for that email.'};
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
         return {
-          'status': 'forbiden',
+          'status': 'forbidden',
           'msg': 'Wrong password provided for that user.'
         };
       }
     }
-    return {'status': 'forbiden', 'msg': 'The server is currently inaccessibl'};
+    // Return forbidden status and a generic error message when the server is inaccessible
+    return {'status': 'forbidden', 'msg': 'The server is currently inaccessible'};
   }
+
 
   Future<String?> getConnectedUserId() async {
     User? currentUser = auth.currentUser;

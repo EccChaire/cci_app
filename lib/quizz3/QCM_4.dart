@@ -1,5 +1,4 @@
 import 'package:cci_app/config.dart';
-import 'package:cci_app/quizz3/quizz_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cci_app/models/question.dart';
@@ -15,21 +14,21 @@ import 'package:cci_app/collecte/collecte_screen.dart';
 
 
 
-class ChooseTwoInOrderQuestion extends StatefulWidget {
+class ChooseTwoInOrderQuestion_4 extends StatefulWidget {
   final Question question;
   final String? Dowarid;
 
 
-  ChooseTwoInOrderQuestion({
+  ChooseTwoInOrderQuestion_4({
     required this.question,
     required this.Dowarid
   });
 
   @override
-  _ChooseTwoInOrderQuestionState createState() => _ChooseTwoInOrderQuestionState();
+  _ChooseTwoInOrderQuestionState_4 createState() => _ChooseTwoInOrderQuestionState_4();
 }
 
-class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
+class _ChooseTwoInOrderQuestionState_4 extends State<ChooseTwoInOrderQuestion_4> {
   final IntervalService IS = Get.put(IntervalService());
   final CollectePage CP = Get.put(CollectePage());
   final DowarService DS = Get.put(DowarService());
@@ -37,13 +36,11 @@ class _ChooseTwoInOrderQuestionState extends State<ChooseTwoInOrderQuestion> {
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
   List<String> options = [    'Pré-Émergence',    'Émergence',    'Equilibre',    'Déclin', 'Effondrement', ];
   List<String> Descriptions = [
-    "La communauté se trouve dans un environnement géographiquement isolé des centres activité et de decisions. Dans certains cas, elle a choisi de s'isoler des flux de passage autour d'un centre urbain ou semi-urbain proche dans un souci de préservation identitaire ou de son cadre de vie ou de ses pratiques culturelles. Dans les zones isolées par la géographie, il existe des possiblités, et parfois même des projets de désenclavement (routes, transports en commun, .). Dans les communautés isolées, par choix ou par la géographie, des ressources locales exploitables pour s'autonomiser existent et la population maitrise les compétences de base permettant d'en tier profit. Le village dispose des infrastructures de base nécessaires a existence et au développement de futurs projets.",
-    "Sous l'impulsion des leaders et avec l'aide de partenaires extérieurs, les infrastructures manquantes (routes, scolaire, santé, réseau, ..) sont peu à peu mises en place soit par les services de Etat soit par la communauté elle-même. Plusieurs projets d'autonomisation fonds sur l'exploitation des ressources naturelles locales afin de répondre aux besoins de la population sont mis en oeuvre et permettent de développer ou de relocaliser des activités vivrières ou génératrices de revenus au sein de la communauté. Les projets de. valorisation des richesses naturelles prennent parfois en compte le renouvellement et 1a durabilité des ressources consommes.",
-    "Les voies d'accès existent et permettent quotidiennement l'accès facile de la communauté à l'ensemble des Services publics et privés dont ses membres pourraient avoir besoin (éducation, santé, emplois distants, marchés d'approvisionnement...). Les moyens de transport sont disponibles en nombre suffisant et la fréquence des rotations répond aux besoins courants ou urgents. Peu infrastructures nouvelles sont mises en place (tous les besoins sont couverts) mais celles qui existent sont maintenues, financées, de bonne qualité et restent en bon état de fonctionnement. Un marché local s'est développé qui donne accès à tout un chacun aux biens et aux services produits à l'intérieur de 1a communauté.",
-    "l'exploitation non maitrisée des ressources locales s'est traduite par a raréfaction de ces ressources et des confits de propriété ou d'usage ont parfois même éclaté. Les infrastructures qui avaient Été mises en place sont obsolètes, insuffisantes pour couvrir les (nouveaux) besoins. Elles ont parfois même été abandonnées faute de maintenance, de travail collectif pour les entretenir, de formation pour les exploiter, ou de financement. Dans certains cas, usage de ces infrastructures donne lieu a des conflits et la communauté préfère s'en désengager.",
-    "La communauté se trouve dans un environnement géographiquement isolé des centres activité et de decision. Cet isolement est perçu comme une barrière au développement. Ces communautés isolées. connaissent mal ou pas du tout les ressources locales exploitables pour s'autonomiser et la population ne maitrise plus les compétences de base permettant d'en tirer profit. Les infrastructures de base: sont tres réduites et ne peuvent pas servir d'appui à de futurs projets de développement.",];
-
-
+    "L’existence d’une identité culturelle fondée sur la langue, l’ethnie, les valeurs, les pratiques sociales, les arts et les techniques, l’histoire ancienne et récente, est avérée au sein du groupe qui y reconnait une source importante du lien entre les membres de la communauté et de ce qui fonde leur unité et leur spécificité. La communauté reconnait qu’elle dispose d’un fonds patrimonial (naturel, culturel, matériel et/ou immatériel) et qu’elle doit à la fois le préserver, le transmettre et l’exploiter.",
+    "Les leaders comprennent bien les enjeux de préservation/transmission/ valorisation des patrimoines naturels et culturels de leur communauté. Plusieurs projets de préservation/ transmission/valorisation des patrimoines ont été engagés ou sont prévus dans la « feuille de route » de la communauté. Ces projets peuvent être liés à la préservation architecturale, la relance de certaines activités traditionnelles (artisanat, fêtes locales, ...), le développement de nouvelles activités exploitant les richesses culturelles (festivals, tourisme, ...), l’éducation des enfants et des plus jeunes à des pratiques, des savoir-faire ou des valeurs partagées par le groupe, ... Toutes ces activités peuvent être entreprises dans le cadre du collectif communautaire ou par des individus qui sont soutenus par la communauté et par ses leaders. Parfois des partenaires externes s’investissent dans les projets culturels de la communauté.",
+    "Les différentes activités culturelles et celles liées aux patrimoines fonctionnent dans des cadres institutionnalisés au sein de la communauté (école communautaire, centres culturels, activités touristiques, festivals, activités de valorisation des produits du terroir et des autres ressources naturelles, ...). Des groupes indépendants tendent peu à peu à prendre le leadership sur chacune de ces activités (association culturelle des habitants, association des jeunes, coopératives, entrepreneurs locaux, ...). Le souci de préserver ces richesses patrimoniales reste important et partagé par le plus grand nombre afin d’éviter la surexploitation ou la disparition par manque d’intérêt des habitants.",
+    "La surexploitation culturelle, le faible potentiel économique ou encore la domination de plus en plus prégnante d’un autre modèle culturel (notamment citadin et/ou globalisé) entraîne une perte d’intérêt pour les patrimoines et pour les productions qui s’y rattachent. Les ressources naturelles, les savoir-faire, les patrimoines matériels, les pratiques sociales, les arts et les techniques qui faisaient autrefois la richesse de la communauté et participaient de son « art de vivre » autant que de ses moyens de subsistance disparaissent peu à peu sans être réellement remplacés. Les nouvelles pratiques culturelles ont un très faible ancrage local et ne sont pas reconnues comme étant spécifiques à la communauté et à son identité.",
+    "Rares ou inexistants sont les membres de la communauté qui sont préoccupés par ou engagés dans la préservation / transmission / valorisation patrimoniale. Les jeunes se détournent de ce qui faisaient la fierté des anciens et tournent leur regard vers d’autres références culturelles qui ne sont pas toujours adaptées à leur contexte territorial. Lorsqu’on les interroge, ils ont du mal à identifier les éléments positifs de leur culture local et ont tendance à se projeter dans une « autre » vie, « ailleurs ». Il n’y a plus aucun de projet de valorisation des patrimoines."];
 
 
   Future<resp.Response> _createNewResponse() async {

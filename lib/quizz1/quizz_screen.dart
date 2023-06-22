@@ -21,14 +21,16 @@ class Q1Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF0F8A74),
+        title: const Text('Données générales'),
+        // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
+      ),
           body: ListView(
               children: [
-                Row(
-                  children: [
-                    _buildbackButton(context),
-                  ]),
                 Column(
                   children: [
+                    SizedBox(height: getProportionateScreenHeight(10)),
                     for (var index= 0; index<questions.length; index = index+1 ) ...[
                       writeResponse(question: questions[index], Dowarid: Dowarid),
                        SizedBox(height: getProportionateScreenHeight(10)),
