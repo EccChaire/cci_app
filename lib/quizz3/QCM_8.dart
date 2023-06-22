@@ -123,15 +123,15 @@ class _ChooseTwoInOrderQuestionState_8 extends State<ChooseTwoInOrderQuestion_8>
                               Row(
                                   children:[
                                     SizedBox(
-                                      width: getProportionateScreenWidth(150),
+                                      width: getProportionateScreenWidth(200),
                                       child: Text(
-                                          ( Descriptions[index].length <= 25)
+                                          ( Descriptions[index].length <= 35)
                                               ? Descriptions[index]
-                                              : Descriptions[index].substring(0, 25) + '...',
+                                              : Descriptions[index].substring(0, 35) + '...',
                                           style: TextStyle(fontSize: 10)
                                       ),
                                     ),
-                                    if ( Descriptions[index].length > 25)
+                                    if ( Descriptions[index].length > 35)
                                       TextButton(
                                         child: Text('Voir plus',style: TextStyle(color:Color(0xFF0F8A74),fontSize: 10)),
                                         onPressed: () {

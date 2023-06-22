@@ -58,7 +58,7 @@ class DataSpace extends StatelessWidget {
         body: ListView(
 
       children: [
-        SizedBox(height: getProportionateScreenHeight(40)),
+        SizedBox(height: getProportionateScreenHeight(20)),
         Row(
 
           children: [
@@ -99,6 +99,54 @@ SizedBox(width: getProportionateScreenWidth(10)),
             ),
               SizedBox(width: getProportionateScreenWidth(15)),
             QuizzCard(
+              cardTitle: "Ressources locales",
+              cardDescription: "Ici vous pouvez des ressources locales pour ce dowar",
+              onClockFuction: () async {
+                DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
+                //Get.to(() => WebViewExample());
+              },
+            ),
+
+          ],
+        ),
+        SizedBox(height: getProportionateScreenHeight(20)),
+        Row(
+          children: [
+            SizedBox(width: getProportionateScreenWidth(10)),
+            QuizzCard(
+              cardTitle: "Acteurs de l’émergence",
+              cardDescription: "Ici vous pouvez des acteurs de l'émergence de ce dowar",
+              onClockFuction: () async {
+                DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
+                //Get.to(() => WebViewExample());
+              },
+            ),
+            SizedBox(width: getProportionateScreenWidth(15)),
+            QuizzCard(
+              cardTitle: "Infrastructures de base",
+              cardDescription: "Ici vous pouvez ajouter les infrastructures de base dans le dowar",
+              onClockFuction: () async {
+                DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
+                //Get.to(() => WebViewExample());
+              },
+            ),
+
+          ],
+        ),
+        SizedBox(height: getProportionateScreenHeight(20)),
+        Row(
+          children: [
+            SizedBox(width: getProportionateScreenWidth(10)),
+            QuizzCard(
+              cardTitle: "Projets communautaires",
+              cardDescription: "Ici vous pouvez ajouter les projets communautaires dans le dowar",
+              onClockFuction: () async {
+                DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
+                //Get.to(() => Q3Page(Dowarid : DowarID));
+              },
+            ),
+            SizedBox(width: getProportionateScreenWidth(15)),
+            QuizzCard(
               cardTitle: "Cartographie",
               cardDescription: "Vous trouvez ici la cartographie KUMU",
               onClockFuction: () {
@@ -108,7 +156,8 @@ SizedBox(width: getProportionateScreenWidth(10)),
 
           ],
         ),
-         SizedBox(height: getProportionateScreenHeight(15)),
+
+         SizedBox(height: getProportionateScreenHeight(10)),
         Row(
           children: [
              SizedBox(width: getProportionateScreenWidth(10)),
@@ -247,10 +296,10 @@ SizedBox(width: getProportionateScreenWidth(10)),
                   ));
           }),
         ]),
-        SizedBox(height: getProportionateScreenHeight(10)),
+        SizedBox(height: getProportionateScreenHeight(30)),
         Center(
           child: ButtonWidget(
-            buttonLable: "Envoyer",
+            buttonLable: "Soumettre",
             buttonOnClickFunction: () async{
               await dataSpeceController.saveDataToFirebase();
               await dataSpeceController.deleteCash();

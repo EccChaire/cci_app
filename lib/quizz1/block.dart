@@ -47,8 +47,11 @@ class _writeResponse extends State<writeResponse> {
         ),
         child: Column(
             children:  [
-              Text( widget.question.questionCorp.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-
+              Center(
+                child: Text (widget.question.questionCorp.toString(),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)
+                ),
+              ),
               SizedBox(height: getProportionateScreenHeight(20)),
               _buildReponseField(context),
 
