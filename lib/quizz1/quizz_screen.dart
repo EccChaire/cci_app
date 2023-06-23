@@ -6,7 +6,6 @@ import '../data_space/controllers/data_space_controller.dart';
 import '../data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/quizz1/block.dart';
 import 'package:cci_app/models/question.dart';
-import 'package:cci_app/services/question_service.dart';
 
 class Q1Page extends StatelessWidget {
   final String ? Dowarid;
@@ -44,18 +43,4 @@ class Q1Page extends StatelessWidget {
   }
 
 
-
-  Widget _buildbackButton(BuildContext context) {
-    return  Container(
-        padding: EdgeInsets.only( left : getProportionateScreenWidth(10), top: getProportionateScreenHeight(20)),
-        child: TextButton(
-          onPressed: () {
-
-            Get.to(() => DataSpace());
-        // Perform some action here
-          },
-          child: Text('Retour', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color:Color(0xFF0F8A74))),
-    )
-    );
-  }
 }

@@ -14,6 +14,11 @@ class DatabaseRoutes {
   static CollectionReference  DOWAR_DATABASES = FirebaseFirestore.instance.collection('dowars');
   static CollectionReference  MEDIA_DATABASES = FirebaseFirestore.instance.collection('medias');
   static CollectionReference  INTERVAL_DATABASES = FirebaseFirestore.instance.collection('intervales');
+  static CollectionReference  RESSOURCE_DATABASES = FirebaseFirestore.instance.collection('ressources');
+  static CollectionReference  PROJET_DATABASES = FirebaseFirestore.instance.collection('projets');
+  static CollectionReference  ACTEUR_DATABASES = FirebaseFirestore.instance.collection('acteurs');
+  static CollectionReference  INFRASTRUCTURE_DATABASES = FirebaseFirestore.instance.collection('infrastructures');
+
 
 
   static Reference STORAGE_REFERENCE = FirebaseStorage.instance.ref();

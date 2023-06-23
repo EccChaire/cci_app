@@ -18,6 +18,10 @@ import 'package:cci_app/services/loc_service.dart';
 import 'package:cci_app/services/dowar_services.dart';
 import 'package:cci_app/models/question.dart';
 import 'package:cci_app/services/question_service.dart';
+import 'package:cci_app/Resource Local/quizz_screen.dart';
+import 'package:cci_app/ Infrastructures de base/quizz_screen.dart';
+import 'package:cci_app/Projets communautaires/quizz_screen.dart';
+import 'package:cci_app/Acteurs de l’émergence/quizz_screen.dart';
 
 
 class DataSpace extends StatelessWidget {
@@ -103,7 +107,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
               cardDescription: "Ici vous pouvez des ressources locales pour ce dowar",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
-                //Get.to(() => WebViewExample());
+                Get.to(() => ResourcePage(Dowarid: DowarID));
               },
             ),
 
@@ -118,7 +122,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
               cardDescription: "Ici vous pouvez des acteurs de l'émergence de ce dowar",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
-                //Get.to(() => WebViewExample());
+                Get.to(() => ActeurPage(Dowarid: DowarID));
               },
             ),
             SizedBox(width: getProportionateScreenWidth(15)),
@@ -127,7 +131,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
               cardDescription: "Ici vous pouvez ajouter les infrastructures de base dans le dowar",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
-                //Get.to(() => WebViewExample());
+                Get.to(() => InfrastructurePage(Dowarid: DowarID));
               },
             ),
 
@@ -142,7 +146,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
               cardDescription: "Ici vous pouvez ajouter les projets communautaires dans le dowar",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
-                //Get.to(() => Q3Page(Dowarid : DowarID));
+                Get.to(() => ProjetPage(Dowarid: DowarID));
               },
             ),
             SizedBox(width: getProportionateScreenWidth(15)),
