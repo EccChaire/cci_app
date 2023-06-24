@@ -170,7 +170,7 @@ class _AddProjetPageState extends State<AddProjetPage> {
                                   startDate: widget.startDateController.text,
                                   endDate: widget.endDateController.text,
                                   dowarId: widget.DowarId!,
-                                  userId: "test"
+                                  userId: auth.currentUser?.uid ?? "defaultUserId",
                               ));
                               setState(() {
                                 if (widget.isExpanded) {
