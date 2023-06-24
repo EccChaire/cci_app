@@ -9,12 +9,14 @@ import '../data_space/controllers/data_space_controller.dart';
 import '../data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
 import 'package:cci_app/models/question.dart';
+import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
 
 
 class Q2Page extends StatefulWidget {
   final String ? Dowarid;
   final List<Question> questions ;
-  Q2Page({super.key, required this.Dowarid, required this.questions});
+  ValueProvider valueProvider;
+  Q2Page({super.key, required this.Dowarid, required this.questions, required this.valueProvider});
 
 
 
@@ -45,7 +47,7 @@ class _Q2PageState extends State<Q2Page> {
                 children: [
                   SizedBox(height: getProportionateScreenHeight(10)),
                   for (var index= 0; index<widget.questions.length; index = index+1 ) ...[
-                    MetricInterface(question: widget.questions[index], Dowarid: widget.Dowarid),
+                    MetricInterface(question: widget.questions[index], Dowarid: widget.Dowarid, valueProvider: widget.valueProvider,),
                      SizedBox(height: getProportionateScreenHeight(10)),
 
                   ]

@@ -6,11 +6,13 @@ import '../data_space/controllers/data_space_controller.dart';
 import '../data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/quizz1/block.dart';
 import 'package:cci_app/models/question.dart';
+import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
 
 class Q1Page extends StatelessWidget {
   final String ? Dowarid;
   final List<Question> questions ;
-  Q1Page({super.key, required this.Dowarid, required this.questions});
+  TextProvider textProvider;
+  Q1Page({super.key, required this.Dowarid, required this.questions, required this.textProvider});
 
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
   
@@ -31,7 +33,7 @@ class Q1Page extends StatelessWidget {
                   children: [
                     SizedBox(height: getProportionateScreenHeight(10)),
                     for (var index= 0; index<questions.length; index = index+1 ) ...[
-                      writeResponse(question: questions[index], Dowarid: Dowarid),
+                      writeResponse(question: questions[index], Dowarid: Dowarid, textProvider: textProvider),
                        SizedBox(height: getProportionateScreenHeight(10)),
                     ]
                   ],

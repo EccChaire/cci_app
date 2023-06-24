@@ -15,12 +15,14 @@ import 'package:cci_app/collecte/collecte_screen.dart';
 class writeResponse extends StatefulWidget {
   final Question question;
   final String ? Dowarid;
+  TextProvider textProvider;
 
 
 
   writeResponse({
     required this.question,
-    required this.Dowarid
+    required this.Dowarid,
+    required this.textProvider
   });
 
   @override
@@ -60,10 +62,10 @@ class _writeResponse extends State<writeResponse> {
     );
   }
   Widget _buildReponseField(BuildContext context) {
-    final textProvider = Provider.of<TextProvider>(context);
+    //final textProvider = Provider.of<TextProvider>(context);
     final textControllers = <String, TextEditingController>{};
     //final content = TextEditingController(text: textProvider.enteredText);
-    textProvider.enteredTextMap.forEach((fieldId, text) {
+    widget.textProvider.enteredTextMap.forEach((fieldId, text) {
       textControllers[fieldId] = TextEditingController(text: text);
     });
     String fieldId = widget.question.questionId.toString();
@@ -79,7 +81,7 @@ class _writeResponse extends State<writeResponse> {
       },
       onSubmitted: (text)  async{
         setState(() {
-        textProvider.updateText(fieldId, text);
+        widget.textProvider.updateText(fieldId, text);
         });
       },
 

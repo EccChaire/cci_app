@@ -13,12 +13,14 @@ import 'package:provider/provider.dart';
 
 class RapportSpace extends StatelessWidget {
   final DataSpeceController dataSpeceController = Get.put(DataSpeceController());
-  TextProvider textProvider = TextProvider();
-  ValueProvider valueProvider = ValueProvider();
-  ChoicesProvider choicesProvider = ChoicesProvider();
+  TextProvider textProvider;
+  ValueProvider valueProvider;
+  ChoicesProvider choicesProvider;
 
 
-  RapportSpace({super.key});
+
+
+  RapportSpace({super.key, required this.textProvider, required this.choicesProvider,required this.valueProvider});
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +41,14 @@ class RapportSpace extends StatelessWidget {
 SizedBox(width: getProportionateScreenWidth(10)),
           QuizzCard(
             cardTitle: "Données générales",
-            cardDescription: "Vous avez répondu à "+ (Provider.of<TextProvider>(context).getCount()).toString() + " questions",
+            cardDescription: "Vous avez répondu à "+ textProvider.getCount().toString() + " questions",
             onClockFuction: () async {
             },
           ),
          SizedBox(width: getProportionateScreenWidth(15)),
           QuizzCard(
             cardTitle: "Données spécifiques",
-            cardDescription: "Vous avez répondu à "+ (Provider.of<ValueProvider>(context).getCount()).toString() + " questions",
+            cardDescription: "Vous avez répondu à "+ valueProvider.getCount().toString() + " questions",
             onClockFuction: () async {
             },
           ),
@@ -58,7 +60,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
               SizedBox(width: getProportionateScreenWidth(10)),
             QuizzCard(
               cardTitle: "Mesure de l’émergence",
-              cardDescription: "Vous avez répondu à "+ (Provider.of<ChoicesProvider>(context).getCount()).toString() + " questions",
+              cardDescription: "Vous avez répondu à "+ choicesProvider.getCount().toString() + " questions",
               onClockFuction: () async {
               },
             ),

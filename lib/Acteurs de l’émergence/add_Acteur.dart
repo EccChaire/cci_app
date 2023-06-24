@@ -15,7 +15,7 @@ class AddActeurPage extends StatefulWidget {
   TextEditingController acteurController = TextEditingController();
   TextEditingController typeController = TextEditingController();
   TextEditingController roleController =
-  TextEditingController(text: 'Intégrateur');
+  TextEditingController();
   TextEditingController depuisController = TextEditingController();
 
 
@@ -152,7 +152,7 @@ class _AddResourcePageState extends State<AddActeurPage> {
                                 role: widget.roleController.text,
                                 depuis: widget.depuisController.text,
                                 dowarId: widget.DowarId!,
-                                userId: "test"
+                                userId: auth.currentUser?.uid ?? "defaultUserId",
                             ));
                             setState(() {
                               if (widget.isExpanded) {

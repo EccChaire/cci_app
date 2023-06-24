@@ -74,7 +74,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
             onClockFuction: () async {
               DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
               questions = await QS.getQuestionsByType("A");
-              Get.to(() => Q1Page(Dowarid : DowarID, questions: questions));
+              Get.to(() => Q1Page(Dowarid : DowarID, questions: questions, textProvider: textProvider,));
             },
           ),
          SizedBox(width: getProportionateScreenWidth(15)),
@@ -84,7 +84,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
             onClockFuction: () async {
               DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
               questions = await QS.getQuestionsByType("B");
-              Get.to(() => Q2Page(Dowarid : DowarID, questions: questions));
+              Get.to(() => Q2Page(Dowarid : DowarID, questions: questions, valueProvider: valueProvider,));
             },
           ),
           SizedBox(width: getProportionateScreenWidth(10)),
@@ -99,7 +99,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
                 //questions = await QS.getQuestionsByType("C");
-                Get.to(() => Q3Page(Dowarid : DowarID));
+                Get.to(() => Q3Page(Dowarid : DowarID, choicesProvider: choicesProvider,));
               },
             ),
               SizedBox(width: getProportionateScreenWidth(15)),
@@ -306,7 +306,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
           child: ButtonWidget(
             buttonLable: "Soumettre",
             buttonOnClickFunction: () {
-              Get.to(() => RapportSpace());
+              Get.to(() => RapportSpace(textProvider: textProvider, valueProvider: valueProvider,choicesProvider: choicesProvider,));
 
             },
           ),

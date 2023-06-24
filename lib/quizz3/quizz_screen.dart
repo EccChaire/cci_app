@@ -11,8 +11,7 @@ import 'package:cci_app/quizz3/QCM_6.dart';
 import 'package:cci_app/quizz3/QCM_7.dart';
 import 'package:cci_app/quizz3/QCM_8.dart';
 import 'package:cci_app/quizz3/QCM_9.dart';
-import 'package:cci_app/data_space/dataspace_screen.dart';
-import 'package:cci_app/models/responce.dart' as resp;
+import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
 
 import '../data_space/controllers/data_space_controller.dart';
 import '../data_space/controllers/resonse_controller.dart';
@@ -20,6 +19,8 @@ import '../data_space/controllers/resonse_controller.dart';
 
 class Q3Page extends StatefulWidget {
   final String ? Dowarid;
+
+  ChoicesProvider choicesProvider;
   List<Question> questions = [
     Question(questionId: "iMQ6MPsxvL1gpzAQi782",questionType: "C", questionCorp: "Contexte local: Situation géographique & infrastructure"),
     Question(questionId: "xLjXLLRVowRRxBUB1NAb",questionType: "C", questionCorp: "Cohésion sociale: Communauté et population"),
@@ -30,7 +31,7 @@ class Q3Page extends StatefulWidget {
     Question(questionId: "LsOhQgZWqZE5nFFpQCVT",questionType: "C", questionCorp: "Création de valeur: Echanges et travail"),
     Question(questionId: "Q6q3hcB6C6T7kP8yArnM",questionType: "C", questionCorp: "Création de valeur: Innovations et changement"),
     Question(questionId: "wkwn0nXrZKS3zAjt4VOC",questionType: "C", questionCorp: "Création de valeur: Ouverture et partenariats")] ;
-  Q3Page({super.key, required this.Dowarid});
+  Q3Page({super.key, required this.Dowarid, required this.choicesProvider});
 
 
   @override
@@ -57,23 +58,23 @@ class _Q3PageState extends State<Q3Page> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: getProportionateScreenHeight(10)),
-                    ChooseTwoInOrderQuestion_1(question: widget.questions[0], Dowarid: widget.Dowarid),
+                    ChooseTwoInOrderQuestion_1(question: widget.questions[0], Dowarid: widget.Dowarid, choicesProvider: widget.choicesProvider,),
                     SizedBox(height: getProportionateScreenHeight(10)),
-                    ChooseTwoInOrderQuestion_2(question: widget.questions[1], Dowarid: widget.Dowarid),
+                    ChooseTwoInOrderQuestion_2(question: widget.questions[1], Dowarid: widget.Dowarid, choicesProvider: widget.choicesProvider,),
                     SizedBox(height: getProportionateScreenHeight(10)),
-                    ChooseTwoInOrderQuestion_3(question: widget.questions[2], Dowarid: widget.Dowarid),
+                    ChooseTwoInOrderQuestion_3(question: widget.questions[2], Dowarid: widget.Dowarid, choicesProvider: widget.choicesProvider,),
                     SizedBox(height: getProportionateScreenHeight(10)),
-                    ChooseTwoInOrderQuestion_4(question: widget.questions[3], Dowarid: widget.Dowarid),
+                    ChooseTwoInOrderQuestion_4(question: widget.questions[3], Dowarid: widget.Dowarid, choicesProvider: widget.choicesProvider,),
                     SizedBox(height: getProportionateScreenHeight(10)),
-                    ChooseTwoInOrderQuestion_5(question: widget.questions[4], Dowarid: widget.Dowarid),
+                    ChooseTwoInOrderQuestion_5(question: widget.questions[4], Dowarid: widget.Dowarid, choicesProvider: widget.choicesProvider,),
                     SizedBox(height: getProportionateScreenHeight(10)),
-                    ChooseTwoInOrderQuestion_6(question: widget.questions[5], Dowarid: widget.Dowarid),
+                    ChooseTwoInOrderQuestion_6(question: widget.questions[5], Dowarid: widget.Dowarid, choicesProvider: widget.choicesProvider,),
                     SizedBox(height: getProportionateScreenHeight(10)),
-                    ChooseTwoInOrderQuestion_7(question: widget.questions[6], Dowarid: widget.Dowarid),
+                    ChooseTwoInOrderQuestion_7(question: widget.questions[6], Dowarid: widget.Dowarid, choicesProvider: widget.choicesProvider,),
                     SizedBox(height: getProportionateScreenHeight(10)),
-                    ChooseTwoInOrderQuestion_8(question: widget.questions[7], Dowarid: widget.Dowarid),
+                    ChooseTwoInOrderQuestion_8(question: widget.questions[7], Dowarid: widget.Dowarid, choicesProvider: widget.choicesProvider,),
                     SizedBox(height: getProportionateScreenHeight(10)),
-                    ChooseTwoInOrderQuestion_9(question: widget.questions[8], Dowarid: widget.Dowarid),
+                    ChooseTwoInOrderQuestion_9(question: widget.questions[8], Dowarid: widget.Dowarid, choicesProvider: widget.choicesProvider,),
                     SizedBox(height: getProportionateScreenHeight(10)),
                   ],
                 ),

@@ -9,11 +9,24 @@ class TextProvider extends ChangeNotifier {
   }
 
   Map<String, String> enteredTextMap = {};
+  int textFieldCount = 0; // Counter variable
 
   void updateText(String fieldId, String text) {
-    enteredTextMap[fieldId] = text;
+    bool sent = false;
+    for (var instance in _instances) {
+        if (instance.enteredTextMap.containsKey(fieldId)) {
+          instance.enteredTextMap[fieldId] = text;
+          sent =true;
+        }
+      }
+    if (!sent){
+      enteredTextMap[fieldId] = text;
+      textFieldCount++;
+    }
+     // Increment the counter
     notifyListeners();
   }
+
   void clearCache() {
     enteredTextMap.clear();
     notifyListeners();
@@ -25,8 +38,8 @@ class TextProvider extends ChangeNotifier {
     }
     _instances.clear();
   }
-  int getCount() {
-    return _instances.length;
-  }
 
+  int getCount() {
+    return textFieldCount; // Return the count of text fields
+  }
 }

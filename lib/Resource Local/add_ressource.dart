@@ -152,7 +152,7 @@ class _AddResourcePageState extends State<AddResourcePage> {
                                 nbreCitations: widget.nbreCitationsController.text,
                                 projetsExploitent: widget.projetsExploitentController.text,
                                 dowarId: widget.DowarId!,
-                                userId: "test"
+                                userId: auth.currentUser?.uid ?? "defaultUserId",
                             ));
                             setState(() {
                               if (widget.isExpanded) {

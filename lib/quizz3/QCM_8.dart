@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:cci_app/models/question.dart';
 import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
 import 'package:cci_app/data_space/controllers/choices_Edditing_Controller.dart';
-import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cci_app/data_space/controllers/resonse_controller.dart';
 import 'package:cci_app/models/responce.dart' as resp;
 import 'package:cci_app/data_space/controllers/data_space_controller.dart';
@@ -17,11 +17,13 @@ import 'package:cci_app/collecte/collecte_screen.dart';
 class ChooseTwoInOrderQuestion_8 extends StatefulWidget {
   final Question question;
   final String? Dowarid;
+  ChoicesProvider choicesProvider;
 
 
   ChooseTwoInOrderQuestion_8({
     required this.question,
-    required this.Dowarid
+    required this.Dowarid,
+    required this.choicesProvider
   });
 
   @override
@@ -32,6 +34,7 @@ class _ChooseTwoInOrderQuestionState_8 extends State<ChooseTwoInOrderQuestion_8>
   final IntervalService IS = Get.put(IntervalService());
   final CollectePage CP = Get.put(CollectePage());
   final DowarService DS = Get.put(DowarService());
+  final FirebaseAuth auth = FirebaseAuth.instance;
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
   List<String> options = [    'Pré-Émergence',    'Émergence',    'Equilibre',    'Déclin', 'Effondrement', ];
@@ -45,19 +48,18 @@ class _ChooseTwoInOrderQuestionState_8 extends State<ChooseTwoInOrderQuestion_8>
   Future<resp.Response> _createNewResponse() async {
     return responsecontroller.createNewResponse(
       widget.question.questionId.toString(),
-      '',
+      auth.currentUser?.uid ?? "defaultUserId",
       widget.Dowarid!,
     );
   }
   Widget build(BuildContext context) {
-    final choicesProvider = Provider.of<ChoicesProvider>(context);
     final choicesControllers = <String, ChoicesEditingController>{};
-    choicesProvider.enteredChoicesMap.forEach((fieldId, choices) {
+    widget.choicesProvider.enteredChoicesMap.forEach((fieldId, choices) {
       choicesControllers[fieldId] = ChoicesEditingController(initialChoices: choices);
     });
     String fieldId = widget.question.questionId.toString();
     if (choicesControllers[fieldId] == null) {
-      choicesProvider.updateChoices(fieldId, ['','']);
+      widget.choicesProvider.updateChoices(fieldId, ['','']);
     };
     List<String> selectedOptions = choicesControllers[fieldId]?.choices ?? ['', ''];
 
@@ -117,7 +119,7 @@ class _ChooseTwoInOrderQuestionState_8 extends State<ChooseTwoInOrderQuestion_8>
                                       });
                                       responsecontroller.UpdateResponse(rp, selectedOptions.toString());
                                       dataSpeceController.saveResponse(rp);
-                                      choicesProvider.updateChoices(fieldId, selectedOptions);
+                                      widget.choicesProvider.updateChoices(fieldId, selectedOptions);
                                     },
                                   )),
                               Row(

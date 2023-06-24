@@ -7,8 +7,10 @@ import 'package:cci_app/models/ Infrastructures_de_base.dart';
 import 'package:cci_app/config.dart';
 import 'package:cci_app/ Infrastructures de base/picker.dart';
 
+
 class AddInfrastructurePage extends StatefulWidget {
   final String? DowarId;
+  final FirebaseAuth auth = FirebaseAuth.instance;
   bool isExpanded;
   TextEditingController infrastructureController = TextEditingController();
   TextEditingController disponibleController = TextEditingController();
@@ -261,7 +263,7 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                                 Suffisant: widget.suffisantController.text,
                                 etat: widget.etatController.text,
                                 dowarId: widget.DowarId!,
-                                userId: "test",
+                                userId: auth.currentUser?.uid ?? "defaultUserId",
                                 encours: widget.encoursController.text,
                                 distance : widget.distanceController.text,
                             ));

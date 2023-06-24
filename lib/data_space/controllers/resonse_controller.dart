@@ -3,10 +3,11 @@ import 'package:cci_app/login/login_repository.dart';
 import 'package:cci_app/models/responce.dart' as resp;
 
 import 'package:uuid/uuid.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class Responsecontroller extends GetxController {
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
 
 
@@ -15,7 +16,7 @@ class Responsecontroller extends GetxController {
     response.responseId = const Uuid().v4();
     response.questionId = questionId;
     response.responseCorp = responseCorp;
-    response.userId =await LoginRepository().getConnectedUserId();
+    response.userId = auth.currentUser?.uid ?? "defaultUserId";
     response.responseDate = DateTime.now();
     response.dowarId = dowarId;
 
