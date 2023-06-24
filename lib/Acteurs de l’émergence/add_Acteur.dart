@@ -5,6 +5,9 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:cci_app/models/Acteurs_de_l’émergence.dart';
 import 'package:cci_app/config.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:cci_app/Acteurs de l’émergence/picker.dart';
 
 class AddActeurPage extends StatefulWidget {
   final String? DowarId;
@@ -12,8 +15,9 @@ class AddActeurPage extends StatefulWidget {
   TextEditingController acteurController = TextEditingController();
   TextEditingController typeController = TextEditingController();
   TextEditingController roleController =
-  TextEditingController();
+  TextEditingController(text: 'Intégrateur');
   TextEditingController depuisController = TextEditingController();
+
 
   AddActeurPage({
     required this.DowarId,
@@ -31,10 +35,15 @@ class AddActeurPage extends StatefulWidget {
 class _AddResourcePageState extends State<AddActeurPage> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final DataSpeceController DS = Get.put(DataSpeceController());
+  final List<String> roleList = ['Intégrateur', 'Leader institutionnel', 'Faiseur', 'Catalyseur','Facilitateur'];
+  String? rl;
   // Define variables for the form fields
 
 
   bool isEditing = false;
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -94,9 +103,29 @@ class _AddResourcePageState extends State<AddActeurPage> {
                         decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'Rôle ...',
+                          hintText: 'role ...',
                         ),
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MyPickerWidget(
+                                options: roleList,
+                                onItemSelected: (selectedValue) {
+                                  if (selectedValue != null) {
+                                    setState(() {
+                                      widget.roleController.text = selectedValue;
+                                    });
+                                  }
+                                },
+                              );
+                            },
+                          );
+                        },
                       ),
+
+
+
                       SizedBox(height: getProportionateScreenHeight(8)),
                       TextField(
                         controller: widget.depuisController,
@@ -105,7 +134,10 @@ class _AddResourcePageState extends State<AddActeurPage> {
                           fillColor: Colors.white,
                           hintText: 'Depuis ...',
                         ),
-                        keyboardType: TextInputType.number,
+                        onTap: () {
+                          showStartDatePickerDialog();
+
+                        },
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
                       ElevatedButton(
@@ -167,4 +199,36 @@ class _AddResourcePageState extends State<AddActeurPage> {
       ),
     );
   }
-}
+  final DateFormat _dateFormat = DateFormat('yyyy-MM-dd');
+
+  void showStartDatePickerDialog() async {
+    final DateTime? selectedStartDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: Color(0xFF0F8A74), // Customize primary color
+            accentColor: Colors.green, // Customize accent color
+            colorScheme: ColorScheme.light(
+              primary: Color(0xFF0F8A74), // Customize primary color
+              onPrimary: Colors.white, // Customize text color on primary color
+              surface: Colors.white, // Customize background color
+              onSurface: Colors.black, // Customize text color on background color
+            ),
+          ),
+          child: child ?? const SizedBox(),
+        );
+      },
+    );
+    if (selectedStartDate != null) {
+      String formattedDate = _dateFormat.format(selectedStartDate);
+      setState(() {
+        widget.depuisController.text = formattedDate;
+      });
+    }
+  }
+  }
+

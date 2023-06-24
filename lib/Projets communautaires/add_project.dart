@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:cci_app/models/Projets_communautaires.dart';
 import 'package:cci_app/config.dart';
+import 'package:intl/intl.dart';
+import 'package:cci_app/Projets communautaires/picker.dart';
 
 class AddProjetPage extends StatefulWidget {
   final String? DowarId;
@@ -35,6 +37,8 @@ class AddProjetPage extends StatefulWidget {
 class _AddProjetPageState extends State<AddProjetPage> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final DataSpeceController DS = Get.put(DataSpeceController());
+  final List<String> resultatList = ['succès', 'échec', 'en cours', 'bloqué'];
+
   // Define variables for the form fields
 
 
@@ -107,9 +111,25 @@ class _AddProjetPageState extends State<AddProjetPage> {
                           decoration: const InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
-                            hintText: 'Résultat ... ...',
+                            hintText: 'Infrastructure de base ...',
                           ),
-                          keyboardType: TextInputType.number,
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return MyPickerWidget(
+                                  options: resultatList,
+                                  onItemSelected: (selectedValue) {
+                                    if (selectedValue != null) {
+                                      setState(() {
+                                        widget.resultatController.text = selectedValue;
+                                      });
+                                    }
+                                  },
+                                );
+                              },
+                            );
+                          },
                         ),
                         SizedBox(height: getProportionateScreenHeight(8)),
                         TextField(
@@ -119,6 +139,9 @@ class _AddProjetPageState extends State<AddProjetPage> {
                             fillColor: Colors.white,
                             hintText: 'Date de début ...',
                           ),
+                          onTap: () {
+                            showStartDatePickerDialog();
+                          },
                         ),
                         SizedBox(height: getProportionateScreenHeight(8)),
                         TextField(
@@ -128,6 +151,9 @@ class _AddProjetPageState extends State<AddProjetPage> {
                             fillColor: Colors.white,
                             hintText: 'Date de fin ...',
                           ),
+                          onTap: () {
+                            showEndDatePickerDialog();
+                          },
                         ),
                         SizedBox(height: getProportionateScreenHeight(8)),
                         ElevatedButton(
@@ -195,5 +221,68 @@ class _AddProjetPageState extends State<AddProjetPage> {
       ),
     );
   }
+  final DateFormat _dateFormat = DateFormat('yyyy-MM-dd');
+
+  void showStartDatePickerDialog() async {
+    final DateTime? selectedStartDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: Color(0xFF0F8A74), // Customize primary color
+            accentColor: Colors.green, // Customize accent color
+            colorScheme: ColorScheme.light(
+              primary: Color(0xFF0F8A74), // Customize primary color
+              onPrimary: Colors.white, // Customize text color on primary color
+              surface: Colors.white, // Customize background color
+              onSurface: Colors.black, // Customize text color on background color
+            ),
+          ),
+          child: child ?? const SizedBox(),
+        );
+      },
+    );
+
+    if (selectedStartDate != null) {
+      String formattedDate = _dateFormat.format(selectedStartDate);
+      setState(() {
+        widget.startDateController.text = formattedDate;
+      });
+    }
+  }
+  void showEndDatePickerDialog() async {
+    final DateTime? selectedEndDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: Color(0xFF0F8A74), // Customize primary color
+            accentColor: Colors.green, // Customize accent color
+            colorScheme: ColorScheme.light(
+              primary: Color(0xFF0F8A74), // Customize primary color
+              onPrimary: Colors.white, // Customize text color on primary color
+              surface: Colors.white, // Customize background color
+              onSurface: Colors.black, // Customize text color on background color
+            ),
+          ),
+          child: child ?? const SizedBox(),
+        );
+      },
+    );
+
+    if (selectedEndDate != null) {
+      String formattedDate = _dateFormat.format(selectedEndDate);
+      setState(() {
+        widget.endDateController.text = formattedDate;
+      });
+    }
+  }
+
 
 }

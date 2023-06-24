@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:cci_app/models/ Infrastructures_de_base.dart';
 import 'package:cci_app/config.dart';
+import 'package:cci_app/ Infrastructures de base/picker.dart';
 
 class AddInfrastructurePage extends StatefulWidget {
   final String? DowarId;
@@ -37,6 +38,11 @@ class AddInfrastructurePage extends StatefulWidget {
 class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final DataSpeceController DS = Get.put(DataSpeceController());
+  final List<String> infrastructureList = ['Electricité', 'Eau pour irrigation', 'Eau potable', 'Eau courante dans les foyers','Réseau GSM','Réseau Internet','Préscolaire','Ecole primaire','Collège','Lycée','Formations techniques','Internat','Route d’accès','Dispensaire/infirmerie','Hôpital','Centre maternel','Pharmacie','Ambulance','Dar Talib','Dar Chabab','Dar Attakafa','Souk hebdomadaire','Sports et jeunesse','Mosquée','Autre : '];
+  final List<String> ONList = ['Oui', 'Non'];
+  final List<String> ETList = ['Individuel', 'collectif', 'communautaire', 'service public'];
+  final List<String> QPList = ['TB', 'B', 'M', 'F','TF'];
+
   // Define variables for the form fields
 
 
@@ -81,9 +87,26 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                         controller: widget.infrastructureController,
                         decoration: const InputDecoration(
                           filled: true,
-                          fillColor: Colors.white, // replace with desired color
-                          hintText: 'Infrastructure ...',
+                          fillColor: Colors.white,
+                          hintText: 'Infrastructure de base ...',
                         ),
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MyPickerWidget(
+                                options: infrastructureList,
+                                onItemSelected: (selectedValue) {
+                                  if (selectedValue != null) {
+                                    setState(() {
+                                      widget.infrastructureController.text = selectedValue;
+                                    });
+                                  }
+                                },
+                              );
+                            },
+                          );
+                        },
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
                       TextField(
@@ -91,8 +114,25 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                         decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'disponible ...',
+                          hintText: 'Disponible ...',
                         ),
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MyPickerWidget(
+                                options: ONList,
+                                onItemSelected: (selectedValue) {
+                                  if (selectedValue != null) {
+                                    setState(() {
+                                      widget.disponibleController.text = selectedValue;
+                                    });
+                                  }
+                                },
+                              );
+                            },
+                          );
+                        },
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
                       TextField(
@@ -100,8 +140,25 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                         decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'Qualité perçue',
+                          hintText: ' Qualité perçue...',
                         ),
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MyPickerWidget(
+                                options: QPList,
+                                onItemSelected: (selectedValue) {
+                                  if (selectedValue != null) {
+                                    setState(() {
+                                      widget.qualite_percueController.text = selectedValue;
+                                    });
+                                  }
+                                },
+                              );
+                            },
+                          );
+                        },
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
                       TextField(
@@ -109,9 +166,25 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                         decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'Suffisant aux besoins ...',
+                          hintText: ' Suffisant aux besoins...',
                         ),
-                        keyboardType: TextInputType.number,
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MyPickerWidget(
+                                options: ONList,
+                                onItemSelected: (selectedValue) {
+                                  if (selectedValue != null) {
+                                    setState(() {
+                                      widget.suffisantController.text = selectedValue;
+                                    });
+                                  }
+                                },
+                              );
+                            },
+                          );
+                        },
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
                       TextField(
@@ -119,8 +192,25 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                         decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'etat ...',
+                          hintText: 'etat...',
                         ),
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MyPickerWidget(
+                                options: ETList,
+                                onItemSelected: (selectedValue) {
+                                  if (selectedValue != null) {
+                                    setState(() {
+                                      widget.etatController.text = selectedValue;
+                                    });
+                                  }
+                                },
+                              );
+                            },
+                          );
+                        },
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
                       TextField(
@@ -137,8 +227,25 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                         decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'en cours ou planifié ...',
+                          hintText: 'Projets en cours ou planifiés ...',
                         ),
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MyPickerWidget(
+                                options: ONList,
+                                onItemSelected: (selectedValue) {
+                                  if (selectedValue != null) {
+                                    setState(() {
+                                      widget.encoursController.text = selectedValue;
+                                    });
+                                  }
+                                },
+                              );
+                            },
+                          );
+                        },
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
                       ElevatedButton(

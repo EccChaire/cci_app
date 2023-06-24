@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:cci_app/models/Ressource_local.dart';
 import 'package:cci_app/config.dart';
+import 'package:cci_app/Resource Local/picker.dart';
 
 class AddResourcePage extends StatefulWidget {
   final String? DowarId;
@@ -33,6 +34,8 @@ class AddResourcePage extends StatefulWidget {
 class _AddResourcePageState extends State<AddResourcePage> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final DataSpeceController DS = Get.put(DataSpeceController());
+  final List<String> choiceList = ['Communautaire', 'individuelle'];
+
   // Define variables for the form fields
 
 
@@ -96,8 +99,25 @@ class _AddResourcePageState extends State<AddResourcePage> {
                         decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'Communautaire or Individuelle',
+                          hintText: 'Infrastructure de base ...',
                         ),
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MyPickerWidget(
+                                options: choiceList,
+                                onItemSelected: (selectedValue) {
+                                  if (selectedValue != null) {
+                                    setState(() {
+                                      widget.communautaireOrIndividuelleController.text = selectedValue;
+                                    });
+                                  }
+                                },
+                              );
+                            },
+                          );
+                        },
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
                       TextField(
