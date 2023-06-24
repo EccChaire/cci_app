@@ -24,4 +24,7 @@ class ValueProvider extends ChangeNotifier {
     }
     _instances.clear();
   }
+  int getCount() {
+    return _instances.length;
+  }
 }

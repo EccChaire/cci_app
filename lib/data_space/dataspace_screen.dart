@@ -3,6 +3,7 @@ import 'package:cci_app/data_space/controllers/data_space_controller.dart';
 import 'package:cci_app/data_space/controllers/media_controller.dart';
 import 'package:cci_app/quizz1/quizz_screen.dart';
 import 'package:cci_app/quizz3/quizz_screen.dart';
+import "package:cci_app/rapport d'envoie/rapportpace_screen.dart";
 import 'package:cci_app/services/upload_media.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -304,12 +305,8 @@ SizedBox(width: getProportionateScreenWidth(10)),
         Center(
           child: ButtonWidget(
             buttonLable: "Soumettre",
-            buttonOnClickFunction: () async{
-              await dataSpeceController.saveDataToFirebase();
-              await dataSpeceController.deleteCash();
-              textProvider.clearAllInstances();
-              valueProvider.clearAllInstances();
-              choicesProvider.clearAllInstances();
+            buttonOnClickFunction: () {
+              Get.to(() => RapportSpace());
 
             },
           ),
