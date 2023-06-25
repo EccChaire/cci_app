@@ -39,7 +39,8 @@ class _InfrastructurePageState extends State<InfrastructurePage> {
       TextEditingController EC = TextEditingController(text: inf.etat);
       TextEditingController EcC = TextEditingController(text: inf.encours);
       TextEditingController DiC = TextEditingController(text: inf.distance);
-      addedWidgets.add(AddInfrastructurePage(DowarId: widget.Dowarid, isExpanded: false, infrastructureController: IC,disponibleController: DC,qualite_percueController: QC, suffisantController: SC, etatController: EC,encoursController: EcC,distanceController: DiC,));
+      String infid = inf.infrastructureId;
+      addedWidgets.add(AddInfrastructurePage(DowarId: widget.Dowarid, isExpanded: false, infrastructureController: IC,disponibleController: DC,qualite_percueController: QC, suffisantController: SC, etatController: EC,encoursController: EcC,distanceController: DiC,infId: infid,));
       addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
     }
 

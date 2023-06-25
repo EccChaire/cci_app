@@ -10,6 +10,7 @@ import 'package:cci_app/ Infrastructures de base/picker.dart';
 
 class AddInfrastructurePage extends StatefulWidget {
   final String? DowarId;
+  final String? infId;
   final FirebaseAuth auth = FirebaseAuth.instance;
   bool isExpanded;
   TextEditingController infrastructureController = TextEditingController();
@@ -30,7 +31,8 @@ class AddInfrastructurePage extends StatefulWidget {
     required this.suffisantController,
     required this.disponibleController,
     required this.distanceController,
-    required this.encoursController
+    required this.encoursController,
+    this.infId
   });
 
   @override
@@ -58,6 +60,18 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
           onTap: () {
             setState(() {
               widget.isExpanded = !widget.isExpanded;
+              isEditing = true;
+
+              widget.infrastructureController.text = widget.infrastructureController.text;
+              widget.disponibleController.text = widget.disponibleController.text;
+              widget.qualite_percueController.text =
+                  widget.qualite_percueController.text;
+              widget.suffisantController.text = widget.suffisantController.text;
+              widget.etatController.text =
+                  widget.etatController.text;
+              widget.encoursController.text = widget.encoursController.text;
+              widget.distanceController.text = widget.distanceController.text;
+
             });
           },
           child: AnimatedContainer(
@@ -254,8 +268,24 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                           style: ElevatedButton.styleFrom(
                             primary: Color(0xFF0F8A74), // Set the background color
                           ),
-                          onPressed:() {
-                            DS.saveInfrastructure(Infrastructure(
+                          onPressed: () {
+                            if (isEditing) {
+                              // Perform edit action
+                              DS.saveInfrastructure(Infrastructure(
+                                  infrastructureId:  widget.infId!,
+                                  infrastructure: widget.infrastructureController.text,
+                                  Disponible: widget.disponibleController.text,
+                                  qualite_percue: widget.qualite_percueController.text,
+                                  Suffisant: widget.suffisantController.text,
+                                  etat: widget.etatController.text,
+                                  dowarId: widget.DowarId!,
+                                  userId: auth.currentUser?.uid ?? "defaultUserId",
+                                  encours: widget.encoursController.text,
+                                  distance : widget.distanceController.text,
+                              ));
+                            } else {
+                              // Perform add action
+                              DS.saveInfrastructure(Infrastructure(
                                 infrastructureId:  const Uuid().v4().toString(),
                                 infrastructure: widget.infrastructureController.text,
                                 Disponible: widget.disponibleController.text,
@@ -266,26 +296,26 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                                 userId: auth.currentUser?.uid ?? "defaultUserId",
                                 encours: widget.encoursController.text,
                                 distance : widget.distanceController.text,
-                            ));
-                            setState(() {
+                              ));
+                            }
+                                  setState(() {
                               if (widget.isExpanded) {
-                                // Save the entered values when expanding the container
-                                widget.infrastructureController.text = widget.infrastructureController.text;
-                                widget.disponibleController.text = widget.disponibleController.text;
-                                widget.qualite_percueController.text =
-                                    widget.qualite_percueController.text;
-                                widget.suffisantController.text = widget.suffisantController.text;
-                                widget.etatController.text =
-                                    widget.etatController.text;
-                                widget.encoursController.text = widget.encoursController.text;
-                                widget.distanceController.text = widget.distanceController.text;
+                              // Save the entered values when expanding the container
+                              widget.infrastructureController.text = widget.infrastructureController.text;
+                              widget.disponibleController.text = widget.disponibleController.text;
+                              widget.qualite_percueController.text =
+                              widget.qualite_percueController.text;
+                              widget.suffisantController.text = widget.suffisantController.text;
+                              widget.etatController.text =
+                              widget.etatController.text;
+                              widget.encoursController.text = widget.encoursController.text;
+                              widget.distanceController.text = widget.distanceController.text;
                               }
                               widget.isExpanded = !widget.isExpanded;
                               isEditing = !isEditing;
-                            });
-
-                            // Define the action to be performed when the button is pressed
+                                  });
                           },
+
                           child: Text(
                             "Ajouter",
                           )

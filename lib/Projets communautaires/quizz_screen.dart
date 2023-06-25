@@ -37,7 +37,8 @@ class _ProjetPageState extends State<ProjetPage> {
       TextEditingController RC = TextEditingController(text: pg.resultat);
       TextEditingController SC = TextEditingController(text: pg.startDate);
       TextEditingController EC = TextEditingController(text: pg.endDate);
-      addedWidgets.add(AddProjetPage(DowarId: widget.Dowarid, isExpanded: false, projetController: PC,descriptifController: DC,ActeursimpController: AC, resultatController: RC,startDateController: SC,endDateController: EC ));
+      String pgid = pg.projetId;
+      addedWidgets.add(AddProjetPage(DowarId: widget.Dowarid, isExpanded: false, projetController: PC,descriptifController: DC,ActeursimpController: AC, resultatController: RC,startDateController: SC,endDateController: EC, pgId: pgid, ));
       addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
     }
 

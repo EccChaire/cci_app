@@ -43,8 +43,10 @@ class ChoicesProvider extends ChangeNotifier {
   }
 
   int getCount() {
-    for (var instance in _instances) {
-      if(instance.enteredChoicesMap[0] != '' && instance.enteredChoicesMap[1] != '' ){
+    int choicesCount = 0 ;
+    for (var key in _instances[0].enteredChoicesMap.keys) {
+      List<String> choice = _instances[0].enteredChoicesMap[key]!;
+      if(choice[0] != '' ){
         choicesCount++;
       }
     }

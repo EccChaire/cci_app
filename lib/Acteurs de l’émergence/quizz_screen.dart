@@ -33,7 +33,8 @@ class _ActeurPageState extends State<ActeurPage> {
       TextEditingController TC = TextEditingController(text: ac.type);
       TextEditingController RC = TextEditingController(text: ac.role);
       TextEditingController DC = TextEditingController(text: ac.depuis);
-      addedWidgets.add(AddActeurPage(DowarId: widget.Dowarid, isExpanded: false, acteurController: AC, typeController: TC, roleController: RC, depuisController: DC));
+      String actid = ac.acteurId;
+      addedWidgets.add(AddActeurPage(DowarId: widget.Dowarid, isExpanded: false, acteurController: AC, typeController: TC, roleController: RC, depuisController: DC, acterId: actid,));
       addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
     }
 

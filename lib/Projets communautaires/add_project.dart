@@ -18,6 +18,7 @@ class AddProjetPage extends StatefulWidget {
   TextEditingController resultatController = TextEditingController();
   TextEditingController startDateController = TextEditingController();
   TextEditingController endDateController = TextEditingController();
+  String? pgId;
 
   AddProjetPage({
     required this.DowarId,
@@ -27,7 +28,8 @@ class AddProjetPage extends StatefulWidget {
     required this.ActeursimpController,
     required this.resultatController,
     required this.descriptifController,
-    required this.endDateController
+    required this.endDateController,
+    this.pgId
   });
 
   @override
@@ -52,6 +54,17 @@ class _AddProjetPageState extends State<AddProjetPage> {
           onTap: () {
             setState(() {
               widget.isExpanded = !widget.isExpanded;
+              isEditing = true;
+
+              widget.projetController.text = widget.projetController.text;
+              widget.descriptifController.text = widget.descriptifController.text;
+              widget.ActeursimpController.text =
+                  widget.ActeursimpController.text;
+              widget.resultatController.text = widget.resultatController.text;
+              widget.startDateController.text =
+                  widget.startDateController.text;
+              widget.endDateController.text =
+                  widget.endDateController.text;
             });
           },
           child: AnimatedContainer(
@@ -160,8 +173,23 @@ class _AddProjetPageState extends State<AddProjetPage> {
                             style: ElevatedButton.styleFrom(
                               primary: Color(0xFF0F8A74), // Set the background color
                             ),
-                            onPressed:() {
-                              DS.saveProjet(Projet(
+                            onPressed: () {
+                              if (isEditing) {
+                                // Perform edit action
+                                DS.saveProjet(Projet(
+                                  projetId:  widget.pgId!,
+                                  projet: widget.projetController.text,
+                                  descriptif: widget.descriptifController.text,
+                                  Acteursimp: widget.ActeursimpController.text,
+                                  resultat: widget.resultatController.text,
+                                  startDate: widget.startDateController.text,
+                                  endDate: widget.endDateController.text,
+                                  dowarId: widget.DowarId!,
+                                  userId: auth.currentUser?.uid ?? "defaultUserId",
+                                ));
+                              } else {
+                                // Perform add action
+                                DS.saveProjet(Projet(
                                   projetId:  const Uuid().v4().toString(),
                                   projet: widget.projetController.text,
                                   descriptif: widget.descriptifController.text,
@@ -171,7 +199,8 @@ class _AddProjetPageState extends State<AddProjetPage> {
                                   endDate: widget.endDateController.text,
                                   dowarId: widget.DowarId!,
                                   userId: auth.currentUser?.uid ?? "defaultUserId",
-                              ));
+                                ));
+                              }
                               setState(() {
                                 if (widget.isExpanded) {
                                   // Save the entered values when expanding the container
@@ -188,8 +217,6 @@ class _AddProjetPageState extends State<AddProjetPage> {
                                 widget.isExpanded = !widget.isExpanded;
                                 isEditing = !isEditing;
                               });
-
-                              // Define the action to be performed when the button is pressed
                             },
                             child: Text(
                               "Ajouter",

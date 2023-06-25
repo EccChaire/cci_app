@@ -11,6 +11,7 @@ import 'package:cci_app/Acteurs de l’émergence/picker.dart';
 
 class AddActeurPage extends StatefulWidget {
   final String? DowarId;
+  final String? acterId;
   bool isExpanded;
   TextEditingController acteurController = TextEditingController();
   TextEditingController typeController = TextEditingController();
@@ -26,6 +27,7 @@ class AddActeurPage extends StatefulWidget {
     required this.roleController,
     required this.depuisController,
     required this.typeController,
+    this.acterId,
   });
 
   @override
@@ -53,6 +55,14 @@ class _AddResourcePageState extends State<AddActeurPage> {
           onTap: () {
             setState(() {
               widget.isExpanded = !widget.isExpanded;
+              isEditing = true;
+
+              // Populate form fields with existing values
+              widget.acteurController.text = widget.acteurController.text;
+              widget.typeController.text = widget.typeController.text;
+              widget.roleController.text =
+                  widget.roleController.text;
+              widget.depuisController.text = widget.depuisController.text;
             });
           },
           child: AnimatedContainer(
@@ -144,31 +154,43 @@ class _AddResourcePageState extends State<AddActeurPage> {
                           style: ElevatedButton.styleFrom(
                             primary: Color(0xFF0F8A74), // Set the background color
                           ),
-                          onPressed:() {
-                            DS.saveActeur(Acteur(
-                                acteurId:  const Uuid().v4().toString(),
+                          onPressed: () {
+                            if (isEditing) {
+                              // Perform edit action
+                              DS.saveActeur(Acteur(
+                                acteurId: widget.acterId!, // Use the existing ID
                                 acteur: widget.acteurController.text,
                                 type: widget.typeController.text,
                                 role: widget.roleController.text,
                                 depuis: widget.depuisController.text,
                                 dowarId: widget.DowarId!,
                                 userId: auth.currentUser?.uid ?? "defaultUserId",
-                            ));
+                              ));
+                            } else {
+                              // Perform add action
+                              DS.saveActeur(Acteur(
+                                acteurId: const Uuid().v4().toString(),
+                                acteur: widget.acteurController.text,
+                                type: widget.typeController.text,
+                                role: widget.roleController.text,
+                                depuis: widget.depuisController.text,
+                                dowarId: widget.DowarId!,
+                                userId: auth.currentUser?.uid ?? "defaultUserId",
+                              ));
+                            }
                             setState(() {
                               if (widget.isExpanded) {
                                 // Save the entered values when expanding the container
                                 widget.acteurController.text = widget.acteurController.text;
                                 widget.typeController.text = widget.typeController.text;
-                                widget.roleController.text =
-                                    widget.roleController.text;
+                                widget.roleController.text = widget.roleController.text;
                                 widget.depuisController.text = widget.depuisController.text;
                               }
                               widget.isExpanded = !widget.isExpanded;
-                              isEditing = !isEditing;
+                              isEditing = !isEditing; // Reset the edit mode
                             });
-
-                            // Define the action to be performed when the button is pressed
                           },
+
                           child: Text(
                             "Ajouter",
                           )

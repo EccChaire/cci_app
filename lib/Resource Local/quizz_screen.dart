@@ -36,7 +36,8 @@ class _ResourcePageState extends State<ResourcePage> {
       TextEditingController NC = TextEditingController(text: rs.nbreCitations);
       TextEditingController PC = TextEditingController(text: rs.projetsExploitent);
       TextEditingController CC = TextEditingController(text: rs.CommunautaireORindividuelle);
-      addedWidgets.add(AddResourcePage(DowarId: widget.Dowarid, isExpanded: false, ressourceController: RC, projetsExploitentController: PC,communautaireOrIndividuelleController: CC,nbreCitationsController: NC,descriptifController: DC));
+      String resid = rs.ressourceId;
+      addedWidgets.add(AddResourcePage(DowarId: widget.Dowarid, isExpanded: false, ressourceController: RC, projetsExploitentController: PC,communautaireOrIndividuelleController: CC,nbreCitationsController: NC,descriptifController: DC, resId: resid,));
       addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
     }
 
