@@ -37,13 +37,14 @@ class _ChooseTwoInOrderQuestionState_1 extends State<ChooseTwoInOrderQuestion_1>
   final FirebaseAuth auth = FirebaseAuth.instance;
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
-  List<String> options = [    'Pré-Émergence',    'Émergence',    'Equilibre',    'Déclin', 'Effondrement', ];
+  List<String> options = [    'Pré-Émergence',    'Émergence',    'Equilibre',    'Déclin', 'Effondrement', 'Non évalué'];
   List<String> Descriptions = [
     "La communauté se trouve dans un environnement géographiquement isolé des centres d’activité et de décisions. Dans certains cas, elle a choisi de s’isoler des flux de passage autour d’un centre urbain ou semi-urbain proche dans un souci de préservation identitaire ou de son cadre de vie ou de ses pratiques culturelles.Dans les zones isolées par la géographie, il existe des possibilités, et parfois même des projets de désenclavement (routes, transports en commun, ...). Dans les communautés isolées, par choix ou par la géographie, des ressources locales exploitables pour s’autonomiser existent et la population maitrise les compétences de base permettant d’en tirer profit. Le village dispose ou est en voie de disposer des infrastructures de base nécessaires à l’existence et au développement de futurs projets.",
   "Sous l’impulsion des leaders et avec l’aide de partenaires extérieurs, les infrastructures manquantes (routes, scolaire, santé, réseaux, ...) sont peu à peu mises en place soit par les services de l’Etat soit par la communauté elle-même. Plusieurs projets d’autonomisation fondés sur l’exploitation des ressources naturelles locales afin de répondre aux besoins de la population sont mis en œuvre et permettent de développer ou de relocaliser des activités vivrières ou génératrices de revenus au sein de la communauté. Les projets de valorisation des richesses naturelles prennent parfois en compte le renouvellement et la durabilité des ressources consommées.",
   "Les voies d’accès existent et permettent quotidiennement l’accès facile de la communauté à l’ensemble des services publics et privés dont ses membres pourraient avoir besoin (éducation, santé, emplois distants, marchés d’approvisionnement, ...). Les moyens de transport sont disponibles en nombre suffisant et la fréquence des rotations répond aux besoins courants ou urgents.Peu d’infrastructures nouvelles sont mises en place (tous les besoins sont couverts) mais celles qui existent sont maintenues, financées, de bonne qualité et restent en bon état de fonctionnement.Un marché local s’est développé qui donne accès à tout un chacun aux biens et aux services produits à l’intérieur de la communauté.",
   "L’exploitation non maîtrisée des ressources locales s’est traduite par la raréfaction de ces ressources et des conflits de propriété ou d’usage ont parfois même éclaté. Les infrastructures qui avaient été mises en place sont obsolètes, insuffisantes pour couvrir les (nouveaux) besoins. Elles ont parfois même été abandonnées faute de maintenance, de travail collectif pour les entretenir, de formation pour les exploiter, ou de financement. Dans certains cas, l’usage de ces infrastructures donne lieu à des conflits et la communauté préfère s’en désengager.",
-  "L’isolement de la communauté est perçu comme une barrière au développement. Les services de l’Etat sont perçus comme lointains et ne semblent pas s’intéresser au développement du village. Ces communautés isolées connaissent mal ou pas du tout les ressources locales exploitables pour s’autonomiser et la population ne maitrise plus les compétences de base permettant d’en tirer profit. Les infrastructures de base sont très réduites et ne peuvent pas servir d’appui à de de futurs projets de développement."];
+  "L’isolement de la communauté est perçu comme une barrière au développement. Les services de l’Etat sont perçus comme lointains et ne semblent pas s’intéresser au développement du village. Ces communautés isolées connaissent mal ou pas du tout les ressources locales exploitables pour s’autonomiser et la population ne maitrise plus les compétences de base permettant d’en tirer profit. Les infrastructures de base sont très réduites et ne peuvent pas servir d’appui à de de futurs projets de développement.",
+  "C'est pas possible de l'évaluer pour le moment"];
 
 
   Future<resp.Response> _createNewResponse() async {
@@ -77,7 +78,7 @@ class _ChooseTwoInOrderQuestionState_1 extends State<ChooseTwoInOrderQuestion_1>
             child: Container(
                 padding: EdgeInsets.only( top: getProportionateScreenWidth(20)),
                 width: Get.size.width,
-                height: getProportionateScreenHeight(350),
+                height: getProportionateScreenHeight(390),
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   shape: BoxShape.rectangle,

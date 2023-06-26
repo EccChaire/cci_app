@@ -37,13 +37,14 @@ class _ChooseTwoInOrderQuestionState_6 extends State<ChooseTwoInOrderQuestion_6>
   final FirebaseAuth auth = FirebaseAuth.instance;
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
-  List<String> options = [    'Pré-Émergence',    'Émergence',    'Equilibre',    'Déclin', 'Effondrement', ];
+  List<String> options = [    'Pré-Émergence',    'Émergence',    'Equilibre',    'Déclin', 'Effondrement', 'Non évalué'];
   List<String> Descriptions = [
     "Les leaders de la communauté reconnaissent l’importance de l’éducation et cherchent des moyens d’améliorer les résultats et de convaincre les parents de s’investir plus dans la scolarité de leurs enfants. Certains parents réfléchissent ou ont même déjà initié la création d’une association des parents dans le but d’améliorer les choses. Parfois, pour certains, il s’agit de trouver un moyen de transmettre aux enfants les savoir-faire vernaculaires qui permettront aux jeunes générations de pouvoir mener une existence décente dans la communauté. Les jeunes, lorsqu’on les interroge, veulent souvent poursuivre leurs études mais comprennent mal le système scolaire et comment s’y orienter. Ils n’ont souvent qu’une idée très vague des carrières qu’ils pourraient/voudraient poursuivre.",
     "La communauté s’attaque avec succès (souvent avec des ONG partenaires ou en réclamant directement auprès des services de l’Etat concernés) aux différentes problématiques liées à la scolarisation (équipements, achat des livres et des fournitures, transport, internats, bourses, ...). Les parents d’élèves s’intéressent de plus en plus à leurs enfants en participant à la vie scolaire. Les résultats s’améliorent et un nombre croissant de jeunes de la communauté accède à l’université. Ceux qui le souhaitent trouvent des opportunités d’emploi salarié dans l’industrie ou les services. Ceux qui ne réussissent pas à l’école ou qui ne souhaitent pas quitter leur village trouvent sur place des formations pour acquérir des compétences utiles et valorisées dans l’économie communautaire, leur permettant ainsi d’avoir des revenus et une vie décente.",
     "Le système éducatif dans toutes ses composantes fonctionne à la satisfaction des habitants. Les jeunes reconnaissent qu’ils ont plusieurs voies qui leurs permettent d’accéder à différentes carrières ou choix de vie. Les différentes composantes du système (transmission locale, formation des jeunes adultes, préscolaire, école primaire et secondaire, associations des parents d’élèves, ...) se spécialisent et sont ainsi plus performants.",
     "Par manque de résultats en termes d’employabilité ou à la suite de mauvais choix politiques ou opérationnels, le système éducatif local se désagrège et l’ensemble des participants perd peu à peu confiance dans sa capacité à fournir aux jeunes les moyens de leur future subsistance et d’une existence digne. Les jeunes perdent espoir et motivation, les parents se désintéressent et les leaders n’ont plus d’idées ou de capacité à mobiliser l’ensemble de la communauté autour des enjeux d’éducation et de transmission.",
-    "Les résultats scolaires sont très faibles. Peu d’enfants vont au lycée et encore moins font des études supérieures. Les filles dépassent rarement le niveau du collège ne restant dans le système éducatif que tant que celui-ci est obligatoire. Les parents ne voient pas l’intérêt de l’école et se désintéressent des résultats de leurs enfants. On attend que la « solution » vienne de l’extérieur, de l’Etat ou d’ONG. De plus en plus de jeunes quittent de manière prématurée le système éducatif et vont chercher des emplois non qualifiés à l’extérieur du village."];
+    "Les résultats scolaires sont très faibles. Peu d’enfants vont au lycée et encore moins font des études supérieures. Les filles dépassent rarement le niveau du collège ne restant dans le système éducatif que tant que celui-ci est obligatoire. Les parents ne voient pas l’intérêt de l’école et se désintéressent des résultats de leurs enfants. On attend que la « solution » vienne de l’extérieur, de l’Etat ou d’ONG. De plus en plus de jeunes quittent de manière prématurée le système éducatif et vont chercher des emplois non qualifiés à l’extérieur du village.",
+    "C'est pas possible de l'évaluer pour le moment"];
 
 
   Future<resp.Response> _createNewResponse() async {
@@ -77,7 +78,7 @@ class _ChooseTwoInOrderQuestionState_6 extends State<ChooseTwoInOrderQuestion_6>
             child: Container(
                 padding: EdgeInsets.only( top: getProportionateScreenWidth(20)),
                 width: Get.size.width,
-                height: getProportionateScreenHeight(350),
+                height: getProportionateScreenHeight(390),
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   shape: BoxShape.rectangle,

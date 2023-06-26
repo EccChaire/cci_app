@@ -37,13 +37,14 @@ class _ChooseTwoInOrderQuestionState_5 extends State<ChooseTwoInOrderQuestion_5>
   final FirebaseAuth auth = FirebaseAuth.instance;
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
-  List<String> options = [    'Pré-Émergence',    'Émergence',    'Equilibre',    'Déclin', 'Effondrement', ];
+  List<String> options = [    'Pré-Émergence',    'Émergence',    'Equilibre',    'Déclin', 'Effondrement', 'Non évalué'];
   List<String> Descriptions = [
     "Les membres de la communauté reconnaissent généralement que la solidarité est l’une de leurs valeurs traditionnelles et qu’elle est nécessaire à la cohésion collective. Une entraide minimale existe entre les habitants soit pour des tâches individuelles (entraide entre amis, voisins, ...) ou communautaires (dont la réalisation apporte de la valeur à l’ensemble). La solidarité s’exprime aussi en faveur des plus démunis lorsqu’un choc les atteint (maladie, décès, perte d’emploi, perte soudaine de revenus, sinistre, ...). Des groupes d’entraide financière (notamment féminins) existent parfois permettant à leur membre d’encaisser plus facilement des difficultés passagères, de réaliser des achats urgents et indispensables (santé, éducation, construction/rénovation, ...) ou de lancer des petits projets générateurs de revenus.",
     "La solidarité est visible dans le nombre de projets collectifs qui sont engagés dans lesquels on voit les habitants travailler et contribuer ensemble à la réalisation de nouvelles infrastructures ou à la transformation de nouvelles opportunités qui profiteront au plus grand nombre. Des projets qui ciblent les catégories défavorisés et à risque sont aussi lancés pour sortir ces populations des situations difficiles dans lesquelles ils sont. Les leaders du village ont constitué et animent régulièrement un réseau d’ONG caritatives pour les soutenir. Les habitants concernés par ces aides rendent à la communauté ce qu’elle leur a donné en participant aux travaux collectifs ou en prenant des fonctions de maintenance ou de surveillance des infrastructures et des patrimoines naturels et matériels de la communauté.",
     "La solidarité et l’inclusion sociale restent l’un des soucis constants des leaders du village qui s’assurent que les projets qu’ils proposent à la communauté seront accessibles aux plus pauvres et qu’ils ne génèreront pas de nouveaux déséquilibres ou des risques d’appauvrissement.",
     "La solidarité est active mais de manière plus institutionnalisée. Des associations ou des groupes d’habitants du village s’occupent plus spécifiquement des plus démunis avec l’aide d’ONG partenaires dans des processus clairement définis. Les groupes d’entraide financière des débuts se sont structurés autour de banques communautaires ou ont été remplacées par des agences de micro-crédit qui proposent leurs services. Les membres de la communauté ont de plus en plus le réflexe de « sous traiter » l’aide sociale à des intervenants externes",
-    "es effets pervers de l’institutionnalisation de la charité (assistanat des population concernées, recherche constante de donateurs, conflits sur la sélection des bénéficiaires, parfois même malversations financières, ...) ont entrainé des jalousies et des conflits au sens de la communauté. Parfois même la « manne de l’aide » est devenu un enjeu de contrôle politique et financier. La part des dons qui est reversée aux bénéficiaires diminue et la transparence sur l’usage des fonds n’est plus assurée. Les soutiens et les bailleurs/bienfaiteurs se retirent et n’aident plus que très ponctuellement."];
+    "es effets pervers de l’institutionnalisation de la charité (assistanat des population concernées, recherche constante de donateurs, conflits sur la sélection des bénéficiaires, parfois même malversations financières, ...) ont entrainé des jalousies et des conflits au sens de la communauté. Parfois même la « manne de l’aide » est devenu un enjeu de contrôle politique et financier. La part des dons qui est reversée aux bénéficiaires diminue et la transparence sur l’usage des fonds n’est plus assurée. Les soutiens et les bailleurs/bienfaiteurs se retirent et n’aident plus que très ponctuellement.",
+    "C'est pas possible de l'évaluer pour le moment"];
 
 
 
@@ -78,7 +79,7 @@ class _ChooseTwoInOrderQuestionState_5 extends State<ChooseTwoInOrderQuestion_5>
             child: Container(
                 padding: EdgeInsets.only( top: getProportionateScreenWidth(20)),
                 width: Get.size.width,
-                height: getProportionateScreenHeight(350),
+                height: getProportionateScreenHeight(390),
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   shape: BoxShape.rectangle,

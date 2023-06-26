@@ -37,13 +37,14 @@ class _ChooseTwoInOrderQuestionState_8 extends State<ChooseTwoInOrderQuestion_8>
   final FirebaseAuth auth = FirebaseAuth.instance;
   final DataSpeceController dataSpeceController = Get.find<DataSpeceController>();
   Responsecontroller responsecontroller = Get.put(Responsecontroller());
-  List<String> options = [    'Pré-Émergence',    'Émergence',    'Equilibre',    'Déclin', 'Effondrement', ];
+  List<String> options = [    'Pré-Émergence',    'Émergence',    'Equilibre',    'Déclin', 'Effondrement', 'Non évalué'];
   List<String> Descriptions = [
     "Les leaders de la communauté (ou tout au moins ceux qui semblent l’être aux yeux de la population) sont convaincus de la nécessité d’apporter des changements importants et de « faire les choses différemment ». Ils écoutent les idées apportées par l’extérieur et s’intéressent à ce que d’autres communautés qui leur ressemblent ont fait pour améliorer leurs conditions de vie. Ils reconnaissent que des innovations sont à la fois souhaitables et possibles chez eux. Quelquesprojets novateurs ont d’ailleurs été mis en place ou sont en phase avancée de réflexion. Parfois un catalyseur extérieur (individu ou association) a initié un travail de réflexion avec les leaders du village sur ce qui devrait changer en termes de pratiques, sur les choses nouvelles à mettre en place, sur les opportunités qui restent à saisir.",
     "L’esprit d’innovation s’étend peu à peu à l’ensemble de la population et notamment aux jeunes. Des activités et des techniques nouvelles se développent dans des produits, des métiers ou secteurs qui étaient peu explorés. Les pratiques (agricoles, artisanales, sociales, culturelles, ...) changent sous l’impulsion des habitants du village et non pas simplement sous l’influence de l’extérieur. Les innovations peuvent être aussi sociales avec une transformation des modalités de gouvernance, un changement du regard sur les femmes et les jeunes, la création d’espaces nouveaux de dialogues, d’apprentissage et de transmission, de création de valeur, ou la modification des représentations collectives.",
     "L’innovation est encouragée à tous les niveaux (enfants, jeunes, adultes, individus et organisations, ...) et dans tous les domaines (sociaux, économiques, culturels, ...). On voit de nombreuses réalisations et les habitants expriment leur fierté d’avoir fait quelque chose « qui ne se faisait pas avant ». Les jeunes reviennent s’installer avec des projets et des idées novatrices qu’ils arrivent à mettre en œuvre en rencontrant peu de résistance. D’autres communautés viennent visiter le village pour s’inspirer des pratiques innovantes qui y sont déployées.",
     "Un rythme de changement trop rapide pour certains membres de la communauté commence à générer des résistances de ceux qui pensent que tout cela va trop vite ou qui réalisent que les innovations ont surtout profité à d’autres. Parfois le déclin vient tout simplement du fait que les problèmes complexes nécessitant des transformations et la mobilisation d’innovations ont été réglés dans les phases précédentes .",
-    "Le rythme devenu très lent des changements, le faible succès ou parfois même l’échec des dernières innovations mises en œuvre ont généré un désintérêt voire même parfois une franche résistance à l’introduction de nouvelles innovations. La communauté se replie sur la tradition ou sur des pratiques figées, même si celles-ci ne permettent pas de répondre aux défis qu’elle doit affronter. Plus personne ne recherche de nouvelles idées."];
+    "Le rythme devenu très lent des changements, le faible succès ou parfois même l’échec des dernières innovations mises en œuvre ont généré un désintérêt voire même parfois une franche résistance à l’introduction de nouvelles innovations. La communauté se replie sur la tradition ou sur des pratiques figées, même si celles-ci ne permettent pas de répondre aux défis qu’elle doit affronter. Plus personne ne recherche de nouvelles idées.",
+    "C'est pas possible de l'évaluer pour le moment"];
 
   Future<resp.Response> _createNewResponse() async {
     return responsecontroller.createNewResponse(
@@ -76,7 +77,7 @@ class _ChooseTwoInOrderQuestionState_8 extends State<ChooseTwoInOrderQuestion_8>
             child: Container(
                 padding: EdgeInsets.only( top: getProportionateScreenWidth(20)),
                 width: Get.size.width,
-                height: getProportionateScreenHeight(350),
+                height: getProportionateScreenHeight(390),
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   shape: BoxShape.rectangle,
