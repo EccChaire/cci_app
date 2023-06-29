@@ -24,6 +24,7 @@ class _InfrastructurePageState extends State<InfrastructurePage> {
   TextEditingController ECinitial = TextEditingController(text: '');
   TextEditingController DiCinitial = TextEditingController(text: '');
   TextEditingController EcCinitial = TextEditingController(text: '');
+  TextEditingController Coinitial = TextEditingController(text: '');
 
   @override
   List<Widget> addedWidgets = [SizedBox(height: getProportionateScreenHeight(10))];
@@ -39,8 +40,10 @@ class _InfrastructurePageState extends State<InfrastructurePage> {
       TextEditingController EC = TextEditingController(text: inf.etat);
       TextEditingController EcC = TextEditingController(text: inf.encours);
       TextEditingController DiC = TextEditingController(text: inf.distance);
+      TextEditingController CoC = TextEditingController(text: inf.commentaire);
+
       String infid = inf.infrastructureId;
-      addedWidgets.add(AddInfrastructurePage(DowarId: widget.Dowarid, isExpanded: false, infrastructureController: IC,disponibleController: DC,qualite_percueController: QC, suffisantController: SC, etatController: EC,encoursController: EcC,distanceController: DiC,infId: infid,));
+      addedWidgets.add(AddInfrastructurePage(DowarId: widget.Dowarid, isExpanded: false, infrastructureController: IC,disponibleController: DC,qualite_percueController: QC, suffisantController: SC, etatController: EC,encoursController: EcC,distanceController: DiC,infId: infid, commentaireController: CoC,));
       addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
     }
 
@@ -52,7 +55,7 @@ class _InfrastructurePageState extends State<InfrastructurePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF0F8A74),
-        title: Text('Infrastructures de base'),
+        title: Text('Infrastructures'),
       ),
       body: ListView(
           children: [
@@ -63,7 +66,7 @@ class _InfrastructurePageState extends State<InfrastructurePage> {
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  addedWidgets.add(AddInfrastructurePage(DowarId: widget.Dowarid, isExpanded: true, infrastructureController: ICinitial,qualite_percueController: QCinitial,disponibleController: DCinitial,suffisantController: SCinitial,etatController: ECinitial,encoursController: EcCinitial,distanceController: DiCinitial,));
+                  addedWidgets.add(AddInfrastructurePage(DowarId: widget.Dowarid, isExpanded: true, infrastructureController: ICinitial,qualite_percueController: QCinitial,disponibleController: DCinitial,suffisantController: SCinitial,etatController: ECinitial,encoursController: EcCinitial,distanceController: DiCinitial,commentaireController: Coinitial,));
                   addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
 
                 });

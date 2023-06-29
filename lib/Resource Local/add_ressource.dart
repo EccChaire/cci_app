@@ -6,6 +6,7 @@ import 'package:uuid/uuid.dart';
 import 'package:cci_app/models/Ressource_local.dart';
 import 'package:cci_app/config.dart';
 import 'package:cci_app/Resource Local/picker.dart';
+import 'package:intl/intl.dart';
 
 class AddResourcePage extends StatefulWidget {
   final String? DowarId;
@@ -17,6 +18,8 @@ class AddResourcePage extends StatefulWidget {
   TextEditingController();
   TextEditingController nbreCitationsController = TextEditingController();
   TextEditingController projetsExploitentController = TextEditingController();
+  TextEditingController commentaireController = TextEditingController();
+  TextEditingController DepuisController = TextEditingController();
 
   AddResourcePage({
     required this.DowarId,
@@ -26,6 +29,8 @@ class AddResourcePage extends StatefulWidget {
     required this.communautaireOrIndividuelleController,
     required this.nbreCitationsController,
     required this.descriptifController,
+    required this.commentaireController,
+    required this.DepuisController,
     this.resId
   });
 
@@ -36,7 +41,8 @@ class AddResourcePage extends StatefulWidget {
 class _AddResourcePageState extends State<AddResourcePage> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final DataSpeceController DS = Get.put(DataSpeceController());
-  final List<String> choiceList = ['Communautaire', 'individuelle'];
+  final List<String> infrastructureList = ['Electricité', 'Eau pour irrigation', 'Eau potable', 'Eau courante dans les foyers','Réseau GSM','Réseau Internet','Préscolaire','Ecole primaire','Collège','Lycée','Formations techniques','Internat','Route d’accès','Dispensaire/infirmerie','Hôpital','Centre maternel','Pharmacie','Ambulance','Dar Talib','Dar Chabab','Dar Attakafa','Souk hebdomadaire','Sports et jeunesse','Mosquée','Autre : '];
+
 
   // Define variables for the form fields
 
@@ -60,6 +66,8 @@ class _AddResourcePageState extends State<AddResourcePage> {
               widget.nbreCitationsController.text = widget.nbreCitationsController.text;
               widget.projetsExploitentController.text =
                   widget.projetsExploitentController.text;
+              widget.commentaireController.text =widget.commentaireController.text;
+              widget.DepuisController.text = widget.DepuisController.text;
 
             });
           },
@@ -67,7 +75,7 @@ class _AddResourcePageState extends State<AddResourcePage> {
             padding: EdgeInsets.only(left: getProportionateScreenWidth(30),right:getProportionateScreenWidth(30)),
             duration: Duration(milliseconds: 300),
             width: 400,
-            height: widget.isExpanded ? 370 : 70,
+            height: widget.isExpanded ? 465 : 70,
             decoration: BoxDecoration(
               color: Colors.grey,
               shape: BoxShape.rectangle,
@@ -111,14 +119,14 @@ class _AddResourcePageState extends State<AddResourcePage> {
                         decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'Infrastructure de base ...',
+                          hintText: 'Propriété ...',
                         ),
                         onTap: () {
                           showModalBottomSheet(
                             context: context,
                             builder: (BuildContext context) {
                               return MyPickerWidget(
-                                options: choiceList,
+                                options: infrastructureList,
                                 onItemSelected: (selectedValue) {
                                   if (selectedValue != null) {
                                     setState(() {
@@ -151,6 +159,28 @@ class _AddResourcePageState extends State<AddResourcePage> {
                         ),
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
+                      TextField(
+                        controller: widget.DepuisController,
+                        decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Depuis ...',
+                        ),
+                        onTap: () {
+                          showStartDatePickerDialog();
+
+                        },
+                      ),
+                      SizedBox(height: getProportionateScreenHeight(8)),
+                      TextField(
+                        controller: widget.commentaireController,
+                        decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Commentaire ...',
+                        ),
+                      ),
+                      SizedBox(height: getProportionateScreenHeight(8)),
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: Color(0xFF0F8A74), // Set the background color
@@ -168,6 +198,8 @@ class _AddResourcePageState extends State<AddResourcePage> {
                                 projetsExploitent: widget.projetsExploitentController.text,
                                 dowarId: widget.DowarId!,
                                 userId: auth.currentUser?.uid ?? "defaultUserId",
+                                commentaire: widget.commentaireController.text,
+                                Depuis: widget.DepuisController.text,
                               ));
                             } else {
                               // Perform add action
@@ -180,6 +212,8 @@ class _AddResourcePageState extends State<AddResourcePage> {
                                 projetsExploitent: widget.projetsExploitentController.text,
                                 dowarId: widget.DowarId!,
                                 userId: auth.currentUser?.uid ?? "defaultUserId",
+                                commentaire: widget.commentaireController.text,
+                                Depuis: widget.DepuisController.text,
                               ));
                             }
                             setState(() {
@@ -192,6 +226,8 @@ class _AddResourcePageState extends State<AddResourcePage> {
                                 widget.nbreCitationsController.text = widget.nbreCitationsController.text;
                                 widget.projetsExploitentController.text =
                                     widget.projetsExploitentController.text;
+                                widget.DepuisController.text = widget.DepuisController.text;
+                                widget.commentaireController.text =widget.commentaireController.text;
                               }
                               widget.isExpanded = !widget.isExpanded;
                               isEditing = !isEditing;
@@ -228,5 +264,35 @@ class _AddResourcePageState extends State<AddResourcePage> {
       ),
     );
   }
+  final DateFormat _dateFormat = DateFormat('yyyy-MM-dd');
 
+  void showStartDatePickerDialog() async {
+    final DateTime? selectedStartDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: Color(0xFF0F8A74), // Customize primary color
+            accentColor: Colors.green, // Customize accent color
+            colorScheme: ColorScheme.light(
+              primary: Color(0xFF0F8A74), // Customize primary color
+              onPrimary: Colors.white, // Customize text color on primary color
+              surface: Colors.white, // Customize background color
+              onSurface: Colors.black, // Customize text color on background color
+            ),
+          ),
+          child: child ?? const SizedBox(),
+        );
+      },
+    );
+    if (selectedStartDate != null) {
+      String formattedDate = _dateFormat.format(selectedStartDate);
+      setState(() {
+        widget.DepuisController.text = formattedDate;
+      });
+    }
+  }
 }

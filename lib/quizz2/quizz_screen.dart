@@ -37,7 +37,7 @@ class _Q2PageState extends State<Q2Page> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF0F8A74),
-        title: const Text('Données spécifiques'),
+        title: const Text("Questions d'évaluations"),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
       ),
       body: ListView(

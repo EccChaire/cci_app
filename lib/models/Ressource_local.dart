@@ -7,6 +7,8 @@ class Resource {
   String projetsExploitent;
   String dowarId;
   String userId;
+  String Depuis;
+  String commentaire;
 
   Resource({
     required this.ressourceId,
@@ -17,6 +19,8 @@ class Resource {
     required this.projetsExploitent,
     required this.dowarId,
     required this.userId,
+    required this.Depuis,
+    required this.commentaire
   });
 
   factory Resource.fromJson(Map<String, dynamic> json) {
@@ -29,6 +33,8 @@ class Resource {
       nbreCitations: json['nbreCitations'] ,
       projetsExploitent: json['projetsExploitent'] ,
       userId: json['userId'] ,
+      commentaire: json['commentaire'],
+      Depuis: json['depuis']
     );
   }
 
@@ -42,6 +48,8 @@ class Resource {
     data['nbreCitations'] = nbreCitations;
     data['projetsExploitent'] = projetsExploitent;
     data['userId'] = userId;
+    data['commentaire']= commentaire;
+    data['depuis']= Depuis;
     return data;
   }
 }

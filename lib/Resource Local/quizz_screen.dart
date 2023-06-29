@@ -23,6 +23,8 @@ class _ResourcePageState extends State<ResourcePage> {
   TextEditingController NCinitial = TextEditingController(text: '');
   TextEditingController PCinitial = TextEditingController(text: '');
   TextEditingController CCinitial = TextEditingController(text: '');
+  TextEditingController CoCinitial = TextEditingController(text: '');
+  TextEditingController DpCinitial = TextEditingController(text: '');
 
   @override
   List<Widget> addedWidgets = [SizedBox(height: getProportionateScreenHeight(10))];
@@ -36,8 +38,10 @@ class _ResourcePageState extends State<ResourcePage> {
       TextEditingController NC = TextEditingController(text: rs.nbreCitations);
       TextEditingController PC = TextEditingController(text: rs.projetsExploitent);
       TextEditingController CC = TextEditingController(text: rs.CommunautaireORindividuelle);
+      TextEditingController CoC = TextEditingController(text: rs.commentaire);
+      TextEditingController DpC = TextEditingController(text: rs.Depuis);
       String resid = rs.ressourceId;
-      addedWidgets.add(AddResourcePage(DowarId: widget.Dowarid, isExpanded: false, ressourceController: RC, projetsExploitentController: PC,communautaireOrIndividuelleController: CC,nbreCitationsController: NC,descriptifController: DC, resId: resid,));
+      addedWidgets.add(AddResourcePage(DowarId: widget.Dowarid, isExpanded: false, ressourceController: RC, projetsExploitentController: PC,communautaireOrIndividuelleController: CC,nbreCitationsController: NC,descriptifController: DC, resId: resid,commentaireController: CoC,DepuisController: DpC,));
       addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
     }
 
@@ -49,7 +53,7 @@ class _ResourcePageState extends State<ResourcePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF0F8A74),
-        title: Text('Resources locals'),
+        title: Text('Ressources locales'),
       ),
       body: ListView(
           children: [
@@ -60,7 +64,7 @@ class _ResourcePageState extends State<ResourcePage> {
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  addedWidgets.add(AddResourcePage(DowarId: widget.Dowarid, isExpanded: true, ressourceController: RCinitial, projetsExploitentController: PCinitial,communautaireOrIndividuelleController: CCinitial,nbreCitationsController: NCinitial,descriptifController: DCinitial));
+                  addedWidgets.add(AddResourcePage(DowarId: widget.Dowarid, isExpanded: true, ressourceController: RCinitial, projetsExploitentController: PCinitial,communautaireOrIndividuelleController: CCinitial,nbreCitationsController: NCinitial,descriptifController: DCinitial, commentaireController: CoCinitial,DepuisController: DpCinitial,));
                   addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
 
                 });

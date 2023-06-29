@@ -23,6 +23,9 @@ class _ProjetPageState extends State<ProjetPage> {
   TextEditingController RCinitial = TextEditingController(text: '');
   TextEditingController SCinitial = TextEditingController(text: '');
   TextEditingController ECinitial = TextEditingController(text: '');
+  TextEditingController ICinitial = TextEditingController(text: '');
+  TextEditingController CCinitial = TextEditingController(text: '');
+
 
   @override
   List<Widget> addedWidgets = [SizedBox(height: getProportionateScreenHeight(10))];
@@ -37,8 +40,10 @@ class _ProjetPageState extends State<ProjetPage> {
       TextEditingController RC = TextEditingController(text: pg.resultat);
       TextEditingController SC = TextEditingController(text: pg.startDate);
       TextEditingController EC = TextEditingController(text: pg.endDate);
+      TextEditingController IC = TextEditingController(text: pg.initiateur);
+      TextEditingController CC = TextEditingController(text: pg.commentaire);
       String pgid = pg.projetId;
-      addedWidgets.add(AddProjetPage(DowarId: widget.Dowarid, isExpanded: false, projetController: PC,descriptifController: DC,ActeursimpController: AC, resultatController: RC,startDateController: SC,endDateController: EC, pgId: pgid, ));
+      addedWidgets.add(AddProjetPage(DowarId: widget.Dowarid, isExpanded: false, projetController: PC,descriptifController: DC,ActeursimpController: AC, resultatController: RC,startDateController: SC,endDateController: EC,initiateurController: IC, pgId: pgid, commentaireController: CC,));
       addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
     }
 
@@ -50,7 +55,7 @@ class _ProjetPageState extends State<ProjetPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF0F8A74),
-        title: Text('Projets Communautaires'),
+        title: Text('Projets'),
       ),
       body: ListView(
           children: [
@@ -61,7 +66,7 @@ class _ProjetPageState extends State<ProjetPage> {
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  addedWidgets.add(AddProjetPage(DowarId: widget.Dowarid, isExpanded: true, projetController: PCinitial,descriptifController: DCinitial,ActeursimpController: ACinitial,resultatController: RCinitial,startDateController: SCinitial,endDateController: ECinitial,));
+                  addedWidgets.add(AddProjetPage(DowarId: widget.Dowarid, isExpanded: true, projetController: PCinitial,descriptifController: DCinitial,ActeursimpController: ACinitial,resultatController: RCinitial,startDateController: SCinitial,endDateController: ECinitial, initiateurController: ICinitial,commentaireController: CCinitial,));
                   addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
 
                 });

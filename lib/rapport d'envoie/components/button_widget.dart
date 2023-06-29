@@ -3,7 +3,6 @@
 
 import 'package:cci_app/config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget(
@@ -25,7 +24,7 @@ class ButtonWidget extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(
                 const Color(0xFF0F8A74)), // set background color
             minimumSize: MaterialStateProperty.all<Size>(
-                 Size(getProportionateScreenWidth(194), getProportionateScreenHeight(50))), // set minimum size
+                 Size(getProportionateScreenWidth(400), getProportionateScreenHeight(50))), // set minimum size
             // You can also use fixedSize property to set the exact button size
           ),
           child: Text(buttonLable, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.yellow),),
@@ -54,7 +53,7 @@ class ButtonSentWidget extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(
                 const Color(0xFF0F8A74)), // set background color
             minimumSize: MaterialStateProperty.all<Size>(
-                Size(getProportionateScreenWidth(193), getProportionateScreenHeight(50))), // set minimum size
+                Size(getProportionateScreenWidth(194), getProportionateScreenHeight(50))), // set minimum size
             // You can also use fixedSize property to set the exact button size
           ),
           child: Text(buttonLable, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),

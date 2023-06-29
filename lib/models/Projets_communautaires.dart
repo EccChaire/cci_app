@@ -8,6 +8,8 @@ class Projet {
   String dowarId;
   String userId;
   String resultat;
+  String initiateur;
+  String commentaire;
 
   Projet({
     required this.projetId,
@@ -18,7 +20,9 @@ class Projet {
     required this.endDate,
     required this.dowarId,
     required this.userId,
-    required this.resultat
+    required this.resultat,
+    required this.initiateur,
+    required this.commentaire
   });
 
   factory Projet.fromJson(Map<String, dynamic> json) {
@@ -31,7 +35,9 @@ class Projet {
         startDate: json['Date de début'] ,
         endDate: json['Date de fin'] ,
         userId: json['userId'] ,
-        resultat:  json['Résultat']
+        resultat:  json['Résultat'],
+        initiateur: json['initiateur'],
+      commentaire: json['commentaire']
     );
   }
 
@@ -46,6 +52,8 @@ class Projet {
     data['Date de fin'] = endDate;
     data['userId'] = userId;
     data['Résultat']= resultat;
+    data['initiateur']= initiateur;
+    data['commentaire']= commentaire;
     return data;
   }
 }

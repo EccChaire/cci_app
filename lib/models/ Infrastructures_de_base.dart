@@ -9,6 +9,7 @@ class Infrastructure {
   String encours;
   String dowarId;
   String userId;
+  String commentaire;
 
   Infrastructure({
     required this.infrastructureId,
@@ -20,7 +21,8 @@ class Infrastructure {
     required this.dowarId,
     required this.userId,
     required this.distance,
-    required this.encours
+    required this.encours,
+    required this.commentaire
   });
 
   factory Infrastructure.fromJson(Map<String, dynamic> json) {
@@ -34,7 +36,8 @@ class Infrastructure {
       Suffisant: json['Suffisant aux besoins'] ,
       etat: json['etat'] ,
       userId: json['userId'] ,
-      encours: json['Projets en cours ou planifiés']
+      encours: json['Projets en cours ou planifiés'],
+      commentaire: json['commentaire'],
     );
   }
 
@@ -50,6 +53,7 @@ class Infrastructure {
     data['Distance']= distance;
     data['userId'] = userId;
     data['Projets en cours ou planifiés'] = encours;
+    data['commentaire']= commentaire;
     return data;
   }
 }

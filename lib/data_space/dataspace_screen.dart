@@ -70,7 +70,7 @@ class DataSpace extends StatelessWidget {
 SizedBox(width: getProportionateScreenWidth(10)),
           QuizzCard(
             cardTitle: "Données générales",
-            cardDescription: "Vous devez inserer ici toutes les données générales du cette dowar",
+            cardDescription: "Veuillez insérer ici des informations génétales sur le village.",
             onClockFuction: () async {
               DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
               questions = await QS.getQuestionsByType("A");
@@ -79,8 +79,8 @@ SizedBox(width: getProportionateScreenWidth(10)),
           ),
          SizedBox(width: getProportionateScreenWidth(15)),
           QuizzCard(
-            cardTitle: "Données spécifiques",
-            cardDescription: "noter de 1 à 5 les acteurs suivants",
+            cardTitle: "Questions d'évaluations",
+            cardDescription: "Veuillez noter de 1 à 5 le village sur plusieurs questions.",
             onClockFuction: () async {
               DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
               questions = await QS.getQuestionsByType("B");
@@ -93,9 +93,9 @@ SizedBox(width: getProportionateScreenWidth(10)),
         Row(
           children: [
               SizedBox(width: getProportionateScreenWidth(10)),
-            QuizzCard(
-              cardTitle: "Mesure de l’émergence",
-              cardDescription: "Vous trouvez ici les 9 dimensions de mesure de l’émergence",
+            QuizzCardPrime(
+              cardTitle: "Maturité de l’émergence",
+              cardDescription: "Pour chacune de 9 dimensions décrites ci-après, veuillez selectionner 1 ou 2 descriptions qui se rapproche(nt) le plus de la situation du village.",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
                 //questions = await QS.getQuestionsByType("C");
@@ -105,7 +105,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
               SizedBox(width: getProportionateScreenWidth(15)),
             QuizzCard(
               cardTitle: "Ressources locales",
-              cardDescription: "Ici vous pouvez des ressources locales pour ce dowar",
+              cardDescription: "Dans ce groupe, vous faites l'inventaire des ressources locales que vous trouvez dans le village et ses environs.",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
                 Get.to(() => ResourcePage(Dowarid: DowarID));
@@ -118,9 +118,9 @@ SizedBox(width: getProportionateScreenWidth(10)),
         Row(
           children: [
             SizedBox(width: getProportionateScreenWidth(10)),
-            QuizzCard(
-              cardTitle: "Acteurs de l’émergence",
-              cardDescription: "Ici vous pouvez des acteurs de l'émergence de ce dowar",
+            QuizzCardPrime(
+              cardTitle: "Acteurs",
+              cardDescription: "Identifiez ici les personnes ou les organisations (ONG, entreprises, institutions publiques, bailleurs de fonds,...) qui participent au développement du village.",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
                 Get.to(() => ActeurPage(Dowarid: DowarID));
@@ -128,8 +128,8 @@ SizedBox(width: getProportionateScreenWidth(10)),
             ),
             SizedBox(width: getProportionateScreenWidth(15)),
             QuizzCard(
-              cardTitle: "Infrastructures de base",
-              cardDescription: "Ici vous pouvez ajouter les infrastructures de base dans le dowar",
+              cardTitle: "Infrastructures",
+              cardDescription: "Listez et qualifiez les infrastructures collectives, privées ou étatiques dont dispose le village.",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
                 Get.to(() => InfrastructurePage(Dowarid: DowarID));
@@ -142,9 +142,9 @@ SizedBox(width: getProportionateScreenWidth(10)),
         Row(
           children: [
             SizedBox(width: getProportionateScreenWidth(10)),
-            QuizzCard(
-              cardTitle: "Projets communautaires",
-              cardDescription: "Ici vous pouvez ajouter les projets communautaires dans le dowar",
+            QuizzCardPrime(
+              cardTitle: "Projets",
+              cardDescription: "Listez ici les projets individuels, collectifs, communautaires, privés ou publics qui ont été déployés ou sont en cours de déploiement ou de conception dans le village.",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
                 Get.to(() => ProjetPage(Dowarid: DowarID));

@@ -21,6 +21,7 @@ class AddInfrastructurePage extends StatefulWidget {
   TextEditingController etatController = TextEditingController();
   TextEditingController distanceController = TextEditingController();
   TextEditingController encoursController = TextEditingController();
+  TextEditingController commentaireController = TextEditingController();
 
   AddInfrastructurePage({
     required this.DowarId,
@@ -32,6 +33,7 @@ class AddInfrastructurePage extends StatefulWidget {
     required this.disponibleController,
     required this.distanceController,
     required this.encoursController,
+    required this.commentaireController,
     this.infId
   });
 
@@ -71,6 +73,7 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                   widget.etatController.text;
               widget.encoursController.text = widget.encoursController.text;
               widget.distanceController.text = widget.distanceController.text;
+              widget.commentaireController.text = widget.commentaireController.text;
 
             });
           },
@@ -78,7 +81,7 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
             padding: EdgeInsets.only(left: getProportionateScreenWidth(30),right:getProportionateScreenWidth(30)),
             duration: Duration(milliseconds: 300),
             width: 400,
-            height: widget.isExpanded ? 470 : 70,
+            height: widget.isExpanded ? 520 : 70,
             decoration: BoxDecoration(
               color: Colors.grey,
               shape: BoxShape.rectangle,
@@ -208,7 +211,7 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                         decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'etat...',
+                          hintText: 'Propriété...',
                         ),
                         onTap: () {
                           showModalBottomSheet(
@@ -264,6 +267,15 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                         },
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
+                      TextField(
+                        controller: widget.commentaireController,
+                        decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Commentaire ...',
+                        ),
+                      ),
+                      SizedBox(height: getProportionateScreenHeight(8)),
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: Color(0xFF0F8A74), // Set the background color
@@ -282,6 +294,7 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                                   userId: auth.currentUser?.uid ?? "defaultUserId",
                                   encours: widget.encoursController.text,
                                   distance : widget.distanceController.text,
+                                commentaire: widget.commentaireController.text
                               ));
                             } else {
                               // Perform add action
@@ -296,6 +309,7 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                                 userId: auth.currentUser?.uid ?? "defaultUserId",
                                 encours: widget.encoursController.text,
                                 distance : widget.distanceController.text,
+                                commentaire: widget.commentaireController.text
                               ));
                             }
                                   setState(() {
@@ -310,6 +324,7 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
                               widget.etatController.text;
                               widget.encoursController.text = widget.encoursController.text;
                               widget.distanceController.text = widget.distanceController.text;
+                              widget.commentaireController.text = widget.commentaireController.text;
                               }
                               widget.isExpanded = !widget.isExpanded;
                               isEditing = !isEditing;

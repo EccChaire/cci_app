@@ -3,7 +3,7 @@ import 'package:cci_app/config.dart';
 import 'package:cci_app/data_space/controllers/data_space_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'components/button_widget.dart';
+import "package:cci_app/rapport d'envoie/components/button_widget.dart";
 import 'components/quizz_card.dart';
 import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
@@ -120,8 +120,6 @@ SizedBox(width: getProportionateScreenWidth(10)),
           children: [
              SizedBox(width: getProportionateScreenWidth(10)),
           ButtonWidget(buttonLable: dataSpeceController.medias.length.toString()+" Medias", buttonOnClickFunction: () {}),
-           SizedBox(width: getProportionateScreenWidth(15)),
-          ButtonWidget(buttonLable: "1 audio", buttonOnClickFunction: () {}),
         ]),
         SizedBox(height: getProportionateScreenHeight(30)),
         Center(

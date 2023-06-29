@@ -4,7 +4,7 @@ class Acteur {
   String type;
   String role;
   String depuis;
-
+  String commentaire;
   String dowarId;
   String userId;
 
@@ -16,6 +16,7 @@ class Acteur {
     required this.depuis,
     required this.dowarId,
     required this.userId,
+    required this.commentaire
   });
 
   factory Acteur.fromJson(Map<String, dynamic> json) {
@@ -27,6 +28,7 @@ class Acteur {
       dowarId: json['dowarId'] ,
       depuis: json['Depuis'] ,
       userId: json['userId'] ,
+      commentaire: json['commentaire']
     );
   }
 
@@ -39,6 +41,7 @@ class Acteur {
     data['dowar'] = dowarId;
     data['Depuis'] = depuis;
     data['userId'] = userId;
+    data['commentaire'] =commentaire;
     return data;
   }
 }

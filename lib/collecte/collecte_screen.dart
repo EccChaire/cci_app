@@ -25,12 +25,21 @@ class CollectePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
            Center(
-            child: Text("Bienvenue ${collectBlock.user!.firstname} ${collectBlock.user!.lastname}, Merci pour ton collaboration",
+            child: Text("Bonjour ${collectBlock.user!.firstname} ${collectBlock.user!.lastname}, Nous vous remercions pour votre collaboration.",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF0F8A74),
-                    fontSize: 36)),
+                    fontSize: 28)),
+          ),
+          SizedBox(width: getProportionateScreenWidth(30)),
+          Center(
+            child: Text("Veuillez appuyer sur le button Collecte pour commencer à enregistrer vos données terrain.",
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF0F8A74),
+                    fontSize: 18)),
           ),
           _buildcollecteButton()
         ],

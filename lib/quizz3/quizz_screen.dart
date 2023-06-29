@@ -49,7 +49,7 @@ class _Q3PageState extends State<Q3Page> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF0F8A74),
-        title: const Text('Mesure de l’émergence'),
+        title: const Text('Maturité de l’émergence'),
         // This drop-down menu demonstrates that Flutter widgets can be shown over the web view.
       ),
       body: SingleChildScrollView(

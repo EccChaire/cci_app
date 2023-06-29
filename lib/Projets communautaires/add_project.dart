@@ -18,6 +18,8 @@ class AddProjetPage extends StatefulWidget {
   TextEditingController resultatController = TextEditingController();
   TextEditingController startDateController = TextEditingController();
   TextEditingController endDateController = TextEditingController();
+  TextEditingController initiateurController = TextEditingController();
+  TextEditingController commentaireController = TextEditingController();
   String? pgId;
 
   AddProjetPage({
@@ -29,6 +31,8 @@ class AddProjetPage extends StatefulWidget {
     required this.resultatController,
     required this.descriptifController,
     required this.endDateController,
+    required this.initiateurController,
+    required this.commentaireController,
     this.pgId
   });
 
@@ -39,7 +43,8 @@ class AddProjetPage extends StatefulWidget {
 class _AddProjetPageState extends State<AddProjetPage> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final DataSpeceController DS = Get.put(DataSpeceController());
-  final List<String> resultatList = ['succès', 'échec', 'en cours', 'bloqué'];
+  final List<String> resultatList = ['non démarré','en cours', 'succès', 'échec', 'bloqué'];
+  final List<String> initiateurlist = ['individu', 'collectif', 'communauté', 'entreprise externe', 'ONG externe', "Services de l'État", 'Autres'];
 
   // Define variables for the form fields
 
@@ -65,13 +70,15 @@ class _AddProjetPageState extends State<AddProjetPage> {
                   widget.startDateController.text;
               widget.endDateController.text =
                   widget.endDateController.text;
+              widget.initiateurController.text =widget.initiateurController.text;
+              widget.commentaireController.text = widget.commentaireController.text;
             });
           },
           child: AnimatedContainer(
             padding: EdgeInsets.only(left: getProportionateScreenWidth(30),right:getProportionateScreenWidth(30)),
             duration: Duration(milliseconds: 300),
             width: 400,
-            height: widget.isExpanded ? 420 : 70,
+            height: widget.isExpanded ? 520 : 70,
             decoration: BoxDecoration(
               color: Colors.grey,
               shape: BoxShape.rectangle,
@@ -120,11 +127,37 @@ class _AddProjetPageState extends State<AddProjetPage> {
                         ),
                         SizedBox(height: getProportionateScreenHeight(8)),
                         TextField(
+                          controller: widget.initiateurController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: 'Initiateur ...',
+                          ),
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return MyPickerWidget(
+                                  options: initiateurlist,
+                                  onItemSelected: (selectedValue) {
+                                    if (selectedValue != null) {
+                                      setState(() {
+                                        widget.initiateurController.text = selectedValue;
+                                      });
+                                    }
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
+                        SizedBox(height: getProportionateScreenHeight(8)),
+                        TextField(
                           controller: widget.resultatController,
                           decoration: const InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
-                            hintText: 'Infrastructure de base ...',
+                            hintText: 'Etat ...',
                           ),
                           onTap: () {
                             showModalBottomSheet(
@@ -169,6 +202,15 @@ class _AddProjetPageState extends State<AddProjetPage> {
                           },
                         ),
                         SizedBox(height: getProportionateScreenHeight(8)),
+                        TextField(
+                          controller: widget.commentaireController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white, // replace with desired color
+                            hintText: 'Commentaire ...',
+                          ),
+                        ),
+                        SizedBox(height: getProportionateScreenHeight(8)),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               primary: Color(0xFF0F8A74), // Set the background color
@@ -181,11 +223,13 @@ class _AddProjetPageState extends State<AddProjetPage> {
                                   projet: widget.projetController.text,
                                   descriptif: widget.descriptifController.text,
                                   Acteursimp: widget.ActeursimpController.text,
+                                  initiateur: widget.initiateurController.text,
                                   resultat: widget.resultatController.text,
                                   startDate: widget.startDateController.text,
                                   endDate: widget.endDateController.text,
                                   dowarId: widget.DowarId!,
                                   userId: auth.currentUser?.uid ?? "defaultUserId",
+                                  commentaire : widget.commentaireController.text,
                                 ));
                               } else {
                                 // Perform add action
@@ -194,11 +238,13 @@ class _AddProjetPageState extends State<AddProjetPage> {
                                   projet: widget.projetController.text,
                                   descriptif: widget.descriptifController.text,
                                   Acteursimp: widget.ActeursimpController.text,
+                                  initiateur: widget.initiateurController.text,
                                   resultat: widget.resultatController.text,
                                   startDate: widget.startDateController.text,
                                   endDate: widget.endDateController.text,
                                   dowarId: widget.DowarId!,
                                   userId: auth.currentUser?.uid ?? "defaultUserId",
+                                  commentaire : widget.commentaireController.text,
                                 ));
                               }
                               setState(() {
@@ -213,6 +259,8 @@ class _AddProjetPageState extends State<AddProjetPage> {
                                       widget.startDateController.text;
                                   widget.endDateController.text =
                                       widget.endDateController.text;
+                                  widget.initiateurController.text =widget.initiateurController.text;
+                                  widget.commentaireController.text = widget.commentaireController.text;
                                 }
                                 widget.isExpanded = !widget.isExpanded;
                                 isEditing = !isEditing;

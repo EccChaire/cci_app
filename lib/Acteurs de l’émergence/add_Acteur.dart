@@ -18,6 +18,7 @@ class AddActeurPage extends StatefulWidget {
   TextEditingController roleController =
   TextEditingController();
   TextEditingController depuisController = TextEditingController();
+  TextEditingController commentaireController = TextEditingController();
 
 
   AddActeurPage({
@@ -27,6 +28,7 @@ class AddActeurPage extends StatefulWidget {
     required this.roleController,
     required this.depuisController,
     required this.typeController,
+    required this.commentaireController,
     this.acterId,
   });
 
@@ -63,13 +65,14 @@ class _AddResourcePageState extends State<AddActeurPage> {
               widget.roleController.text =
                   widget.roleController.text;
               widget.depuisController.text = widget.depuisController.text;
+              widget.commentaireController.text = widget.commentaireController.text;
             });
           },
           child: AnimatedContainer(
             padding: EdgeInsets.only(left: getProportionateScreenWidth(30),right:getProportionateScreenWidth(30)),
             duration: Duration(milliseconds: 300),
             width: 400,
-            height: widget.isExpanded ? 320 : 70,
+            height: widget.isExpanded ? 360 : 70,
             decoration: BoxDecoration(
               color: Colors.grey,
               shape: BoxShape.rectangle,
@@ -100,20 +103,20 @@ class _AddResourcePageState extends State<AddActeurPage> {
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
                       TextField(
-                        controller: widget.typeController,
-                        decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: 'Type ...',
-                        ),
-                      ),
-                      SizedBox(height: getProportionateScreenHeight(8)),
-                      TextField(
                         controller: widget.roleController,
                         decoration: const InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
                           hintText: 'role ...',
+                        ),
+                      ),
+                      SizedBox(height: getProportionateScreenHeight(8)),
+                      TextField(
+                        controller: widget.typeController,
+                        decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'type ...',
                         ),
                         onTap: () {
                           showModalBottomSheet(
@@ -124,7 +127,7 @@ class _AddResourcePageState extends State<AddActeurPage> {
                                 onItemSelected: (selectedValue) {
                                   if (selectedValue != null) {
                                     setState(() {
-                                      widget.roleController.text = selectedValue;
+                                      widget.typeController.text = selectedValue;
                                     });
                                   }
                                 },
@@ -150,6 +153,15 @@ class _AddResourcePageState extends State<AddActeurPage> {
                         },
                       ),
                       SizedBox(height: getProportionateScreenHeight(8)),
+                      TextField(
+                        controller: widget.commentaireController,
+                        decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Commentaire ...',
+                        ),
+                      ),
+                      SizedBox(height: getProportionateScreenHeight(8)),
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: Color(0xFF0F8A74), // Set the background color
@@ -165,6 +177,7 @@ class _AddResourcePageState extends State<AddActeurPage> {
                                 depuis: widget.depuisController.text,
                                 dowarId: widget.DowarId!,
                                 userId: auth.currentUser?.uid ?? "defaultUserId",
+                                commentaire: widget.commentaireController.text,
                               ));
                             } else {
                               // Perform add action
@@ -176,6 +189,7 @@ class _AddResourcePageState extends State<AddActeurPage> {
                                 depuis: widget.depuisController.text,
                                 dowarId: widget.DowarId!,
                                 userId: auth.currentUser?.uid ?? "defaultUserId",
+                                commentaire: widget.commentaireController.text,
                               ));
                             }
                             setState(() {
@@ -185,6 +199,7 @@ class _AddResourcePageState extends State<AddActeurPage> {
                                 widget.typeController.text = widget.typeController.text;
                                 widget.roleController.text = widget.roleController.text;
                                 widget.depuisController.text = widget.depuisController.text;
+                                widget.commentaireController.text = widget.commentaireController.text;
                               }
                               widget.isExpanded = !widget.isExpanded;
                               isEditing = !isEditing; // Reset the edit mode

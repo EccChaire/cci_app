@@ -21,6 +21,7 @@ class _ActeurPageState extends State<ActeurPage> {
   TextEditingController TCinitial = TextEditingController(text: '');
   TextEditingController RCinitial = TextEditingController(text: '');
   TextEditingController DCinitial = TextEditingController(text: '');
+  TextEditingController CCinitial = TextEditingController(text: '');
 
   @override
   List<Widget> addedWidgets = [SizedBox(height: getProportionateScreenHeight(10))];
@@ -33,8 +34,9 @@ class _ActeurPageState extends State<ActeurPage> {
       TextEditingController TC = TextEditingController(text: ac.type);
       TextEditingController RC = TextEditingController(text: ac.role);
       TextEditingController DC = TextEditingController(text: ac.depuis);
+      TextEditingController CC = TextEditingController(text: ac.commentaire);
       String actid = ac.acteurId;
-      addedWidgets.add(AddActeurPage(DowarId: widget.Dowarid, isExpanded: false, acteurController: AC, typeController: TC, roleController: RC, depuisController: DC, acterId: actid,));
+      addedWidgets.add(AddActeurPage(DowarId: widget.Dowarid, isExpanded: false, acteurController: AC, typeController: TC, roleController: RC, depuisController: DC, acterId: actid, commentaireController: CC,));
       addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
     }
 
@@ -46,7 +48,7 @@ class _ActeurPageState extends State<ActeurPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF0F8A74),
-        title: Text("Acteurs de l'émergence"),
+        title: Text("Acteurs"),
       ),
       body: ListView(
           children: [
@@ -57,7 +59,7 @@ class _ActeurPageState extends State<ActeurPage> {
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  addedWidgets.add(AddActeurPage(DowarId: widget.Dowarid, isExpanded: true, acteurController: ACinitial, typeController: TCinitial, roleController: RCinitial, depuisController: DCinitial,));
+                  addedWidgets.add(AddActeurPage(DowarId: widget.Dowarid, isExpanded: true, acteurController: ACinitial, typeController: TCinitial, roleController: RCinitial, depuisController: DCinitial,commentaireController: CCinitial,));
                   addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
 
                 });
