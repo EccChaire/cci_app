@@ -14,7 +14,6 @@ class N_douarPage extends StatelessWidget {
   final Position currentPosition;
 
   final NewDowarBlock newDowarBlock = Get.put(NewDowarBlock());
-  final WaitingBlock WB = Get.put(WaitingBlock());
   final IntervalService intervalservice = Get.put(IntervalService());
 
 
@@ -28,10 +27,11 @@ class N_douarPage extends StatelessWidget {
           Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:  [
-            SizedBox(height: getProportionateScreenHeight(30)),
+            SizedBox(height: getProportionateScreenHeight(100)),
             const Center(
-              child: Text("C'est une nouvelle douar veuillez entrer son nom",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Color(0xFF0F8A74), fontSize: 36 )),
+              child: Text("Cette localisation n'est pas dans notre Base de données. Merci d'indiquer le nom de ce village:",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Color(0xFF0F8A74), fontSize: 24 )),
             ),
+            SizedBox(height: getProportionateScreenHeight(50)),
             _buildnameTextField(),
             _buildcollecteButton()
           ],
@@ -68,11 +68,13 @@ class N_douarPage extends StatelessWidget {
             Get.to(() => CollectePage());
           },
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF0F8A74)), // set background color
-            minimumSize: MaterialStateProperty.all<Size>( Size(getProportionateScreenWidth(250), getProportionateScreenHeight(50))), // set minimum size
+            backgroundColor: MaterialStateProperty.all<Color>(
+                const Color(0xFF0F8A74)), // set background color
+            minimumSize: MaterialStateProperty.all<Size>(
+                const Size(250, 50)), // set minimum size
             // You can also use fixedSize property to set the exact button size
           ),
-          child: const Text("Collecte",textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
+          child: const Text("Continuer",textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
         ));
   }
 }

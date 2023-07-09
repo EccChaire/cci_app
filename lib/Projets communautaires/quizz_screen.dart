@@ -17,14 +17,6 @@ class ProjetPage extends StatefulWidget {
 class _ProjetPageState extends State<ProjetPage> {
   late DataSpeceController DS;
   late List<Projet> pjs;
-  TextEditingController PCinitial = TextEditingController(text: '');
-  TextEditingController DCinitial = TextEditingController(text: '');
-  TextEditingController ACinitial = TextEditingController(text: '');
-  TextEditingController RCinitial = TextEditingController(text: '');
-  TextEditingController SCinitial = TextEditingController(text: '');
-  TextEditingController ECinitial = TextEditingController(text: '');
-  TextEditingController ICinitial = TextEditingController(text: '');
-  TextEditingController CCinitial = TextEditingController(text: '');
 
 
   @override
@@ -66,7 +58,7 @@ class _ProjetPageState extends State<ProjetPage> {
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  addedWidgets.add(AddProjetPage(DowarId: widget.Dowarid, isExpanded: true, projetController: PCinitial,descriptifController: DCinitial,ActeursimpController: ACinitial,resultatController: RCinitial,startDateController: SCinitial,endDateController: ECinitial, initiateurController: ICinitial,commentaireController: CCinitial,));
+                  addedWidgets.add(AddProjetPage(DowarId: widget.Dowarid, isExpanded: true, projetController: TextEditingController(text: ''),descriptifController: TextEditingController(text: ''),ActeursimpController: TextEditingController(text: ''),resultatController: TextEditingController(text: ''),startDateController: TextEditingController(text: ''),endDateController: TextEditingController(text: ''), initiateurController: TextEditingController(text: ''),commentaireController: TextEditingController(text: ''),));
                   addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
 
                 });

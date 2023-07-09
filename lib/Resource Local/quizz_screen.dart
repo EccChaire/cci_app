@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../data_space/controllers/data_space_controller.dart';
 import 'package:cci_app/Resource Local/add_ressource.dart';
 import 'package:cci_app/models/Ressource_local.dart';
-import 'package:cci_app/data_space/controllers/data_space_controller.dart';
 
 
 class ResourcePage extends StatefulWidget {
@@ -18,13 +17,9 @@ class ResourcePage extends StatefulWidget {
 class _ResourcePageState extends State<ResourcePage> {
   late DataSpeceController DS;
   late List<Resource> ress;
-  TextEditingController RCinitial = TextEditingController(text: '');
-  TextEditingController DCinitial = TextEditingController(text: '');
-  TextEditingController NCinitial = TextEditingController(text: '');
-  TextEditingController PCinitial = TextEditingController(text: '');
-  TextEditingController CCinitial = TextEditingController(text: '');
-  TextEditingController CoCinitial = TextEditingController(text: '');
-  TextEditingController DpCinitial = TextEditingController(text: '');
+
+  // Define the text editing controllers outside initState
+  List<TextEditingController> controllers = [];
 
   @override
   List<Widget> addedWidgets = [SizedBox(height: getProportionateScreenHeight(10))];
@@ -32,21 +27,34 @@ class _ResourcePageState extends State<ResourcePage> {
     super.initState();
     DS = Get.put(DataSpeceController());
     ress = DS.ressources;
-    for(Resource rs in ress){
+
+    // Populate the controllers list
+    for (Resource rs in ress) {
       TextEditingController RC = TextEditingController(text: rs.ressource);
       TextEditingController DC = TextEditingController(text: rs.descriptif);
       TextEditingController NC = TextEditingController(text: rs.nbreCitations);
       TextEditingController PC = TextEditingController(text: rs.projetsExploitent);
       TextEditingController CC = TextEditingController(text: rs.CommunautaireORindividuelle);
       TextEditingController CoC = TextEditingController(text: rs.commentaire);
-      TextEditingController DpC = TextEditingController(text: rs.Depuis);
       String resid = rs.ressourceId;
-      addedWidgets.add(AddResourcePage(DowarId: widget.Dowarid, isExpanded: false, ressourceController: RC, projetsExploitentController: PC,communautaireOrIndividuelleController: CC,nbreCitationsController: NC,descriptifController: DC, resId: resid,commentaireController: CoC,DepuisController: DpC,));
+
+      controllers.addAll([RC, DC, NC, PC, CC, CoC]);
+
+      addedWidgets.add(
+        AddResourcePage(
+          DowarId: widget.Dowarid,
+          isExpanded: false,
+          ressourceController: RC,
+          projetsExploitentController: PC,
+          communautaireOrIndividuelleController: CC,
+          nbreCitationsController: NC,
+          descriptifController: DC,
+          resId: resid,
+          commentaireController: CoC,)
+    );
       addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
     }
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -56,28 +64,39 @@ class _ResourcePageState extends State<ResourcePage> {
         title: Text('Ressources locales'),
       ),
       body: ListView(
-          children: [
-            Column(
         children: [
-          ...addedWidgets,
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  addedWidgets.add(AddResourcePage(DowarId: widget.Dowarid, isExpanded: true, ressourceController: RCinitial, projetsExploitentController: PCinitial,communautaireOrIndividuelleController: CCinitial,nbreCitationsController: NCinitial,descriptifController: DCinitial, commentaireController: CoCinitial,DepuisController: DpCinitial,));
-                  addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
-
-                });
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFF0F8A74), // Set the background color
+          Column(
+            children: [
+              ...addedWidgets,
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      addedWidgets.add(
+                        AddResourcePage(
+                          DowarId: widget.Dowarid,
+                          isExpanded: true,
+                          ressourceController: TextEditingController(text: ''),
+                          projetsExploitentController: TextEditingController(text: ''),
+                          communautaireOrIndividuelleController: TextEditingController(text: ''),
+                          nbreCitationsController: TextEditingController(text: ''),
+                          descriptifController: TextEditingController(text: ''),
+                          commentaireController: TextEditingController(text: ''),
+                        ),
+                      );
+                      addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF0F8A74), // Set the background color
+                  ),
+                  child: Icon(Icons.add),
+                ),
               ),
-              child: Icon(Icons.add),
-            ),
-          )
-           // Spread operator to add the widgets in the list
+            ],
+          ),
         ],
-      ),])
+      ),
     );
   }
 }

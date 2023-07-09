@@ -69,7 +69,7 @@ class DataSpace extends StatelessWidget {
           children: [
 SizedBox(width: getProportionateScreenWidth(10)),
           QuizzCard(
-            cardTitle: "Données générales",
+            cardTitle: "Données génétales",
             cardDescription: "Veuillez insérer ici des informations génétales sur le village.",
             onClockFuction: () async {
               DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
@@ -95,7 +95,7 @@ SizedBox(width: getProportionateScreenWidth(10)),
               SizedBox(width: getProportionateScreenWidth(10)),
             QuizzCardPrime(
               cardTitle: "Maturité de l’émergence",
-              cardDescription: "Pour chacune de 9 dimensions décrites ci-après, veuillez selectionner 1 ou 2 descriptions qui se rapproche(nt) le plus de la situation du village.",
+              cardDescription: "Pour chacune des 9 dimensions décrites ci-après, veuillez selectionner 1 ou 2 descriptions qui se rapproche(nt) le plus de la situation du village.",
               onClockFuction: () async {
                 DowarID = await DS.retrieveDowarID(await IS.isDouarExist());
                 //questions = await QS.getQuestionsByType("C");

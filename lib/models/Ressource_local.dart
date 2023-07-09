@@ -7,7 +7,6 @@ class Resource {
   String projetsExploitent;
   String dowarId;
   String userId;
-  String Depuis;
   String commentaire;
 
   Resource({
@@ -19,7 +18,6 @@ class Resource {
     required this.projetsExploitent,
     required this.dowarId,
     required this.userId,
-    required this.Depuis,
     required this.commentaire
   });
 
@@ -34,7 +32,6 @@ class Resource {
       projetsExploitent: json['projetsExploitent'] ,
       userId: json['userId'] ,
       commentaire: json['commentaire'],
-      Depuis: json['depuis']
     );
   }
 
@@ -49,7 +46,6 @@ class Resource {
     data['projetsExploitent'] = projetsExploitent;
     data['userId'] = userId;
     data['commentaire']= commentaire;
-    data['depuis']= Depuis;
     return data;
   }
 }

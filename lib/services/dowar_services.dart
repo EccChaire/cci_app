@@ -50,5 +50,17 @@ class DowarService {
     return dowarID;
   }
 
+  Future<String> retrieveDowarname(String intID) async {
+
+    QuerySnapshot snapshot = await FirebaseFirestore.instance
+        .collection('dowars')
+        .where('intervalId', isEqualTo: intID)
+        .limit(1)
+        .get();
+
+    String dowarname = snapshot.docs.first['dowarName'] as String;
+    return dowarname;
+  }
+
 
 }

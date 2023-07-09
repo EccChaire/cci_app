@@ -34,7 +34,7 @@ class CollectePage extends StatelessWidget {
           ),
           SizedBox(width: getProportionateScreenWidth(30)),
           Center(
-            child: Text("Veuillez appuyer sur le button Collecte pour commencer à enregistrer vos données terrain.",
+            child: Text("Veuillez appuyer sur le button Continuer pour commencer à enregistrer vos données terrain.",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
@@ -64,7 +64,7 @@ class CollectePage extends StatelessWidget {
                 const Size(250, 50)), // set minimum size
             // You can also use fixedSize property to set the exact button size
           ),
-          child:  const Text("Collecte",
+          child:  const Text("Continuer",
               textAlign: TextAlign.center, style: TextStyle(fontSize: 30)),
         ));
   }

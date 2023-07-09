@@ -2,6 +2,7 @@ import 'package:cci_app/login/login_repository.dart';
 import 'package:cci_app/login/wating_screen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:cci_app/confirmation/confirm_screen.dart';
 
 class LoginController extends GetxController {
   final LoginRepository loginRepository = LoginRepository();

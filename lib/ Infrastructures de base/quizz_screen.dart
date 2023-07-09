@@ -17,14 +17,6 @@ class InfrastructurePage extends StatefulWidget {
 class _InfrastructurePageState extends State<InfrastructurePage> {
   late DataSpeceController DS;
   late List<Infrastructure> infs;
-  TextEditingController ICinitial = TextEditingController(text: '');
-  TextEditingController DCinitial = TextEditingController(text: '');
-  TextEditingController QCinitial = TextEditingController(text: '');
-  TextEditingController SCinitial = TextEditingController(text: '');
-  TextEditingController ECinitial = TextEditingController(text: '');
-  TextEditingController DiCinitial = TextEditingController(text: '');
-  TextEditingController EcCinitial = TextEditingController(text: '');
-  TextEditingController Coinitial = TextEditingController(text: '');
 
   @override
   List<Widget> addedWidgets = [SizedBox(height: getProportionateScreenHeight(10))];
@@ -66,7 +58,7 @@ class _InfrastructurePageState extends State<InfrastructurePage> {
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  addedWidgets.add(AddInfrastructurePage(DowarId: widget.Dowarid, isExpanded: true, infrastructureController: ICinitial,qualite_percueController: QCinitial,disponibleController: DCinitial,suffisantController: SCinitial,etatController: ECinitial,encoursController: EcCinitial,distanceController: DiCinitial,commentaireController: Coinitial,));
+                  addedWidgets.add(AddInfrastructurePage(DowarId: widget.Dowarid, isExpanded: true, infrastructureController: TextEditingController(text: ''),qualite_percueController: TextEditingController(text: ''),disponibleController: TextEditingController(text: ''),suffisantController: TextEditingController(text: ''),etatController: TextEditingController(text: ''),encoursController: TextEditingController(text: ''),distanceController: TextEditingController(text: ''),commentaireController: TextEditingController(text: ''),));
                   addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
 
                 });

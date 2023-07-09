@@ -46,7 +46,7 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
   final DataSpeceController DS = Get.put(DataSpeceController());
   final List<String> infrastructureList = ['Electricité', 'Eau pour irrigation', 'Eau potable', 'Eau courante dans les foyers','Réseau GSM','Réseau Internet','Préscolaire','Ecole primaire','Collège','Lycée','Formations techniques','Internat','Route d’accès','Dispensaire/infirmerie','Hôpital','Centre maternel','Pharmacie','Ambulance','Dar Talib','Dar Chabab','Dar Attakafa','Souk hebdomadaire','Sports et jeunesse','Mosquée','Autre : '];
   final List<String> ONList = ['Oui', 'Non'];
-  final List<String> ETList = ['Individuel', 'collectif', 'communautaire', 'service public'];
+  final List<String> ETList = ['Individuel', 'collectif', 'communautaire', 'entreprise externe','ONG externe',"Services de l'État","Autres"];
   final List<String> QPList = ['TB', 'B', 'M', 'F','TF'];
 
   // Define variables for the form fields

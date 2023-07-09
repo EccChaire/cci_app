@@ -17,11 +17,6 @@ class ActeurPage extends StatefulWidget {
 class _ActeurPageState extends State<ActeurPage> {
   late DataSpeceController DS;
   late List<Acteur> acs;
-  TextEditingController ACinitial = TextEditingController(text: '');
-  TextEditingController TCinitial = TextEditingController(text: '');
-  TextEditingController RCinitial = TextEditingController(text: '');
-  TextEditingController DCinitial = TextEditingController(text: '');
-  TextEditingController CCinitial = TextEditingController(text: '');
 
   @override
   List<Widget> addedWidgets = [SizedBox(height: getProportionateScreenHeight(10))];
@@ -59,7 +54,7 @@ class _ActeurPageState extends State<ActeurPage> {
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  addedWidgets.add(AddActeurPage(DowarId: widget.Dowarid, isExpanded: true, acteurController: ACinitial, typeController: TCinitial, roleController: RCinitial, depuisController: DCinitial,commentaireController: CCinitial,));
+                  addedWidgets.add(AddActeurPage(DowarId: widget.Dowarid, isExpanded: true, acteurController: TextEditingController(text: ''), typeController: TextEditingController(text: ''), roleController: TextEditingController(text: ''), depuisController: TextEditingController(text: ''),commentaireController: TextEditingController(text: ''),));
                   addedWidgets.add(SizedBox(height: getProportionateScreenHeight(10)));
 
                 });
