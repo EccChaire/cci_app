@@ -9,6 +9,7 @@ import 'package:cci_app/data_space/Providers/quizz2_provider.dart';
 import 'login/login_screen.dart';
 import 'package:cci_app/data_space/Providers/quizz1_provider.dart';
 import 'package:cci_app/data_space/Providers/quizz3_provider.dart';
+import 'package:cci_app/nouvelle_douar/n_douar_screen.dart';
 
 
 

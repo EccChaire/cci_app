@@ -58,6 +58,36 @@ class IntervalService {
     );
   }
 
+  Future<Position> getCurrentLocation1() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      throw Exception('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission != LocationPermission.whileInUse &&
+          permission != LocationPermission.always) {
+        throw Exception(
+            'Location permissions are denied (actual value: $permission).');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      throw Exception(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+  }
+
+
   CoordinateInterval createCoordinateInterval(Position position) {
     double startLatitude = position.latitude - 0.01;
     double startLongitude = position.longitude -0.01;

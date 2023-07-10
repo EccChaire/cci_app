@@ -54,7 +54,6 @@ class CollectePage extends StatelessWidget {
                 350)), // set padding to move button to top left corner
         child: ElevatedButton(
           onPressed: () async {
-            DowarID = (await DS.retrieveDowarID(await IS.isDouarExist()))!;
             Get.to(() => DataSpace());
           },
           style: ButtonStyle(

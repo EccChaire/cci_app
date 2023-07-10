@@ -12,7 +12,6 @@ import 'n_dowar_block.dart';
 class N_douarPage extends StatelessWidget {
 
   final Position currentPosition;
-
   final NewDowarBlock newDowarBlock = Get.put(NewDowarBlock());
   final IntervalService intervalservice = Get.put(IntervalService());
 

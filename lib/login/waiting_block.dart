@@ -1,5 +1,3 @@
-
-
 import 'package:cci_app/collecte/collecte_screen.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -14,24 +12,36 @@ class WaitingBlock extends GetxController {
   final DowarService DS = Get.put(DowarService());
 
   void checkPosition() async {
-    isLoading.value = true;
-    Position currentPosition = await IS.getCurrentLocation();
+    try {
+      isLoading.value = true;
+      Position? currentPosition = await IS.getCurrentLocation1();
 
-    String positionExist = await IS.isDouarExist();
-    String Dowarname = await DS.retrieveDowarname(await IS.isDouarExist());
-    Get.off(()=> N_douarPage(currentPosition : currentPosition));
-    if (positionExist != ''){
+      if (currentPosition != null && currentPosition.latitude != null && currentPosition.longitude != null) {
+        String positionExist = await IS.isDouarExist();
+
+        if (positionExist.isNotEmpty) {
+          String dowarName = await DS.retrieveDowarname(positionExist);
+          Get.offAll(() => ConfirmPage(Dname: dowarName));
+        } else {
+          Get.offAll(() => N_douarPage(currentPosition: currentPosition));
+        }
+      } else {
+        // Handle the case when currentPosition is null or its latitude/longitude is null
+        print('Current position is null or invalid');
+        // You can display an error message or handle the null position accordingly
+      }
+    } catch (e) {
+      // Handle any errors that occur during the position check
+      print('Error checking position: $e');
+      // You can display an error message or handle the error accordingly
+    } finally {
       isLoading.value = false;
-      Get.off(()=> ConfirmPage(Dname: Dowarname,));
-    }else{
-      Get.off(()=> N_douarPage(currentPosition : currentPosition));
     }
-
-
   }
 
-
-  WaitingBlock(){
+  @override
+  void onInit() {
+    super.onInit();
     checkPosition();
   }
 }

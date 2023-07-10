@@ -80,8 +80,8 @@ class _AddInfrastructurePageState extends State<AddInfrastructurePage> {
           child: AnimatedContainer(
             padding: EdgeInsets.only(left: getProportionateScreenWidth(30),right:getProportionateScreenWidth(30)),
             duration: Duration(milliseconds: 300),
-            width: 400,
-            height: widget.isExpanded ? 520 : 70,
+            width: getProportionateScreenWidth(400),
+            height: widget.isExpanded ? getProportionateScreenHeight(710) : getProportionateScreenHeight(70),
             decoration: BoxDecoration(
               color: Colors.grey,
               shape: BoxShape.rectangle,
